@@ -1,9 +1,12 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class Paciente extends Pessoa{
-    public Paciente(String nome, String cpf, LocalDate dataNascimento){
-        super(nome, cpf, dataNascimento);
+
+    //, ArrayList<Clinica> historicoMedico
+    public Paciente(String nome, String cpf, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico){
+        super(nome, cpf, dataNascimento, historicoMedico);
     }
 }

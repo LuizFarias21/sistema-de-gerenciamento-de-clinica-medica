@@ -18,7 +18,7 @@ Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, 
 
 **Atributos obrigatórios:**
 - [x] ``nome`` (string).
-- [ ] ``CPF``(string XXX.XXX.XXX-XX).
+- [x] ``CPF``(string XXX.XXX.XXX-XX).
 - [x] ``dataNascimento`` (Date ou LocalDate).
 - [ ] ``HistoricoMedico`` (lista de objetos Consulta e Exame).
 
@@ -31,7 +31,7 @@ Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, 
 
 **Atributos obrigatórios:**
 - [x] ``nome`` (string).
-- [ ] ``CPF`` (string XXX.XXX.XXX-XX).
+- [x] ``CPF`` (string XXX.XXX.XXX-XX).
 - [x] ``dataNascimento``.
 - [ ] ``CRM``.
 - [x] ``especialidade`` (ex: cardiologia, pediatria, etc).
