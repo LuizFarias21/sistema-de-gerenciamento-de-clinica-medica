@@ -1,6 +1,5 @@
 package servicos;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class ServicosCRUD<T> {

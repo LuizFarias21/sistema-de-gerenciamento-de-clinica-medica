@@ -2,9 +2,6 @@ package servicos;
 
 import entidades.Paciente;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 public class ServicoPaciente extends ServicosCRUD<Paciente> {
 
 
@@ -28,8 +25,6 @@ public class ServicoPaciente extends ServicosCRUD<Paciente> {
         }
         return null;
     }
-
-    //(ideias) ------ gdgdgd.buscar(CPF).atualizar(Classe objeto);
 
     @Override
     public void atualizar(String CPF, Paciente novo) {

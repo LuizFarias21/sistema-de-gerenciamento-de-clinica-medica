@@ -1,7 +1,6 @@
 package servicos;
 
 import entidades.Consulta;
-import entidades.Paciente;
 
 public class ServicoConsulta extends ServicosCRUD<Consulta>{
 

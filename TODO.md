@@ -39,7 +39,7 @@ Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, 
 
 **Funcionalidades:**
 - [x] CRUD completo de Médicos.
-- [ ] Adicionar uma nova consulta ao histórico.
+- [x] Adicionar uma nova consulta ao histórico.
 - [ ] Bloquear cadastro se CPF já estiver registrado.
 #### Agendamento de Consultas
 
@@ -50,12 +50,12 @@ O sistema deverá implementar um CRUD completo para consultas.
 - [ ] O médico tiver a especialidade requerida.
 
 **Para cada consulta médica deverão ser informados, obrigatoriamente:**
-- [ ] Data da consulta (ex: 26-01-2025).
-- [ ] Horário de início (ex: 14:30).
-- [ ] Duração em minutos (padrão: 30 minutos).
+- [x] Data da consulta (ex: 26-01-2025).
+- [x] Horário de início (ex: 14:30).
+- [x] Duração em minutos (padrão: 30 minutos).
 - [ ] Status consulta   (Ex.: AGENDADA, CANCELADA, REALIZADA)
-- [ ] Paciente associado à consulta.
-- [ ] Médico responsável pela consulta.
+- [x] Paciente associado à consulta.
+- [x] Médico responsável pela consulta.
 - [ ] Lista de exames prescritos durante a consulta.
 - [ ] Lista de medicamentos prescritos.
 - [ ] Valor da consulta (ex: R$ 150,00).
@@ -67,8 +67,8 @@ O sistema deverá implementar um CRUD completo para consultas.
 
 **No caso de Exame, os atributos obrigatórios são:**
 - [ ] ``tipo``: (ex: SANGUE, RAIO_X, ULTRASSOM).
-- [ ] ``dataPrescricao``: data em que foi prescrito.
-- [ ] ``dataRealizacao``: data em que foi realizado.
+- [x] ``dataPrescricao``: data em que foi prescrito.
+- [x] ``dataRealizacao``: data em que foi realizado.
 - [ ] ``resultado``: detalhes do resultado, ex: "Colesterol total: 180 mg/dL".
 - [ ] ``custo``: valor base do exame.
 
@@ -96,7 +96,7 @@ O sistema deverá implementar um CRUD completo para consultas.
 
 **Classes e Objetos / Atributos e Métodos / Associações entre Objetos**
 
-- [ ] Defina classes como ``Paciente``, ``Medico``, ``Consulta``, ``Exame``, ``Pagamento``, ``Notificacao``, e outras que se fizerem necessárias.
+- [x] Defina classes como ``Paciente``, ``Medico``, ``Consulta``, ``Exame``, ``Pagamento``, ``Notificacao``, e outras que se fizerem necessárias.
 - [ ] Realize as associações entre as classes de modo a considerar o contexto da aplicação. Defina, para cada associação, seu nome e suas multiplicidades.
 - [ ] Apresente, através de um diagrama de Classes UML, as classes, seus atributos e métodos, suas associações e multiplicidades, seus pacotes.
 - [ ] Explore, o quanto for possível, relações de herança entre as classes que compõem seu projeto.
