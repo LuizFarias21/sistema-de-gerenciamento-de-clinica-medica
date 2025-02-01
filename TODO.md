@@ -86,9 +86,9 @@ O sistema deverá implementar um CRUD completo para consultas.
 ### Tratamento de Exceções
 
 **Exceções deverão ser utilizadas para lidar com as seguintes situações:**
-- [ ] Agendamento em horário indisponível.
+- [x] Agendamento em horário indisponível.
 - [ ] Paciente com pagamento pendente.
-- [ ] Médico não encontrado para uma especialidade.
+- [x] Médico não encontrado para uma especialidade.
 
 
 
@@ -130,7 +130,7 @@ Crie as seguintes exceções personalizadas e faça o devido lançamento, confor
 
 - [x] ``HorarioIndisponivelException``: quando vai tentar realizar a marcação de uma consulta para um médico e o horário já está ocupado por uma outra consulta, essa exceção deverá ser lançada e tratada. 
 - [ ]  ``PagamentoPendenteException``: quando vai tentar fazer o agendamento de uma consulta ou exame e o paciente possui pendências financeiras registradas no sistema. Nesse caso a exceção deverá ser lançada para impedir o agendamento da consulta ou exame.
-- [ ] ``EspecialidadeInvalidaException``: quando tentar realizar a marcação de uma consulta para um médico, mas o médico não possui tal especialidade. Nesse caso a exceção deverá ser lançada para impedir que a marcação da consulta seja realizada.
+- [x] ``EspecialidadeInvalidaException``: quando tentar realizar a marcação de uma consulta para um médico, mas o médico não possui tal especialidade. Nesse caso a exceção deverá ser lançada para impedir que a marcação da consulta seja realizada.
 
 ## Entrega:
 
