@@ -128,7 +128,7 @@ Separe o código em pacotes como:
 
 Crie as seguintes exceções personalizadas e faça o devido lançamento, conforme descrições abaixo:
 
-- [ ] ``HorarioIndisponivelException``: quando vai tentar realizar a marcação de uma consulta para um médico e o horário já está ocupado por uma outra consulta, essa exceção deverá ser lançada e tratada. 
+- [x] ``HorarioIndisponivelException``: quando vai tentar realizar a marcação de uma consulta para um médico e o horário já está ocupado por uma outra consulta, essa exceção deverá ser lançada e tratada. 
 - [ ]  ``PagamentoPendenteException``: quando vai tentar fazer o agendamento de uma consulta ou exame e o paciente possui pendências financeiras registradas no sistema. Nesse caso a exceção deverá ser lançada para impedir o agendamento da consulta ou exame.
 - [ ] ``EspecialidadeInvalidaException``: quando tentar realizar a marcação de uma consulta para um médico, mas o médico não possui tal especialidade. Nesse caso a exceção deverá ser lançada para impedir que a marcação da consulta seja realizada.
 

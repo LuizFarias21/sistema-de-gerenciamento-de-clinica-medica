@@ -1,7 +1,9 @@
 package servicos;
 
 import entidades.*;
+import excecoes.EspecialidadeInvalidaException;
 import excecoes.HorarioIndisponivelException;
+import excecoes.PacienteIndisponivelException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -61,24 +63,25 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
         Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, 1, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
         try {
-            // Nao permitir realizar agenda se medico nao tiver especialidade requerida
-            if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
-                System.out.println("Consulta nao pode ser agendada pois o medico nao tem a especialidade requerida!");
-                return;
+
+            // Nao permitir realizar agenda se medico nao estiver disponivel
+            if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
+                throw new HorarioIndisponivelException(novaConsulta, horarioInicialConsulta, duracaoConsulta);
             }
 
             // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
             if(validarDisponibilidadePaciente(pacienteAssociado, dataConsulta)){
-                System.out.println("Consulta nao pode ser agendada pois paciente ja tem consulta nesse dia!");
-                return;
+                throw new PacienteIndisponivelException(pacienteAssociado);
             }
 
-            // Nao permitir realizar agenda se medico nao estiver disponivel
-            if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
-                throw new HorarioIndisponivelException(novaConsulta, horarioInicialConsulta, duracaoConsulta); // Lança a exceção
+            // Nao permitir realizar agenda se medico nao tiver especialidade requerida
+            if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
+                throw new EspecialidadeInvalidaException(medicoResponsavel);
             }
-        } catch (HorarioIndisponivelException e) {
+
+        } catch (HorarioIndisponivelException | PacienteIndisponivelException | EspecialidadeInvalidaException e) {
             System.out.println("Erro ao agendar consulta: " + e.getMessage());
+            return;
         }
 
 
