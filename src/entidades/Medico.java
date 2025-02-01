@@ -1,14 +1,14 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Medico extends Pessoa{
 
     private String crm;
     private String especialidade;
 
-    public Medico(String nome, String CPF, LocalDate dataNascimento, String crm, String especialidade, ArrayList<Consulta> historicoMedico) {
+    public Medico(String nome, String CPF, LocalDate dataNascimento, String crm, String especialidade, List<Consulta> historicoMedico) {
         super(nome, CPF, dataNascimento, historicoMedico);
         this.crm = crm;
         this.especialidade = especialidade;

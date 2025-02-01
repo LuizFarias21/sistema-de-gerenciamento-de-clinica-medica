@@ -1,8 +1,9 @@
 package entidades;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
+import java.util.List;
 
 public class Consulta {
 
@@ -15,12 +16,12 @@ public class Consulta {
     private int status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
-    private ArrayList<Exame> examesPrescritos;
-    private ArrayList<Medicamento> medicamentosPrescritos;
+    private List<Exame> examesPrescritos;
+    private List<Medicamento> medicamentosPrescritos;
     private double valorConsulta;
 
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioConsulta, LocalTime duracaoConsulta, int status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
+    public Consulta(LocalDate dataConsulta, LocalTime horarioConsulta, LocalTime duracaoConsulta, int status, Paciente pacienteAssociado, Medico medicoResponsavel, List<Exame> examesPrescritos, List<Medicamento> medicamentosPrescritos, double valorConsulta) {
         this.ID = String.valueOf(contadorID++);
         this.dataConsulta = dataConsulta;
         this.horarioConsulta = horarioConsulta;
@@ -63,6 +64,10 @@ public class Consulta {
 
     public void setDuracaoConsulta(LocalTime duracaoConsulta) {
         this.duracaoConsulta = duracaoConsulta;
+    }
+
+    public LocalTime getHorarioFinalConsulta() {
+        return this.horarioConsulta.plus(Duration.between(LocalTime.MIN, this.duracaoConsulta));
     }
 
     public int getStatus() {
