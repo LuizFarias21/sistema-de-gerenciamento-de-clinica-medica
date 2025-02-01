@@ -24,8 +24,8 @@ Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, 
 
 **Funcionalidades:**
 - [x] CRUD completo de pacientes
-- [ ] Adicionar uma nova consulta ao histórico.
-- [ ] Bloquear cadastro se CPF já estiver registrado.
+- [x] Adicionar uma nova consulta ao histórico.
+- [x] Bloquear cadastro se CPF já estiver registrado.
 
 #### Médicos:
 
@@ -40,14 +40,14 @@ Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, 
 **Funcionalidades:**
 - [x] CRUD completo de Médicos.
 - [x] Adicionar uma nova consulta ao histórico.
-- [ ] Bloquear cadastro se CPF já estiver registrado.
+- [x] Bloquear cadastro se CPF já estiver registrado.
 #### Agendamento de Consultas
 
 O sistema deverá implementar um CRUD completo para consultas.    
 **O sistema deve permitir agendar consultas apenas se:**
-- [ ] O médico estiver disponível no horário.
-- [ ] O paciente não tiver outra consulta no mesmo dia.
-- [ ] O médico tiver a especialidade requerida.
+- [x] O médico estiver disponível no horário.
+- [x] O paciente não tiver outra consulta no mesmo dia.
+- [x] O médico tiver a especialidade requerida.
 
 **Para cada consulta médica deverão ser informados, obrigatoriamente:**
 - [x] Data da consulta (ex: 26-01-2025).
@@ -56,9 +56,9 @@ O sistema deverá implementar um CRUD completo para consultas.
 - [ ] Status consulta   (Ex.: AGENDADA, CANCELADA, REALIZADA)
 - [x] Paciente associado à consulta.
 - [x] Médico responsável pela consulta.
-- [ ] Lista de exames prescritos durante a consulta.
-- [ ] Lista de medicamentos prescritos.
-- [ ] Valor da consulta (ex: R$ 150,00).
+- [x] Lista de exames prescritos durante a consulta.
+- [x] Lista de medicamentos prescritos.
+- [x] Valor da consulta (ex: R$ 150,00).
 #### Prescrição de Exames e Medicamentos
 
 - [ ] Médicos podem prescrever exames (ex: sangue, raio-X) ou medicamentos, associando-os à consulta.
@@ -128,7 +128,8 @@ Separe o código em pacotes como:
 
 Crie as seguintes exceções personalizadas e faça o devido lançamento, conforme descrições abaixo:
 
-- [ ] ``HorarioIndisponivelException``: quando vai tentar realizar a marcação de uma consulta para um médico e o horário já está ocupado por uma outra consulta, essa exceção deverá ser lançada e tratada.   - ``PagamentoPendenteException``: quando vai tentar fazer o agendamento de uma consulta ou exame e o paciente possui pendências financeiras registradas no sistema. Nesse caso a exceção deverá ser lançada para impedir o agendamento da consulta ou exame.
+- [ ] ``HorarioIndisponivelException``: quando vai tentar realizar a marcação de uma consulta para um médico e o horário já está ocupado por uma outra consulta, essa exceção deverá ser lançada e tratada. 
+- [ ]  ``PagamentoPendenteException``: quando vai tentar fazer o agendamento de uma consulta ou exame e o paciente possui pendências financeiras registradas no sistema. Nesse caso a exceção deverá ser lançada para impedir o agendamento da consulta ou exame.
 - [ ] ``EspecialidadeInvalidaException``: quando tentar realizar a marcação de uma consulta para um médico, mas o médico não possui tal especialidade. Nesse caso a exceção deverá ser lançada para impedir que a marcação da consulta seja realizada.
 
 ## Entrega:

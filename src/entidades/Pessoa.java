@@ -7,9 +7,10 @@ public abstract class Pessoa {
     private String nome;
     private String CPF;
     private LocalDate dataNascimento;
-    private ArrayList<Consulta> historicoMedico;
+    private ArrayList<Consulta> historicoConsultas;
+    private ArrayList<Exame> historicoExames;
 
-    Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
+    Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoConsultas, ArrayList<Exame> historicoExames) {
         /*
         if (setCpf(cpf) != ResultadoCPF.SUCESSO){
             throw new RuntimeException("CPF inválido.");
@@ -20,7 +21,16 @@ public abstract class Pessoa {
         this.CPF = CPF;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
-        this.historicoMedico = historicoMedico;
+        this.historicoConsultas = historicoConsultas;
+        this.historicoExames = historicoExames;
+    }
+
+    public void adicionarConsulta(Consulta consulta) {
+        historicoConsultas.add(consulta);
+    }
+
+    public void adicionarExame(Exame exame){
+        historicoExames.add(exame);
     }
 
     public String getNome() {
@@ -85,15 +95,19 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-   public ArrayList<Consulta> getHistoricoMedico() {
-       return historicoMedico;
-   }
+    public ArrayList<Consulta> getHistoricoConsultas() {
+        return historicoConsultas;
+    }
 
-   public void setHistoricoMedico(ArrayList<Consulta> historicoMedico) {
-       this.historicoMedico = historicoMedico;
-   }
+    public void setHistoricoConsultas(ArrayList<Consulta> historicoConsultas) {
+        this.historicoConsultas = historicoConsultas;
+    }
 
-    public void adicionarConsulta(Consulta consulta) {
-        historicoMedico.add(consulta);
+    public ArrayList<Exame> getHistoricoExames() {
+        return historicoExames;
+    }
+
+    public void setHistoricoExames(ArrayList<Exame> historicoExames) {
+        this.historicoExames = historicoExames;
     }
 }

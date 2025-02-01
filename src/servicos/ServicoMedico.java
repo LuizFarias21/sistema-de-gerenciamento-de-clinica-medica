@@ -2,18 +2,15 @@ package servicos;
 
 import entidades.Medico;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 public class ServicoMedico extends ServicosCRUD<Medico> {
 
     @Override
     public void adicionar(Medico medico) {
         if(buscar(medico.getCPF()) == null){
             lista.add(medico);
-            System.out.println("Médico adicionado com sucesso");
+            System.out.println("Medico " + medico.getNome() + " adicionado com sucesso");
         } else {
-            System.out.println("Já existe esse Médico!");
+            System.out.println("CPF ja consta no registro de medicos, cadastro bloqueado");
         }
     }
 
@@ -28,15 +25,15 @@ public class ServicoMedico extends ServicosCRUD<Medico> {
     }
 
     @Override
-    public void atualizar(String CPF, Medico novo) {
+    public void atualizar(String CPF, Medico novoMedico) {
         Medico medico = buscar(CPF);
         if(medico != null){
-            medico.setNome(novo.getNome());
-            medico.setCPF(novo.getCPF());
-            medico.setDataNascimento(novo.getDataNascimento());
-            medico.setCrm(novo.getCrm());
-            medico.setEspecialidade(novo.getEspecialidade());
-            System.out.println("Medico atualizado com sucesso");
+            medico.setNome(novoMedico.getNome());
+            medico.setCPF(novoMedico.getCPF());
+            medico.setDataNascimento(novoMedico.getDataNascimento());
+            medico.setCrm(novoMedico.getCrm());
+            medico.setEspecialidade(novoMedico.getEspecialidade());
+            System.out.println("Medico " + novoMedico.getNome() + " atualizado com sucesso!");
         } else {
             System.out.println("Medico não encontrado.");
         }
@@ -47,7 +44,7 @@ public class ServicoMedico extends ServicosCRUD<Medico> {
         Medico medico = buscar(CPF);
         if(medico != null){
             lista.remove(medico);
-            System.out.println("Médico removido com sucesso.");
+            System.out.println("Medico " + medico.getNome() + " removido com sucesso.");
         } else {
             System.out.println("Médico não encontrado.");
         }

@@ -10,8 +10,9 @@ public class Consulta {
 
     private String ID;
     private LocalDate dataConsulta;
-    private LocalTime horarioConsulta;
+    private LocalTime horarioInicialConsulta;
     private LocalTime duracaoConsulta;
+    private LocalTime horarioFinalConsulta;
     private int status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
@@ -20,11 +21,12 @@ public class Consulta {
     private double valorConsulta;
 
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioConsulta, LocalTime duracaoConsulta, int status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
+    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, int status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
         this.ID = String.valueOf(contadorID++);
         this.dataConsulta = dataConsulta;
-        this.horarioConsulta = horarioConsulta;
+        this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
+        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
         this.status = status;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
@@ -49,12 +51,12 @@ public class Consulta {
         this.dataConsulta = dataConsulta;
     }
 
-    public LocalTime getHorarioConsulta() {
-        return horarioConsulta;
+    public LocalTime getHorarioInicialConsulta() {
+        return horarioInicialConsulta;
     }
 
-    public void setHorarioConsulta(LocalTime horarioConsulta) {
-        this.horarioConsulta = horarioConsulta;
+    public void setHorarioInicialConsulta(LocalTime horarioInicialConsulta) {
+        this.horarioInicialConsulta = horarioInicialConsulta;
     }
 
     public LocalTime getDuracaoConsulta() {
@@ -63,6 +65,14 @@ public class Consulta {
 
     public void setDuracaoConsulta(LocalTime duracaoConsulta) {
         this.duracaoConsulta = duracaoConsulta;
+    }
+
+    public LocalTime getHorarioFinalConsulta() {
+        return horarioFinalConsulta;
+    }
+
+    public void setHorarioFinalConsulta(LocalTime horarioFinalConsulta) {
+        this.horarioFinalConsulta = horarioFinalConsulta;
     }
 
     public int getStatus() {

@@ -4,18 +4,16 @@ import entidades.Paciente;
 
 public class ServicoPaciente extends ServicosCRUD<Paciente> {
 
-
     @Override
     public void adicionar(Paciente paciente) {
         if(buscar(paciente.getCPF()) == null){
             lista.add(paciente);
-            System.out.println("Paciente adicionado com sucesso");
+            System.out.println("Paciente " + paciente.getNome() + " adicionado com sucesso");
         } else {
-            System.out.println("Já existe esse paciente!");
+            System.out.println("CPF ja consta no registro de pacientes, cadastro bloqueado");
         }
     }
 
-    // Falta implementar a condicao de bloquear cadastro se CPF já estiver registrado.
     @Override
     public Paciente buscar(String CPF) {
         for (Paciente paciente : lista){
@@ -27,16 +25,18 @@ public class ServicoPaciente extends ServicosCRUD<Paciente> {
     }
 
     @Override
-    public void atualizar(String CPF, Paciente novo) {
+    public void atualizar(String CPF, Paciente novoPaciente) {
         Paciente paciente = buscar(CPF);
         if (paciente != null)
         {
-            paciente.setNome(novo.getNome());
-            paciente.setCPF(novo.getCPF());
-            paciente.setDataNascimento(novo.getDataNascimento());
-            System.out.println("Paciente atualizado com sucesso");
+            paciente.setNome(novoPaciente.getNome());
+            paciente.setCPF(novoPaciente.getCPF());
+            paciente.setDataNascimento(novoPaciente.getDataNascimento());
+            System.out.println("Paciente " + novoPaciente.getNome() + " atualizado com sucesso!");
+
+        } else {
+            System.out.println("Paciente não encontrado.");
         }
-        else System.out.println("Paciente não encontrado.");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ServicoPaciente extends ServicosCRUD<Paciente> {
         Paciente paciente = buscar(CPF);
         if(paciente != null){
             lista.remove(paciente);
-            System.out.println("Paciente removido com sucesso.");
+            System.out.println("Paciente " + paciente.getNome() + " removido com sucesso.");
         } else {
             System.out.println("Paciente não encontrado.");
         }

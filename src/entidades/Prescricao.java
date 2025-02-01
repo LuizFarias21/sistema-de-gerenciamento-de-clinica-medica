@@ -17,4 +17,35 @@ public class Prescricao {
         this.dataValidade = dataValidade;
     }
 
+    public Consulta getConsultaAssociada() {
+        return consultaAssociada;
+    }
+
+    public void setConsultaAssociada(Consulta consultaAssociada) {
+        this.consultaAssociada = consultaAssociada;
+    }
+
+    public Exame getExamePrescritos() {
+        return examePrescritos;
+    }
+
+    public void setExamePrescritos(Exame examePrescritos) {
+        this.examePrescritos = examePrescritos;
+    }
+
+    public ArrayList<Medicamento> getMedicamentos() {
+        return medicamentos;
+    }
+
+    public void setMedicamentos(ArrayList<Medicamento> medicamentos) {
+        this.medicamentos = medicamentos;
+    }
+
+    public LocalDate getDataValidade() {
+        return dataValidade;
+    }
+
+    public void setDataValidade(LocalDate dataValidade) {
+        this.dataValidade = dataValidade;
+    }
 }

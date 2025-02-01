@@ -12,7 +12,7 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
     public void adicionar(Consulta consulta) {
         if(buscar(consulta.getID()) == null){
             lista.add(consulta);
-            System.out.println("Consulta adicionada com sucesso!");
+            System.out.println("Consulta[" + consulta.getID() + "] adicionada com sucesso!");
         } else {
             System.out.println("Ja existe essa consulta!");
         }
@@ -29,13 +29,14 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
     }
 
     @Override
-    public void atualizar(String ID, Consulta novaConsulta) {
-        Consulta consulta = buscar(ID);
-        if (consulta != null)
-        {
-            System.out.println("Paciente atualizado com sucesso");
+    public void atualizar(String ID, Consulta consulta) {
+        consulta = buscar(ID);
+        if (consulta != null) {
+            System.out.println("Consulta atualizada com sucesso");
+
+        } else {
+            System.out.println("Consulta não encontrada.");
         }
-        else System.out.println("Paciente não encontrado.");
     }
 
     @Override
@@ -49,47 +50,81 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
         }
     }
 
-    public Consulta realizarConsulta(LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoAssociado, double valorConsulta) {
-        return new Consulta(LocalDate.now(), LocalTime.now(), duracaoConsulta, 0, pacienteAssociado, medicoAssociado, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
-    }
+//    public void realizarConsulta(LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoResponsavel, double valorConsulta) {
+//        Consulta novaConsulta = new Consulta(LocalDate.now(), LocalTime.now(), duracaoConsulta, 0, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
+//        adicionar(novaConsulta);
+//        pacienteAssociado.adicionarConsulta(novaConsulta);
+//        medicoResponsavel.adicionarConsulta(novaConsulta);
+//    }
 
-    public Consulta agendarConsulta(LocalDate dataConsulta, LocalTime horarioConsulta, LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoAssociado, double valorConsulta){
+    public void agendarConsulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida , double valorConsulta){
+        Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, 1, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
-        for (Consulta consulta : medicoAssociado.getHistoricoMedico()){
-            boolean diaCompativel = consulta.getDataConsulta() == dataConsulta;
-            boolean intervaloHorario = consulta.getHorarioConsulta().isAfter(horarioConsulta) && consulta.getDuracaoConsulta().isBefore(duracaoConsulta);
-            boolean horarioCompativel = consulta.getHorarioConsulta().equals(horarioConsulta) || intervaloHorario;
-
-            if(!(horarioCompativel && diaCompativel)){
-                System.out.println("Horario disponivel! Agendando consulta...");
-                return new Consulta(dataConsulta, horarioConsulta, duracaoConsulta, 1, pacienteAssociado, medicoAssociado, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
-            }
+        // Nao permitir realizar agenda se medico nao tiver especialidade requerida
+        if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
+            System.out.println("Consulta nao pode ser agendada pois o medico nao tem a especialidade requerida!");
+            return;
         }
 
-        return null;
+        // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
+        if(validarDisponibilidadePaciente(pacienteAssociado, dataConsulta)){
+            System.out.println("Consulta nao pode ser agendada pois paciente ja tem consulta nesse dia!");
+            return;
+        }
+
+        // Nao permitir realizar agenda se medico nao estiver disponivel
+        if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
+            System.out.println("Consulta nao pode ser agendada pois o medico nao esta disponivel no intervalo de horario especificado!");
+            return;
+        }
+
+
+        System.out.println("Horario disponivel! Agendando consulta...");
+        adicionar(novaConsulta);
+        pacienteAssociado.adicionarConsulta(novaConsulta);
+        medicoResponsavel.adicionarConsulta(novaConsulta);
     }
 
     public void cancelarConsulta(Consulta consulta){
         Paciente pacienteAssociado = consulta.getPacienteAssociado();
         Medico medicoResponsavel = consulta.getMedicoResponsavel();
-        pacienteAssociado.getHistoricoMedico().remove(consulta);
-        medicoResponsavel.getHistoricoMedico().remove(consulta);
-
+        pacienteAssociado.getHistoricoConsultas().remove(consulta);
+        medicoResponsavel.getHistoricoConsultas().remove(consulta);
+        remover(consulta.getID());
     }
 
-    public boolean disponibilidadeMedico(LocalDate dataConsulta, LocalTime horarioConsulta, LocalTime duracaoConsulta){
-        //Paciente paciente = ;
-        //Medico medico;
+    public boolean validarDisponibilidadeMedico(Medico medicoResponsavel, LocalDate novaData, LocalTime novoInicio, LocalTime novoFim){
+        for (Consulta consulta : medicoResponsavel.getHistoricoConsultas()){
 
-        //if (dataConsulta == medico.getHistoricoMedico().contains())
-        return true;
+            LocalDate dataAgendada = consulta.getDataConsulta();
+            LocalTime inicioAgendado = consulta.getHorarioInicialConsulta();
+            LocalTime fimAgendado = consulta.getHorarioFinalConsulta();
+
+            boolean diasIguais = (dataAgendada.equals(novaData));
+            boolean conflitoHorarios = (novoInicio.isBefore(fimAgendado) && novoFim.isAfter(inicioAgendado));
+            boolean conflitoAgenda = diasIguais && conflitoHorarios;
+
+            if(conflitoAgenda) return true;
+        }
+        return false;
     }
 
-    public boolean disponibilidadePaciente(){
-        return true;
+    private boolean validarDisponibilidadePaciente(Paciente pacienteAssociado, LocalDate dataConsulta){
+
+        ArrayList<Consulta> consultasPaciente = pacienteAssociado.getHistoricoConsultas();
+        for (Consulta consulta : consultasPaciente){
+            if (consulta.getDataConsulta().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
+        }
+        return false; // Paciente nao tem consulta esse dia
     }
 
-    public boolean especialidadeRequerida(){
-        return true;
+    private boolean validarEspecialidadeMedico(Consulta consulta, String especialidadeRequerida){
+
+        String especialidadeMedico = consulta.getMedicoResponsavel().getEspecialidade();
+        boolean especialidadeCompativel = especialidadeMedico.equals(especialidadeRequerida);
+
+        if (especialidadeCompativel) return true;
+
+        return false;
     }
 }
