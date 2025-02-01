@@ -1,6 +1,7 @@
 package servicos;
 
 import entidades.*;
+import excecoes.HorarioIndisponivelException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -50,25 +51,34 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
         }
     }
 
-    public void agendarConsulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida , double valorConsulta){
+    public void agendarConsulta(LocalDate dataConsulta,
+                                LocalTime horarioInicialConsulta,
+                                LocalTime duracaoConsulta,
+                                Paciente pacienteAssociado,
+                                Medico medicoResponsavel,
+                                String especialidadeRequerida,
+                                double valorConsulta) {
         Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, 1, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
-        // Nao permitir realizar agenda se medico nao tiver especialidade requerida
-        if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
-            System.out.println("Consulta nao pode ser agendada pois o medico nao tem a especialidade requerida!");
-            return;
-        }
+        try {
+            // Nao permitir realizar agenda se medico nao tiver especialidade requerida
+            if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
+                System.out.println("Consulta nao pode ser agendada pois o medico nao tem a especialidade requerida!");
+                return;
+            }
 
-        // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
-        if(validarDisponibilidadePaciente(pacienteAssociado, dataConsulta)){
-            System.out.println("Consulta nao pode ser agendada pois paciente ja tem consulta nesse dia!");
-            return;
-        }
+            // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
+            if(validarDisponibilidadePaciente(pacienteAssociado, dataConsulta)){
+                System.out.println("Consulta nao pode ser agendada pois paciente ja tem consulta nesse dia!");
+                return;
+            }
 
-        // Nao permitir realizar agenda se medico nao estiver disponivel
-        if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
-            System.out.println("Consulta nao pode ser agendada pois o medico nao esta disponivel no intervalo de horario especificado!");
-            return;
+            // Nao permitir realizar agenda se medico nao estiver disponivel
+            if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
+                throw new HorarioIndisponivelException(novaConsulta, horarioInicialConsulta, duracaoConsulta); // Lança a exceção
+            }
+        } catch (HorarioIndisponivelException e) {
+            System.out.println("Erro ao agendar consulta: " + e.getMessage());
         }
 
 
@@ -87,6 +97,7 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
     }
 
     public boolean validarDisponibilidadeMedico(Medico medicoResponsavel, LocalDate novaData, LocalTime novoInicio, LocalTime novoFim){
+
         for (Consulta consulta : medicoResponsavel.getHistoricoConsultas()){
 
             LocalDate dataAgendada = consulta.getDataConsulta();

@@ -1,21 +1,22 @@
 package excecoes;
 
 import entidades.Consulta;
+import java.time.LocalTime;
 
 public class HorarioIndisponivelException extends Exception {
-	Consulta m_consulta;
-	
-	public HorarioIndisponivelException(Consulta consulta) {
+	private final Consulta consultaConflitante;
+
+    public HorarioIndisponivelException(Consulta consulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta) {
 		super(String.format(
 			"O horário da consulta já está ocupado: De %s a %s; Duração total: %s",
-			consulta.getHorarioConsulta().toString(),
-			consulta.getHorarioFinalConsulta().toString(),
-			consulta.getDuracaoConsulta().toString()
+				horarioInicialConsulta,
+				horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute()),
+				duracaoConsulta
 		));
-		m_consulta = consulta;
-	}
+		this.consultaConflitante = consulta;
+    }
 
-	Consulta getConsulta() {
-		return m_consulta;
+	public Consulta getConsultaConflitante() {
+		return consultaConflitante;
 	}
 }
