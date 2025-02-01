@@ -50,13 +50,6 @@ public class ServicoConsulta extends ServicosCRUD<Consulta>{
         }
     }
 
-//    public void realizarConsulta(LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoResponsavel, double valorConsulta) {
-//        Consulta novaConsulta = new Consulta(LocalDate.now(), LocalTime.now(), duracaoConsulta, 0, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
-//        adicionar(novaConsulta);
-//        pacienteAssociado.adicionarConsulta(novaConsulta);
-//        medicoResponsavel.adicionarConsulta(novaConsulta);
-//    }
-
     public void agendarConsulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida , double valorConsulta){
         Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, 1, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
