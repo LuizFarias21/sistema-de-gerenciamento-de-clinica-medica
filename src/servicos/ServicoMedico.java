@@ -2,8 +2,8 @@ package servicos;
 
 import entidades.Medico;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+//  import java.time.LocalDate;
+//  import java.util.ArrayList;
 
 public class ServicoMedico extends ServicosCRUD<Medico> {
 

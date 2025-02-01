@@ -1,15 +1,15 @@
 package entidades;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Pessoa {
     private String nome;
     private String CPF;
     private LocalDate dataNascimento;
-    private ArrayList<Consulta> historicoMedico;
+    private List<Consulta> historicoMedico;
 
-    Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
+    Pessoa(String nome, String CPF, LocalDate dataNascimento, List<Consulta> historicoMedico) {
         /*
         if (setCpf(cpf) != ResultadoCPF.SUCESSO){
             throw new RuntimeException("CPF inválido.");
@@ -85,11 +85,11 @@ public abstract class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-   public ArrayList<Consulta> getHistoricoMedico() {
+   public List<Consulta> getHistoricoMedico() {
        return historicoMedico;
    }
 
-   public void setHistoricoMedico(ArrayList<Consulta> historicoMedico) {
+   public void setHistoricoMedico(List<Consulta> historicoMedico) {
        this.historicoMedico = historicoMedico;
    }
 
