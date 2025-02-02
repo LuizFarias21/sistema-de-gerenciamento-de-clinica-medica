@@ -69,18 +69,18 @@ O sistema deverá implementar um CRUD completo para consultas.
 - [ ] ``tipo``: (ex: SANGUE, RAIO_X, ULTRASSOM).
 - [x] ``dataPrescricao``: data em que foi prescrito.
 - [x] ``dataRealizacao``: data em que foi realizado.
-- [ ] ``resultado``: detalhes do resultado, ex: "Colesterol total: 180 mg/dL".
-- [ ] ``custo``: valor base do exame.
+- [x] ``resultado``: detalhes do resultado, ex: "Colesterol total: 180 mg/dL".
+- [x] ``custo``: valor base do exame.
 
 **No caso de Prescrições (medicamentos, tratamentos, exames), os atributos obrigatórios são:**
-- [ ] `consultaAssociada`: associação com a Consulta que gerou a prescrição.
-- [ ] ``examesPrescritos``: lista de exames a serem realizados.
-- [ ] ``medicamentos``: lista de medicamentos prescritos.
-- [ ] ``dataValidade``: prazo para realização dos exames.
+- [x] `consultaAssociada`: associação com a Consulta que gerou a prescrição.
+- [x] ``examesPrescritos``: lista de exames a serem realizados.
+- [x] ``medicamentos``: lista de medicamentos prescritos.
+- [x] ``dataValidade``: prazo para realização dos exames.
 
 #### Gestão de Pagamentos
 
-- [ ] Cada consulta/exame tem um valor associado.
+- [x] Cada consulta/exame tem um valor associado.
 - [ ] Pacientes com pagamentos pendentes não podem agendar novas consultas.
 
 ### Tratamento de Exceções

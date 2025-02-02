@@ -1,5 +1,7 @@
 package entidades;
 
+import servicos.ServicoConsulta;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -21,12 +23,11 @@ public class Consulta {
     private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
-    private ArrayList<Exame> examesPrescritos;
-    private ArrayList<Medicamento> medicamentosPrescritos;
+    private Prescricao prescricao;
     private double valorConsulta;
 
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
+    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, double valorConsulta) {
         this.ID = String.valueOf(contadorID++);
         this.dataConsulta = dataConsulta;
         this.horarioInicialConsulta = horarioInicialConsulta;
@@ -35,8 +36,19 @@ public class Consulta {
         this.status = status;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
-        this.examesPrescritos = examesPrescritos;
-        this.medicamentosPrescritos = medicamentosPrescritos;
+        this.prescricao = prescricao;
+        this.valorConsulta = valorConsulta;
+    }
+
+    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valorConsulta){
+        this.ID = String.valueOf(contadorID++);
+        this.dataConsulta = dataConsulta;
+        this.horarioInicialConsulta = horarioInicialConsulta;
+        this.duracaoConsulta = duracaoConsulta;
+        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+        this.status = status;
+        this.pacienteAssociado = pacienteAssociado;
+        this.medicoResponsavel = medicoResponsavel;
         this.valorConsulta = valorConsulta;
     }
 
@@ -102,6 +114,14 @@ public class Consulta {
 
     public void setMedicoResponsavel(Medico medicoResponsavel) {
         this.medicoResponsavel = medicoResponsavel;
+    }
+
+    public Prescricao getPrescricao() {
+        return prescricao;
+    }
+
+    public void setPrescricao(Prescricao prescricao) {
+        this.prescricao = prescricao;
     }
 
     public double getValorConsulta() {

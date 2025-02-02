@@ -4,6 +4,12 @@ import java.time.LocalDate;
 
 public class Exame {
 
+    private enum Tipo {
+        SANGUE,
+        RAIO_X,
+        ULTRASSOM
+    }
+
     private String ID;
     private String tipo;
     private LocalDate dataPrescricao;

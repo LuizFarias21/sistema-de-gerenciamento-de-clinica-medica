@@ -2,18 +2,17 @@ package entidades;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Prescricao {
 
     private Consulta consultaAssociada;
-    private Exame examePrescritos;
-    private List<Medicamento> medicamentos;
+    private ArrayList<Exame> examesPrescritos;
+    private ArrayList<Medicamento> medicamentos;
     private LocalDate dataValidade;
 
-    Prescricao(Consulta consultaAssociada, Exame examePrescritos, List<Medicamento> medicamentos, LocalDate dataValidade) {
+    public Prescricao(Consulta consultaAssociada, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentos, LocalDate dataValidade) {
         this.consultaAssociada = consultaAssociada;
-        this.examePrescritos = examePrescritos;
+        this.examesPrescritos = examesPrescritos;
         this.medicamentos = medicamentos;
         this.dataValidade = dataValidade;
     }
@@ -26,15 +25,15 @@ public class Prescricao {
         this.consultaAssociada = consultaAssociada;
     }
 
-    public Exame getExamePrescritos() {
-        return examePrescritos;
+    public ArrayList<Exame> getExamesPrescritos() {
+        return examesPrescritos;
     }
 
-    public void setExamePrescritos(Exame examePrescritos) {
-        this.examePrescritos = examePrescritos;
+    public void setExamesPrescritos(ArrayList<Exame> examesPrescritos) {
+        this.examesPrescritos = examesPrescritos;
     }
 
-    public List<Medicamento> getMedicamentos() {
+    public ArrayList<Medicamento> getMedicamentos() {
         return medicamentos;
     }
 
@@ -49,4 +48,5 @@ public class Prescricao {
     public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
+
 }

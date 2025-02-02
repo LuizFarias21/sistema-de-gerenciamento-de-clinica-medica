@@ -13,5 +13,7 @@ public abstract class ServicosCRUD<T> {
     public abstract void atualizar(String ID, T novo);
 
     public abstract void remover(String ID);
+
+
 }
 

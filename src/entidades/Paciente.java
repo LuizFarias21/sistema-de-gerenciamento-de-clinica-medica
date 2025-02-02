@@ -8,10 +8,9 @@ public class Paciente extends Pessoa{
     public Paciente(String nome,
                     String cpf,
                     LocalDate dataNascimento,
-                    ArrayList<Consulta> historicoConsultas,
-                    ArrayList<Exame> historicoExames){
+                    ArrayList<Consulta> historicoMedico){
 
-        super(nome, cpf, dataNascimento, historicoConsultas, historicoExames);
+        super(nome, cpf, dataNascimento, historicoMedico);
     }
 
 
