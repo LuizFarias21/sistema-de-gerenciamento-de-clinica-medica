@@ -49,13 +49,22 @@ public class SistemaClinica {
 
         // Realizar consulta e adicionar essa consulta ao historico do paciente e do medico
         registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(12, 0), LocalTime.of(0, 30), registroPacientes.buscar("123.456.789-00"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
+        registroConsultas.cancelarConsulta("1");
+        registroConsultas.cancelarConsulta("10");
+        registroConsultas.finalizarConsulta("10");
         registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(10, 00), LocalTime.of(2, 10), registroPacientes.buscar("753.436.912-21"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
 
 
-        registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(16, 0), LocalTime.of(0, 30), registroPacientes.buscar("123.456.789-00"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
+        registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(16, 0), LocalTime.of(0, 30), registroPacientes.buscar("753.436.912-21"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
 
         System.out.println(registroPacientes.buscar("123.456.789-00").getHistoricoConsultas());
         System.out.println(registroMedicos.buscar("987.654.321-00").getHistoricoConsultas());
+        System.out.println("A primeira consulta agendada foi " + registroConsultas.buscar("1").getStatus());
+
+        registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(12, 0), LocalTime.of(0, 30), registroPacientes.buscar("753.436.912-21"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
+
+
         System.out.println(registroPacientes.buscar("753.436.912-21").getHistoricoConsultas());
+
     }
 }

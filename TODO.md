@@ -53,7 +53,7 @@ O sistema deverá implementar um CRUD completo para consultas.
 - [x] Data da consulta (ex: 26-01-2025).
 - [x] Horário de início (ex: 14:30).
 - [x] Duração em minutos (padrão: 30 minutos).
-- [ ] Status consulta   (Ex.: AGENDADA, CANCELADA, REALIZADA)
+- [x] Status consulta   (Ex.: AGENDADA, CANCELADA, REALIZADA)
 - [x] Paciente associado à consulta.
 - [x] Médico responsável pela consulta.
 - [x] Lista de exames prescritos durante a consulta.

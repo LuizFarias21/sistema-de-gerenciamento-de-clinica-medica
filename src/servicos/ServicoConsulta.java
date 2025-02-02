@@ -60,7 +60,8 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
                                 Medico medicoResponsavel,
                                 String especialidadeRequerida,
                                 double valorConsulta) {
-        Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, 1, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
+
+        Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, Consulta.Status.AGENDADA, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
         try {
 
@@ -91,17 +92,41 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
         medicoResponsavel.adicionarConsulta(novaConsulta);
     }
 
-    public void cancelarConsulta(Consulta consulta){
-        Paciente pacienteAssociado = consulta.getPacienteAssociado();
-        Medico medicoResponsavel = consulta.getMedicoResponsavel();
-        pacienteAssociado.getHistoricoConsultas().remove(consulta);
-        medicoResponsavel.getHistoricoConsultas().remove(consulta);
-        remover(consulta.getID());
+    public void cancelarConsulta(String ID) {
+
+        Consulta consulta = buscar(ID);
+
+        if (consulta == null) {
+            System.out.println("Nao existe essa consulta, portanto nao pode ser cancelada!");
+            return;
+        }
+
+        consulta.setStatus(Consulta.Status.CANCELADA);
+        System.out.println("Consulta cancelada!");
+    }
+
+    public void finalizarConsulta(String ID) {
+        Consulta consulta = buscar(ID);
+
+        if (consulta == null) {
+            System.out.println("Nao existe essa consulta, portanto nao pode ser finalizada!");
+            return;
+        }
+
+        if (consulta.getStatus() == Consulta.Status.AGENDADA) {
+            consulta.setStatus(Consulta.Status.REALIZADA);
+            System.out.println("Consulta " + consulta.getID() + " marcada como REALIZADA.");
+        } else {
+            System.out.println("Apenas consultas AGENDADAS podem ser finalizadas.");
+        }
+
     }
 
     public boolean validarDisponibilidadeMedico(Medico medicoResponsavel, LocalDate novaData, LocalTime novoInicio, LocalTime novoFim){
 
         for (Consulta consulta : medicoResponsavel.getHistoricoConsultas()){
+
+            if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
 
             LocalDate dataAgendada = consulta.getDataConsulta();
             LocalTime inicioAgendado = consulta.getHorarioInicialConsulta();
@@ -120,6 +145,9 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
 
         ArrayList<Consulta> consultasPaciente = pacienteAssociado.getHistoricoConsultas();
         for (Consulta consulta : consultasPaciente){
+
+            if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
+
             if (consulta.getDataConsulta().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
         }
         return false; // Paciente nao tem consulta esse dia
@@ -130,8 +158,6 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
         String especialidadeMedico = consulta.getMedicoResponsavel().getEspecialidade();
         boolean especialidadeCompativel = especialidadeMedico.equals(especialidadeRequerida);
 
-        if (especialidadeCompativel) return true;
-
-        return false;
+        return especialidadeCompativel;
     }
 }

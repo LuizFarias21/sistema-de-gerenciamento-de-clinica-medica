@@ -3,17 +3,24 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class Consulta {
 
-    private static int contadorID = 1;
+    public enum Status {
+        AGENDADA,
+        CANCELADA,
+        REALIZADA
+    }
 
+    private static int contadorID = 1;
     private String ID;
     private LocalDate dataConsulta;
     private LocalTime horarioInicialConsulta;
     private LocalTime duracaoConsulta;
     private LocalTime horarioFinalConsulta;
-    private int status;
+    private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
     private ArrayList<Exame> examesPrescritos;
@@ -21,7 +28,7 @@ public class Consulta {
     private double valorConsulta;
 
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, int status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
+    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentosPrescritos, double valorConsulta) {
         this.ID = String.valueOf(contadorID++);
         this.dataConsulta = dataConsulta;
         this.horarioInicialConsulta = horarioInicialConsulta;
@@ -75,11 +82,11 @@ public class Consulta {
         this.horarioFinalConsulta = horarioFinalConsulta;
     }
 
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
