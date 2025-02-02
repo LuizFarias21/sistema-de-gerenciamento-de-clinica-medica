@@ -23,6 +23,8 @@ public class SistemaClinica {
         registroPacientes.adicionar(new Paciente("Luis Carlos", "123.456.789-00", LocalDate.of(1969, 7, 14), new ArrayList<Consulta>(), new ArrayList<Exame>()));
         registroPacientes.adicionar(new Paciente("Maria", "753.436.912-21", LocalDate.of(2000, 10, 23), new ArrayList<Consulta>(), new ArrayList<Exame>()));
         registroPacientes.adicionar(new Paciente("Lucas", "111.222.333-44", LocalDate.of(2030, 3, 23), new ArrayList<Consulta>(), new ArrayList<Exame>()));
+        registroPacientes.adicionar(new Paciente("Isabela", "777.777.777-77", LocalDate.of(2002, 2, 15), new ArrayList<Consulta>(), new ArrayList<Exame>()));
+
 
         // Atualizar registro do paciente
         registroPacientes.atualizar("753.436.912-21", new Paciente("Maria", "753.436.912-21", LocalDate.of(1970, 7, 14), new ArrayList<Consulta>(), new ArrayList<Exame>()));
@@ -51,7 +53,6 @@ public class SistemaClinica {
         registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(12, 0), LocalTime.of(0, 30), registroPacientes.buscar("123.456.789-00"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
         registroConsultas.cancelarConsulta("1");
         registroConsultas.cancelarConsulta("10");
-        registroConsultas.finalizarConsulta("10");
         registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(10, 00), LocalTime.of(2, 10), registroPacientes.buscar("753.436.912-21"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
 
 
@@ -65,6 +66,12 @@ public class SistemaClinica {
 
 
         System.out.println(registroPacientes.buscar("753.436.912-21").getHistoricoConsultas());
+
+
+        System.out.println("\n---- TESTE DE QTDS DE CONSULTA ATINGIDA ----\n");
+
+        System.out.println("Quantidade de consultas atendidas pelo Dr " + registroMedicos.buscar("987.654.321-00").getNome() + ": " + registroMedicos.buscar("987.654.321-00").getHistoricoConsultas().size());
+        registroConsultas.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(16, 0), LocalTime.of(0, 30), registroPacientes.buscar("777.777.777-77"), registroMedicos.buscar("987.654.321-00"), "Cardiologia", 300.00);
 
     }
 }

@@ -3,8 +3,6 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class Consulta {
 

@@ -3,6 +3,7 @@ package servicos;
 import entidades.*;
 import excecoes.EspecialidadeInvalidaException;
 import excecoes.HorarioIndisponivelException;
+import excecoes.LimiteConsultaAtingidoException;
 import excecoes.PacienteIndisponivelException;
 
 import java.time.LocalDate;
@@ -63,7 +64,25 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
 
         Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, Consulta.Status.AGENDADA, pacienteAssociado, medicoResponsavel, new ArrayList<Exame>(), new ArrayList<Medicamento>(), valorConsulta);
 
+        int consultasCanceladas = 0;
+
+
+        for (Consulta consulta : medicoResponsavel.getHistoricoConsultas()) {
+            if (consulta.getStatus() == Consulta.Status.CANCELADA) {
+                consultasCanceladas += 1;
+            }
+        }
+        int consultasAgendadas = lista.size() - consultasCanceladas;
+        if (consultasAgendadas >= 10) {
+            System.out.println("Limite de consultas do dia atingido!");
+            return;
+        }
+
         try {
+
+            if(verificarLimiteConsultas(medicoResponsavel)) {
+                throw new LimiteConsultaAtingidoException();
+            }
 
             // Nao permitir realizar agenda se medico nao estiver disponivel
             if(validarDisponibilidadeMedico(medicoResponsavel, dataConsulta, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
@@ -80,7 +99,7 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
                 throw new EspecialidadeInvalidaException(medicoResponsavel);
             }
 
-        } catch (HorarioIndisponivelException | PacienteIndisponivelException | EspecialidadeInvalidaException e) {
+        } catch (LimiteConsultaAtingidoException | HorarioIndisponivelException | PacienteIndisponivelException | EspecialidadeInvalidaException e) {
             System.out.println("Erro ao agendar consulta: " + e.getMessage());
             return;
         }
@@ -105,21 +124,37 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
         System.out.println("Consulta cancelada!");
     }
 
-    public void finalizarConsulta(String ID) {
-        Consulta consulta = buscar(ID);
+//    public void finalizarConsulta(String ID) {
+//        Consulta consulta = buscar(ID);
+//
+//        if (consulta == null) {
+//            System.out.println("Nao existe essa consulta, portanto nao pode ser finalizada!");
+//            return;
+//        }
+//
+//        if (consulta.getStatus() == Consulta.Status.AGENDADA) {
+//            consulta.setStatus(Consulta.Status.REALIZADA);
+//            System.out.println("Consulta " + consulta.getID() + " marcada como REALIZADA.");
+//        } else {
+//            System.out.println("Apenas consultas AGENDADAS podem ser finalizadas.");
+//        }
+//
+//    }
 
-        if (consulta == null) {
-            System.out.println("Nao existe essa consulta, portanto nao pode ser finalizada!");
-            return;
+    public boolean verificarLimiteConsultas(Medico medicoResponsavel) {
+        int consultasCanceladas = 0;
+        int limiteConsultasMedico = 2;
+
+        for (Consulta consulta : medicoResponsavel.getHistoricoConsultas()) {
+            if (consulta.getStatus() == Consulta.Status.CANCELADA) {
+                consultasCanceladas += 1;
+            }
         }
+        int consultasAgendadas = lista.size() - consultasCanceladas;
 
-        if (consulta.getStatus() == Consulta.Status.AGENDADA) {
-            consulta.setStatus(Consulta.Status.REALIZADA);
-            System.out.println("Consulta " + consulta.getID() + " marcada como REALIZADA.");
-        } else {
-            System.out.println("Apenas consultas AGENDADAS podem ser finalizadas.");
-        }
+        if (consultasAgendadas > limiteConsultasMedico) return true;
 
+        return false;
     }
 
     public boolean validarDisponibilidadeMedico(Medico medicoResponsavel, LocalDate novaData, LocalTime novoInicio, LocalTime novoFim){
