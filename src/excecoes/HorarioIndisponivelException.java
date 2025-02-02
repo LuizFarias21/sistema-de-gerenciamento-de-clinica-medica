@@ -11,7 +11,7 @@ public class HorarioIndisponivelException extends Exception {
 			"O horário da consulta já está ocupado: De %s a %s; Duração total: %s",
 				horarioInicialConsulta,
 				//horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute()),
-				consulta.getHorarioInicialConsulta(),
+				consulta.getHorarioFinalConsulta(),
 				duracaoConsulta
 		));
 		this.consultaConflitante = consulta;

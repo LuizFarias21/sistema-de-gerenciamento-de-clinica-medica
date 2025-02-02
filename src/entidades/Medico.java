@@ -125,7 +125,7 @@ public class Medico extends Pessoa{
     }
 
     public boolean verificarLimiteConsultas(Medico medicoResponsavel) {
-        int limiteConsultasMedico = 2;
+        int limiteConsultasMedico = 6;
         int consultasAtivas = 0;
 
         for (Consulta consulta : medicoResponsavel.getHistoricoMedico()) {

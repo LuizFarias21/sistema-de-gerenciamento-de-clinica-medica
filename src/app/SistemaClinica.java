@@ -22,9 +22,11 @@ public class SistemaClinica {
         Paciente paciente1 = new Paciente("Luiz Claudio", "123.456.789-00", LocalDate.of(1969, 7, 14), pacienteHistorico1);
         Paciente paciente2 = new Paciente("paulo", "111", LocalDate.of(1969, 7, 14), pacienteHistorico1);
         Paciente paciente3 = new Paciente("carlos", "222", LocalDate.of(1969, 7, 14), pacienteHistorico1);
+        Paciente paciente4 = new Paciente("carlos", "333", LocalDate.of(1969, 7, 14), pacienteHistorico1);
         registroPacientes.adicionar(paciente1);
         registroPacientes.adicionar(paciente2);
         registroPacientes.adicionar(paciente3);
+        registroPacientes.adicionar(paciente4);
         Medico medico1 = new Medico("Pedro", "987.654.321-00", LocalDate.of(1980, 2, 20), "1234", "Odontologia", medicoHistorico1);
         registroMedicos.adicionar(medico1);
 
@@ -34,6 +36,7 @@ public class SistemaClinica {
         medico1.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(15, 0), LocalTime.of(0, 30), registroPacientes.buscar("123.456.789-00"), "Odontologia", 300.00, registroConsultas);
         medico1.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(15, 0), LocalTime.of(0, 30), registroPacientes.buscar("111"), "Odontologia", 300.00, registroConsultas);
         medico1.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(10, 0), LocalTime.of(0, 30), registroPacientes.buscar("222"), "Odontologia", 300.00, registroConsultas);
+        medico1.agendarConsulta(LocalDate.of(2024, 2, 1), LocalTime.of(9, 0), LocalTime.of(1, 10), registroPacientes.buscar("333"), "Odontologia", 300.00, registroConsultas);
 
 
         //medico1.cancelarConsulta("1", registroConsultas);
