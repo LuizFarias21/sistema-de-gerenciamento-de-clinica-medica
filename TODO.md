@@ -2,7 +2,7 @@
 Uma clínica médica precisa de um sistema para gerenciar consultas, pacientes, médicos, exames e tratamentos. O sistema deve permitir o agendamento de consultas, registro de históricos médicos, prescrição de exames/medicamentos e gestão de pagamentos. Além disso, deve garantir regras de negócio como:
 
 - [ ] Limite de consultas por paciente/médico por dia.
-- [ ] Validação de horários e especialidades médicas.
+- [x] Validação de horários e especialidades médicas.
 - [ ] Controle de pagamentos pendentes.
 - [ ] Notificações para exames agendados ou consultas próximas.
 

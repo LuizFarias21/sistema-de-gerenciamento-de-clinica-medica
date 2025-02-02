@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class ServicoConsulta extends ServicosCRUD<Consulta>{
+public class ServicoConsulta extends ServicosCRUD<Consulta> {
 
     @Override
     public void adicionar(Consulta consulta) {
