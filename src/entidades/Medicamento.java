@@ -2,13 +2,13 @@ package entidades;
 
 public class Medicamento {
 
-    private static int contadorID = 1;
-    private String ID;
+    private static int contadorId = 1;
+    private String id;
     private String nomeMedicamento;
 
     public Medicamento(String nomeMedicamento) {
         this.nomeMedicamento = nomeMedicamento;
-        this.ID = String.valueOf(contadorID++);
+        this.id = String.valueOf(contadorId++);
     }
 
 

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public abstract class Pessoa {
     private String nome;
-    private String CPF;
+    private String cpf;
     private LocalDate dataNascimento;
     private ArrayList<Consulta> historicoMedico;
 
-    public Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
+    public Pessoa(String nome, String cpf, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
         /*
         if (setCpf(cpf) != ResultadoCPF.SUCESSO){
             throw new RuntimeException("CPF inválido.");
@@ -17,7 +17,7 @@ public abstract class Pessoa {
             this.cpf = cpf;
         }
          */
-        this.CPF = CPF;
+        this.cpf = cpf;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.historicoMedico = historicoMedico;
@@ -35,12 +35,12 @@ public abstract class Pessoa {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     /*

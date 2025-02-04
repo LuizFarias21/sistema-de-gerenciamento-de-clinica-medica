@@ -16,13 +16,13 @@ public class Medico extends Pessoa{
     private String especialidade;
 
     public Medico(String nome,
-                  String CPF,
+                  String cpf,
                   LocalDate dataNascimento,
                   String crm,
                   String especialidade,
                   ArrayList<Consulta> historicoMedico) {
 
-        super(nome, CPF, dataNascimento, historicoMedico);
+        super(nome, cpf, dataNascimento, historicoMedico);
         this.crm = crm;
         this.especialidade = especialidade;
     }
@@ -117,7 +117,7 @@ public class Medico extends Pessoa{
         if (consulta.getStatus() == Consulta.Status.AGENDADA) {
             consulta.setStatus(Consulta.Status.REALIZADA);
             prescreverTratamento(consulta, examesPrescritos, medicamentos, dataValidade);
-            System.out.println("Consulta " + consulta.getID() + " marcada como REALIZADA.");
+            System.out.println("Consulta " + consulta.getId() + " marcada como REALIZADA.");
         } else {
             System.out.println("Apenas consultas AGENDADAS podem ser finalizadas.");
         }
@@ -162,7 +162,7 @@ public class Medico extends Pessoa{
         for (Consulta consulta : consultasPaciente){
 
             if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
-            if (pacienteAssociado.getCPF().equals(consulta.getPacienteAssociado().getCPF()) && consulta.getDataConsulta().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
+            if (pacienteAssociado.getCpf().equals(consulta.getPacienteAssociado().getCpf()) && consulta.getDataConsulta().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
         }
         return false; // Paciente nao tem consulta esse dia
     }

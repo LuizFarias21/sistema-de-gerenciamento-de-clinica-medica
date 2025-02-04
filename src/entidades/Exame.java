@@ -11,15 +11,15 @@ public class Exame {
     }
 
     private static int contadorID = 1;
-    private String ID;
+    private String id;
     private Tipo tipo;
     private LocalDate dataPrescricao;
     private LocalDate dataRealizacao;
     private String resultadoExame;
     private double custoExame;
 
-    Exame(String ID, Tipo tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custoExame) {
-        this.ID = String.valueOf(contadorID++);
+    Exame(Tipo tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custoExame) {
+        this.id = String.valueOf(contadorID++);
         this.tipo = tipo;
         this.dataPrescricao = dataPrescricao;
         this.dataRealizacao = dataRealizacao;
@@ -27,12 +27,12 @@ public class Exame {
         this.custoExame = custoExame;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Tipo getTipo() {

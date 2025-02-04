@@ -1,10 +1,7 @@
 package entidades;
 
-import servicos.ServicoConsulta;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class Consulta {
 
@@ -14,8 +11,8 @@ public class Consulta {
         REALIZADA
     }
 
-    private static int contadorID = 1;
-    private String ID;
+    private static int contadorId = 1;
+    private String id;
     private LocalDate dataConsulta;
     private LocalTime horarioInicialConsulta;
     private LocalTime duracaoConsulta;
@@ -28,7 +25,7 @@ public class Consulta {
 
 
     public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, double valorConsulta) {
-        this.ID = String.valueOf(contadorID++);
+        this.id = String.valueOf(contadorId++);
         this.dataConsulta = dataConsulta;
         this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
@@ -41,7 +38,7 @@ public class Consulta {
     }
 
     public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valorConsulta){
-        this.ID = String.valueOf(contadorID++);
+        this.id = String.valueOf(contadorId++);
         this.dataConsulta = dataConsulta;
         this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
@@ -52,12 +49,12 @@ public class Consulta {
         this.valorConsulta = valorConsulta;
     }
 
-    public String getID() {
-        return ID;
+    public String getId() {
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getDataConsulta() {

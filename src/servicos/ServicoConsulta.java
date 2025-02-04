@@ -2,7 +2,7 @@ package servicos;
 
 import entidades.*;
 
-public class ServicoConsulta extends ServicoCRUD<Consulta> {
+public class ServicoConsulta extends ServicoCrud<Consulta> {
 
     @Override
     public void salvar(Consulta consulta) {
@@ -12,7 +12,7 @@ public class ServicoConsulta extends ServicoCRUD<Consulta> {
     @Override
     public Consulta buscar(String ID) {
         for (Consulta consulta : getListaEntidades()) {
-            if (consulta.getID().equals(ID)){
+            if (consulta.getId().equals(ID)){
                 return consulta;
             }
         }

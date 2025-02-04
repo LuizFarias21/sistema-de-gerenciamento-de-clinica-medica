@@ -10,7 +10,7 @@ public class ServicoMedico extends ServicoPessoa<Medico> {
         if(medico != null){
 
             medico.setNome(novoMedico.getNome());
-            medico.setCPF(novoMedico.getCPF());
+            medico.setCpf(novoMedico.getCpf());
             medico.setDataNascimento(novoMedico.getDataNascimento());
             medico.setCrm(novoMedico.getCrm());
             medico.setEspecialidade(novoMedico.getEspecialidade());
