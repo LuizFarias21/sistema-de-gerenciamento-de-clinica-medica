@@ -2,7 +2,7 @@ package servicos;
 
 import entidades.*;
 
-public class ServicoConsulta extends ServicoCrud<Consulta> {
+public class ConsultaServico extends CrudServico<Consulta> {
 
     @Override
     public void salvar(Consulta consulta) {

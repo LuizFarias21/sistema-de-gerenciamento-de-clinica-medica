@@ -4,7 +4,7 @@ import excecoes.EspecialidadeInvalidaException;
 import excecoes.HorarioIndisponivelException;
 import excecoes.LimiteConsultaAtingidoException;
 import excecoes.PacienteIndisponivelException;
-import servicos.ServicoConsulta;
+import servicos.ConsultaServico;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,7 +16,7 @@ public class Medico extends Pessoa{
     private String especialidade;
 
     public Medico(String nome,
-                  String cpf,
+                  String cpf ,
                   LocalDate dataNascimento,
                   String crm,
                   String especialidade,
@@ -49,7 +49,7 @@ public class Medico extends Pessoa{
                                 Paciente pacienteAssociado,
                                 String especialidadeRequerida,
                                 double valorConsulta,
-                                ServicoConsulta registroConsulta) {
+                                ConsultaServico registroConsulta) {
 
         Consulta novaConsulta = new Consulta(dataConsulta, horarioInicialConsulta, duracaoConsulta, Consulta.Status.AGENDADA, pacienteAssociado, this, valorConsulta);
 
@@ -87,7 +87,7 @@ public class Medico extends Pessoa{
         this.adicionarConsulta(novaConsulta);
     }
 
-    public void cancelarConsulta(String ID, ServicoConsulta registroConsulta) {
+    public void cancelarConsulta(String ID, ConsultaServico registroConsulta) {
 
         Consulta consulta = registroConsulta.buscar(ID);
 
@@ -105,7 +105,7 @@ public class Medico extends Pessoa{
         consulta.setPrescricao(new Prescricao(consulta, examesPrescritos, medicamentos, dataValidade));
     }
 
-    public void finalizarConsulta(String ID, ServicoConsulta registroConsultas, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentos, LocalDate dataValidade) {
+    public void finalizarConsulta(String ID, ConsultaServico registroConsultas, ArrayList<Exame> examesPrescritos, ArrayList<Medicamento> medicamentos, LocalDate dataValidade) {
 
         Consulta consulta = registroConsultas.buscar(ID);
 

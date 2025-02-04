@@ -5,7 +5,7 @@ import excecoes.CadastroBloqueadoException;
 
 import javax.swing.*;
 
-public class ServicoPessoa<TipoPessoa extends Pessoa> extends ServicoCrud<TipoPessoa> {
+public class PessoaServico<TipoPessoa extends Pessoa> extends CrudServico<TipoPessoa> {
 
     @Override
     public void salvar(TipoPessoa pessoa) {

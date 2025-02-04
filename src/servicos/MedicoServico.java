@@ -2,7 +2,7 @@ package servicos;
 
 import entidades.Medico;
 
-public class ServicoMedico extends ServicoPessoa<Medico> {
+public class MedicoServico extends PessoaServico<Medico> {
 
     @Override
     public boolean atualizar(Medico medico, Medico novoMedico) {
