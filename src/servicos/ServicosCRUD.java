@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class ServicosCRUD<T> {
 
-    public ArrayList<T> lista = new ArrayList<T>();
+    public ArrayList<T> lista = new ArrayList<>();
 
     public abstract void adicionar(T objeto);
 

@@ -10,15 +10,21 @@ public class Exame {
         ULTRASSOM
     }
 
+    private static int contadorID = 1;
     private String ID;
-    private String tipo;
+    private Tipo tipo;
     private LocalDate dataPrescricao;
     private LocalDate dataRealizacao;
     private String resultadoExame;
     private double custoExame;
 
-    Exame(String ID) {
-        this.ID = ID;
+    Exame(String ID, Tipo tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custoExame) {
+        this.ID = String.valueOf(contadorID++);
+        this.tipo = tipo;
+        this.dataPrescricao = dataPrescricao;
+        this.dataRealizacao = dataRealizacao;
+        this.resultadoExame = resultadoExame;
+        this.custoExame = custoExame;
     }
 
     public String getID() {
@@ -29,11 +35,11 @@ public class Exame {
         this.ID = ID;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

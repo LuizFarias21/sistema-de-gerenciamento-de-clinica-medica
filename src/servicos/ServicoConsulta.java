@@ -2,21 +2,16 @@ package servicos;
 
 import entidades.*;
 
-public class ServicoConsulta extends ServicosCRUD<Consulta> {
+public class ServicoConsulta extends ServicoCRUD<Consulta> {
 
     @Override
-    public void adicionar(Consulta consulta) {
-        if(buscar(consulta.getID()) == null){
-            lista.add(consulta);
-            System.out.println("Consulta[" + consulta.getID() + "] adicionada com sucesso!");
-        } else {
-            System.out.println("Ja existe essa consulta!");
-        }
+    public void salvar(Consulta consulta) {
+        getListaEntidades().add(consulta);
     }
 
     @Override
     public Consulta buscar(String ID) {
-        for (Consulta consulta : lista) {
+        for (Consulta consulta : getListaEntidades()) {
             if (consulta.getID().equals(ID)){
                 return consulta;
             }
@@ -25,24 +20,14 @@ public class ServicoConsulta extends ServicosCRUD<Consulta> {
     }
 
     @Override
-    public void atualizar(String ID, Consulta consulta) {
-        consulta = buscar(ID);
+    public boolean atualizar(Consulta consulta, Consulta novaConsulta) {
         if (consulta != null) {
-            System.out.println("Consulta atualizada com sucesso");
 
-        } else {
-            System.out.println("Consulta não encontrada.");
+            // Atualizar consulta aqui
+
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public void remover(String ID) {
-        Consulta consulta = buscar(ID);
-        if(consulta != null){
-            lista.remove(consulta);
-            System.out.println("Consulta removida com sucesso.");
-        } else {
-            System.out.println("Consulta não encontrada.");
-        }
-    }
 }

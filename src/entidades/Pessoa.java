@@ -8,7 +8,8 @@ public abstract class Pessoa {
     private String CPF;
     private LocalDate dataNascimento;
     private ArrayList<Consulta> historicoMedico;
-    Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
+
+    public Pessoa(String nome, String CPF, LocalDate dataNascimento, ArrayList<Consulta> historicoMedico) {
         /*
         if (setCpf(cpf) != ResultadoCPF.SUCESSO){
             throw new RuntimeException("CPF inválido.");
