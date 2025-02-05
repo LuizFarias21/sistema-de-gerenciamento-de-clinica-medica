@@ -10,7 +10,8 @@ public class ConsultaServico extends CrudServico<Consulta> {
     }
 
     @Override
-    public Consulta buscar(String ID) {
+    public Consulta buscar(String ID) throws IllegalArgumentException {
+        if (ID.isEmpty()) throw new IllegalArgumentException("O ID não pode ser vazio.");
         for (Consulta consulta : getListaEntidades()) {
             if (consulta.getId().equals(ID)){
                 return consulta;
