@@ -48,5 +48,4 @@ public class Prescricao {
     public void setDataValidade(LocalDate dataValidade) {
         this.dataValidade = dataValidade;
     }
-
 }

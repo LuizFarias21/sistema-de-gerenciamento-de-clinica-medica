@@ -1,8 +1,8 @@
-package servicos;
+package repositorios;
 
 import java.util.ArrayList;
 
-public class CrudServico<Entidade> {
+public abstract class CrudRepositorio<Entidade> {
 
     private final ArrayList<Entidade> listaEntidades = new ArrayList<>();
 
@@ -15,13 +15,12 @@ public class CrudServico<Entidade> {
 
     // Buscar uma entidade pelo identificador
     public Entidade buscar(String identificador){
-        return null;
+        int id = Integer.parseInt(identificador);
+        return listaEntidades.get(++id);
     }
 
     // Atualizar uma entidade pelo identificador com sua nova entidade
-    public boolean atualizar(Entidade entidade, Entidade novaEntidade) {
-        return false;
-    }
+    public abstract boolean atualizar(Entidade entidade, Entidade novaEntidade);
 
     // Remover entidade da lista de entidades
     public boolean remover(Entidade entidade) {

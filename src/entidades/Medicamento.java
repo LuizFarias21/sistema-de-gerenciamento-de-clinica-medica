@@ -2,22 +2,17 @@ package entidades;
 
 public class Medicamento {
 
-    private static int contadorId = 1;
-    private String id;
-    private String nomeMedicamento;
+    private String nome;
 
-    public Medicamento(String nomeMedicamento) {
-        this.nomeMedicamento = nomeMedicamento;
-        this.id = String.valueOf(contadorId++);
+    public Medicamento(String nome) {
+        this.nome = nome;
     }
 
-
-
-    public String getNomeMedicamento() {
-        return nomeMedicamento;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeMedicamento(String nomeMedicamento) {
-        this.nomeMedicamento = nomeMedicamento;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }
