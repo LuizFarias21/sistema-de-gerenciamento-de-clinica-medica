@@ -2,12 +2,14 @@ package servicos;
 
 import java.util.ArrayList;
 
+import excecoes.CadastroBloqueadoException;
+
 public class CrudServico<Entidade> {
 
     private final ArrayList<Entidade> listaEntidades = new ArrayList<>();
 
     // Adicionar uma nova entidade na lista de entidades
-    public void salvar(Entidade entidade) {
+    public void salvar(Entidade entidade) throws CadastroBloqueadoException{
 
     }
 
