@@ -48,8 +48,8 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends CrudServico<TipoPe
     {
         String PADRAO_INVALIDO = "Este CPF está em padrão inválido, insira-o no padrão XXX.XXX.XXX-XX.";
         String SUCESSO = "Erro desconhecido.";
-        String DV1_INVALIDO; = "O 1º dígito verificador (o penúltimo no geral) deste CPF está inválido.";
-        String DV2_INVALIDO; = "O 2º dígito verificador (o último no geral) deste CPF está inválido."
+        String DV1_INVALIDO = "O 1º dígito verificador (o penúltimo no geral) deste CPF está inválido.";
+        String DV2_INVALIDO = "O 2º dígito verificador (o último no geral) deste CPF está inválido.";
         String CPF_JA_CADASTRADO = "Este CPF já está cadastrado.";
     }
 
