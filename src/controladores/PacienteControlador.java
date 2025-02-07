@@ -32,7 +32,7 @@ public class PacienteControlador {
                 throw new CpfInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
             }
 
-            pacienteServico.cadastrarPaciente(paciente);
+            pacienteServico.cadastrar(paciente);
         } catch (CpfInvalidoException e ) {
             pacienteInterface.exibirMensagemErro(e.getMessage());
         }
@@ -46,7 +46,7 @@ public class PacienteControlador {
                 throw new CpfInvalidoException("Você precisa digitar um CPF válido!");
             }
 
-            Paciente paciente = pacienteServico.buscarPaciente(cpf);
+            Paciente paciente = pacienteServico.buscar(cpf);
 
             if (paciente != null) {
                 pacienteInterface.exibirMensagemInfo("Paciente encontrado: " + paciente.getNome());
@@ -60,7 +60,7 @@ public class PacienteControlador {
     }
 
     public String listarPaciente() {
-        ArrayList<Paciente> listaPacientes = pacienteServico.listarPaciente();
+        ArrayList<Paciente> listaPacientes = pacienteServico.listar();
         String mensagem = "";
         for (Paciente paciente : listaPacientes) {
             mensagem +=  paciente.getCpf() + " - " + paciente.getNome() + "\n";

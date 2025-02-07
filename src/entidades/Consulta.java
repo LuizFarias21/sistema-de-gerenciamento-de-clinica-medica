@@ -3,25 +3,28 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta extends Atendimento{
+public class Consulta {
 
     public enum Status {
         AGENDADA,
         CANCELADA,
         REALIZADA
     }
+
+    private LocalDate dataAgendada;
     private LocalTime horarioInicialConsulta;
     private LocalTime duracaoConsulta;
     private LocalTime horarioFinalConsulta;
     private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
-    private String especialidadeRequerida;
     private Prescricao prescricao;
+    private String especialidadeRequerida;
+    private double custo;
 
 
-    public Consulta(LocalDate dataPrescricao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
-        super(dataPrescricao, custo);
+    public Consulta(LocalDate dataAgendada, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+        this.dataAgendada = dataAgendada;
         this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
         this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
@@ -30,6 +33,7 @@ public class Consulta extends Atendimento{
         this.medicoResponsavel = medicoResponsavel;
         this.prescricao = prescricao;
         this.especialidadeRequerida = especialidadeRequerida;
+        this.custo = custo;
     }
 
 //    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
@@ -41,6 +45,15 @@ public class Consulta extends Atendimento{
 //        this.pacienteAssociado = pacienteAssociado;
 //        this.medicoResponsavel = medicoResponsavel;
 //    }
+
+
+    public LocalDate getDataAgendada() {
+        return dataAgendada;
+    }
+
+    public void setDataAgendada(LocalDate dataAgendada) {
+        this.dataAgendada = dataAgendada;
+    }
 
     public LocalTime getHorarioInicialConsulta() {
         return horarioInicialConsulta;
@@ -104,5 +117,13 @@ public class Consulta extends Atendimento{
 
     public void setEspecialidadeRequerida(String especialidadeRequerida) {
         this.especialidadeRequerida = especialidadeRequerida;
+    }
+
+    public double getCusto() {
+        return custo;
+    }
+
+    public void setCusto(double custo) {
+        this.custo = custo;
     }
 }

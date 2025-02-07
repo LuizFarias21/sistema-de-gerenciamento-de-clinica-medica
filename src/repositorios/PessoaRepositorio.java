@@ -2,17 +2,11 @@ package repositorios;
 
 import entidades.Pessoa;
 
-public abstract class PessoaRepositorio<TipoPessoa extends Pessoa> extends BaseRepositorio<TipoPessoa> {
+public abstract class PessoaRepositorio<T extends Pessoa> extends BaseRepositorio<T> {
 
     @Override
-    public void salvar(TipoPessoa pessoa) {
-        getLista().add(pessoa);
-
-    }
-
-    @Override
-    public TipoPessoa buscar(String cpf) {
-        for (TipoPessoa pessoa : getLista()){
+    public T buscar(String cpf) {
+        for (T pessoa : listar()){
             if(pessoa.getCpf().equals(cpf)){
                 return pessoa;
             }

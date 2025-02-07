@@ -1,46 +1,36 @@
 package repositorios;
 
-import entidades.Paciente;
-
 import java.util.ArrayList;
 
-public abstract class BaseRepositorio<Entidade> {
+public abstract class BaseRepositorio<T> {
 
-    private final ArrayList<Entidade> lista = new ArrayList<>();
+    // Lista de entidades
+    private final ArrayList<T> lista = new ArrayList<>();
 
-    // Adicionar uma nova entidade na lista de entidades
-    public void salvar(Entidade entidade) {
-//        if (entidade != null) {
-//            lista.add(entidade);
-//        }
-        lista.add(entidade);
-    }
-
-    // Buscar uma entidade pelo identificador
-    public Entidade buscar(String identificador) {
-        int id = Integer.parseInt(identificador);
-        return lista.get(++id);
-    }
-
-    public ArrayList<Entidade> listar() {
+    // Retorna a lista de entidades
+    public ArrayList<T> listar() {
         return lista;
     }
 
-    // Atualizar uma entidade pelo identificador com sua nova entidade
-    public abstract void atualizar(Entidade entidade, Entidade novaEntidade);
+    // Adiciona uma nova entidade à lista de entidades
+    public void salvar(T t) {
+        listar().add(t);
+    }
 
-    // Remover entidade da lista de entidades
-    public boolean remover(Entidade entidade) {
+    // Busca uma entidade pelo identificador
+    public abstract T buscar(String identificador);
 
-        if (entidade != null) {
-            getLista().remove(entidade);
-            return true;
+    // Percorre a lista de entidades, quando encontrar a entidade mencionada, a substitui totalmente
+    public void atualizar(T t, T novaT) {
+        // Implementação padrão (você pode customizar ou deixar vazia)
+        int index = listar().indexOf(t);
+        if (index >= 0) {
+            listar().set(index, novaT);
         }
-
-        return false;
     }
 
-    public ArrayList<Entidade> getLista() {
-        return lista;
+    // Remove uma entidade da lista de entidades
+    public boolean remover(T t) {
+        return listar().remove(t);
     }
 }

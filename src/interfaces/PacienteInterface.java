@@ -1,12 +1,8 @@
 package interfaces;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
-
 import controladores.PacienteControlador;
-import entidades.Paciente;
 
 public class PacienteInterface extends BaseInterface {
 
@@ -66,6 +62,8 @@ public class PacienteInterface extends BaseInterface {
         pacienteControlador.buscarPaciente(cpf);
     }
 
+
+    // Método para listar pacientes
     private void listarPaciente() {
 
         String mensagem = pacienteControlador.listarPaciente();

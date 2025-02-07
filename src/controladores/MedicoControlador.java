@@ -23,6 +23,6 @@ public class MedicoControlador {
         if (medico.getCpf() == null) {
             throw new IllegalArgumentException("CPF nulo!");
         }
-        medicoServico.cadastrarMedico(medico);
+        //medicoServico.cadastrar(medico);
     }
 }

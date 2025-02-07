@@ -1,4 +1,8 @@
 package interfaces;
 
-public class MedicoInterface {
+public class MedicoInterface extends BaseInterface{
+    @Override
+    public void exibirInterface() {
+
+    }
 }

@@ -34,7 +34,7 @@ public class ConsultaServico {
             }
 
             // Nao permitir realizar agenda se medico nao estiver disponivel
-            if(validarDisponibilidadeMedico(consulta.getMedicoResponsavel(), consulta.getDataPrescricao(), consulta.getHorarioInicialConsulta(), consulta.getHorarioFinalConsulta())){
+            if(validarDisponibilidadeMedico(consulta.getMedicoResponsavel(), consulta.getDataAgendada(), consulta.getHorarioInicialConsulta(), consulta.getHorarioFinalConsulta())){
                 throw new HorarioIndisponivelException(consultaConflitante);
             }
 
@@ -44,7 +44,7 @@ public class ConsultaServico {
             }
 
             // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
-            if(validarDisponibilidadePaciente(consulta.getPacienteAssociado(), consulta.getDataPrescricao())){
+            if(validarDisponibilidadePaciente(consulta.getPacienteAssociado(), consulta.getDataAgendada())){
                 throw new PacienteIndisponivelException(consulta.getPacienteAssociado());
             }
 
@@ -109,7 +109,7 @@ public class ConsultaServico {
 
             if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
 
-            LocalDate dataAgendada = consulta.getDataPrescricao();
+            LocalDate dataAgendada = consulta.getDataAgendada();
             LocalTime inicioAgendado = consulta.getHorarioInicialConsulta();
             LocalTime fimAgendado = consulta.getHorarioFinalConsulta();
 
@@ -131,7 +131,7 @@ public class ConsultaServico {
         for (Consulta consulta : historicoMedicoPaciente){
 
             if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
-            if (pacienteAssociado.getCpf().equals(consulta.getPacienteAssociado().getCpf()) && consulta.getDataPrescricao().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
+            if (pacienteAssociado.getCpf().equals(consulta.getPacienteAssociado().getCpf()) && consulta.getDataAgendada().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
         }
         return false; // Paciente nao tem consulta esse dia
     }
