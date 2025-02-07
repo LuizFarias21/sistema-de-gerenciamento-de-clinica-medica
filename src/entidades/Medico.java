@@ -81,7 +81,7 @@ public class Medico extends Pessoa{
         }
 
 
-        System.out.println("Horario Disponivel! Agendando consulta...");
+        System.out.println("Horario disponivel! Agendando consulta...");
         //registroConsulta.adicionar(novaConsulta);
         pacienteAssociado.adicionarConsulta(novaConsulta);
         this.adicionarConsulta(novaConsulta);
