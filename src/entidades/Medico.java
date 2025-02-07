@@ -1,7 +1,5 @@
 package entidades;
 
-import servicos.ConsultaServico;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 

@@ -2,6 +2,7 @@ package controladores;
 
 import entidades.Consulta;
 import entidades.Medico;
+import interfaces.MedicoInterface;
 import servicos.MedicoServico;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 
 public class MedicoControlador {
     private MedicoServico medicoServico;
+    private MedicoInterface medicoInterface;
 
     public MedicoControlador(MedicoServico medicoServico) {
         this.medicoServico = medicoServico;

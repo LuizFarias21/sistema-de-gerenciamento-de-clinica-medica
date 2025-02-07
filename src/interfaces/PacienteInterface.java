@@ -63,9 +63,7 @@ public class PacienteInterface extends BaseInterface {
     // Método para buscar o paciente pelo CPF dele
     private void buscarPacientes() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-
         pacienteControlador.buscarPaciente(cpf);
-
     }
 
     private void listarPaciente() {
