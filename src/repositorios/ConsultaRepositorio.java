@@ -2,9 +2,9 @@ package repositorios;
 
 import entidades.Consulta;
 
-public class ConsultaRepositorio extends CrudRepositorio<Consulta> {
+public class ConsultaRepositorio extends BaseRepositorio<Consulta> {
     @Override
-    public boolean atualizar(Consulta consulta, Consulta novaEntidade) {
-        return false;
+    public void atualizar(Consulta consulta, Consulta novaConsulta) {
+
     }
 }

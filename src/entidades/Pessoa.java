@@ -16,10 +16,6 @@ public abstract class Pessoa {
         this.historicoMedico = historicoMedico;
     }
 
-//    public void adicionarConsulta(Consulta consulta) {
-//        historicoMedico.add(consulta);
-//    }
-
     public String getNome() {
         return nome;
     }

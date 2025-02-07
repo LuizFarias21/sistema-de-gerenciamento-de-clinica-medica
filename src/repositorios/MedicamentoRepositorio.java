@@ -2,9 +2,9 @@ package repositorios;
 
 import entidades.Medicamento;
 
-public class MedicamentoRepositorio extends CrudRepositorio<Medicamento> {
+public class MedicamentoRepositorio extends BaseRepositorio<Medicamento> {
     @Override
-    public boolean atualizar(Medicamento medicamento, Medicamento novaEntidade) {
-        return false;
+    public void atualizar(Medicamento medicamento, Medicamento novaEntidade) {
+
     }
 }

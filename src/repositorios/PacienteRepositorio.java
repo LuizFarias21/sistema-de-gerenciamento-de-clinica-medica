@@ -5,15 +5,9 @@ import entidades.Paciente;
 public class PacienteRepositorio extends PessoaRepositorio<Paciente> {
 
     @Override
-    public boolean atualizar(Paciente paciente, Paciente novoPaciente) {
-        if (paciente != null) {
-
+    public void atualizar(Paciente paciente, Paciente novoPaciente) {
             paciente.setNome(novoPaciente.getNome());
             paciente.setCpf(novoPaciente.getCpf());
             paciente.setDataNascimento(novoPaciente.getDataNascimento());
-
-            return true;
-        }
-        return false;
     }
 }

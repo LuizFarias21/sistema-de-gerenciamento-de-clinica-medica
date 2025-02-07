@@ -10,35 +10,24 @@ public class Exame extends Atendimento {
 //        ULTRASSOM
 //    }
 
-    // LocalDate dataRealizacao;
     private String nome;
-    private LocalDate dataPrescricao;
+    private LocalDate dataRealizacao;
     private String resultadoExame;
-    //private double custoExame;
+
 
     public Exame(String nome, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custo) {
-        super(dataRealizacao, custo);
-
-        //this.dataRealizacao = dataRealizacao;
+        super(dataPrescricao, custo);
+        this.dataRealizacao = dataRealizacao;
         this.nome = nome;
-        this.dataPrescricao = dataPrescricao;
         this.resultadoExame = resultadoExame;
 
     }
 
-//    public LocalDate getDataRealizacao() {
-//        return dataRealizacao;
-//    }
-//
-//    public void setDataRealizacao(LocalDate dataRealizacao) {
-//        this.dataRealizacao = dataRealizacao;
-//    }
-
-    public String getResultadoExame() {
-        return resultadoExame;
+    public LocalDate getDataRealizacao() {
+        return dataRealizacao;
     }
 
-    public void setResultadoExame(String resultadoExame) {
-        this.resultadoExame = resultadoExame;
+    public void setDataRealizacao(LocalDate dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
     }
 }

@@ -16,11 +16,12 @@ public class Consulta extends Atendimento{
     private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
+    private String especialidadeRequerida;
     private Prescricao prescricao;
 
 
-    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, double custo) {
-        super(dataRealizacao, custo);
+    public Consulta(LocalDate dataPrescricao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+        super(dataPrescricao, custo);
         this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
         this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
@@ -28,17 +29,18 @@ public class Consulta extends Atendimento{
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
         this.prescricao = prescricao;
+        this.especialidadeRequerida = especialidadeRequerida;
     }
 
-    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
-        super(dataRealizacao, valor);
-        this.horarioInicialConsulta = horarioInicialConsulta;
-        this.duracaoConsulta = duracaoConsulta;
-        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
-        this.status = status;
-        this.pacienteAssociado = pacienteAssociado;
-        this.medicoResponsavel = medicoResponsavel;
-    }
+//    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
+//        super(dataRealizacao, valor);
+//        this.horarioInicialConsulta = horarioInicialConsulta;
+//        this.duracaoConsulta = duracaoConsulta;
+//        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+//        this.status = status;
+//        this.pacienteAssociado = pacienteAssociado;
+//        this.medicoResponsavel = medicoResponsavel;
+//    }
 
     public LocalTime getHorarioInicialConsulta() {
         return horarioInicialConsulta;
@@ -94,5 +96,13 @@ public class Consulta extends Atendimento{
 
     public void setPrescricao(Prescricao prescricao) {
         this.prescricao = prescricao;
+    }
+
+    public String getEspecialidadeRequerida() {
+        return especialidadeRequerida;
+    }
+
+    public void setEspecialidadeRequerida(String especialidadeRequerida) {
+        this.especialidadeRequerida = especialidadeRequerida;
     }
 }

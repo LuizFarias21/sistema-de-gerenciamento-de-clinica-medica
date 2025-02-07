@@ -13,5 +13,4 @@ public class Paciente extends Pessoa{
         super(nome, cpf, dataNascimento, historicoMedico);
     }
 
-
 }

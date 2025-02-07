@@ -6,7 +6,6 @@ import excecoes.HorarioIndisponivelException;
 import excecoes.LimiteConsultaAtingidoException;
 import excecoes.PacienteIndisponivelException;
 import repositorios.ConsultaRepositorio;
-import repositorios.PessoaRepositorio;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -14,38 +13,39 @@ import java.util.ArrayList;
 
 public class ConsultaServico {
 
-    public void agendarConsulta(LocalDate dataRealizacao,
-                                LocalTime horarioInicialConsulta,
-                                LocalTime duracaoConsulta,
-                                Paciente pacienteAssociado,
-                                Medico medicoResponsavel,
-                                String especialidadeRequerida,
-                                ConsultaRepositorio consultaRepositorio,
-                                PessoaServico pessoaServico,
-                                double valor) {
+    private ConsultaRepositorio consultaRepositorio;
+    private PacienteServico pacienteServico;
+    private MedicoServico medicoServico;
+    private Consulta consultaConflitante;
 
-        Consulta novaConsulta = new Consulta(dataRealizacao, horarioInicialConsulta, duracaoConsulta, Consulta.Status.AGENDADA, pacienteAssociado, medicoResponsavel, valor);
+    public ConsultaServico(ConsultaRepositorio consultaRepositorio, PacienteServico pacienteServico, MedicoServico medicoServico) {
+        this.consultaRepositorio = consultaRepositorio;
+        this.pacienteServico = pacienteServico;
+        this.medicoServico = medicoServico;
+    }
+
+    public void agendarConsulta(Consulta consulta) {
 
         try {
 
-            if(validarLimiteConsultas(medicoResponsavel)) {
+            if(validarLimiteConsultas(consulta.getMedicoResponsavel())) {
 
                 throw new LimiteConsultaAtingidoException();
             }
 
             // Nao permitir realizar agenda se medico nao estiver disponivel
-            if(validarDisponibilidadeMedico(medicoResponsavel, dataRealizacao, horarioInicialConsulta, novaConsulta.getHorarioFinalConsulta())){
-                throw new HorarioIndisponivelException(novaConsulta, horarioInicialConsulta, duracaoConsulta);
+            if(validarDisponibilidadeMedico(consulta.getMedicoResponsavel(), consulta.getDataPrescricao(), consulta.getHorarioInicialConsulta(), consulta.getHorarioFinalConsulta())){
+                throw new HorarioIndisponivelException(consultaConflitante);
             }
 
             // Nao permitir realizar agenda se medico nao tiver especialidade requerida
-            if (!validarEspecialidadeMedico(novaConsulta, especialidadeRequerida)) {
-                throw new EspecialidadeInvalidaException(medicoResponsavel);
+            if (!validarEspecialidadeMedico(consulta, consulta.getEspecialidadeRequerida())) {
+                throw new EspecialidadeInvalidaException(consulta.getMedicoResponsavel());
             }
 
             // Nao permitir realizar agenda se paciente tiver outra consulta no mesmo dia
-            if(validarDisponibilidadePaciente(pacienteAssociado, dataRealizacao)){
-                throw new PacienteIndisponivelException(pacienteAssociado);
+            if(validarDisponibilidadePaciente(consulta.getPacienteAssociado(), consulta.getDataPrescricao())){
+                throw new PacienteIndisponivelException(consulta.getPacienteAssociado());
             }
 
         } catch (LimiteConsultaAtingidoException | HorarioIndisponivelException | PacienteIndisponivelException | EspecialidadeInvalidaException e) {
@@ -55,19 +55,13 @@ public class ConsultaServico {
 
 
         System.out.println("Horario disponivel! Agendando consulta...");
+        pacienteServico.registrarHistorico(consulta);
+        medicoServico.registrarHistorico(consulta);
+        consultaRepositorio.salvar(consulta);
 
-        consultaRepositorio.salvar(novaConsulta);
-        pessoaServico.adicionarConsulta(novaConsulta, pacienteAssociado);
-        pessoaServico.adicionarConsulta(novaConsulta, medicoResponsavel);
     }
 
     public void cancelarConsulta(Consulta consulta) {
-
-        if (consulta == null) {
-            System.out.println("Nao existe essa consulta, portanto nao pode ser cancelada!");
-            return;
-        }
-
         consulta.setStatus(Consulta.Status.CANCELADA);
         System.out.println("Consulta cancelada!");
     }
@@ -115,7 +109,7 @@ public class ConsultaServico {
 
             if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
 
-            LocalDate dataAgendada = consulta.getDataRealizacao();
+            LocalDate dataAgendada = consulta.getDataPrescricao();
             LocalTime inicioAgendado = consulta.getHorarioInicialConsulta();
             LocalTime fimAgendado = consulta.getHorarioFinalConsulta();
 
@@ -123,7 +117,10 @@ public class ConsultaServico {
             boolean conflitoHorarios = (novoInicio.isBefore(fimAgendado) && novoFim.isAfter(inicioAgendado));
             boolean conflitoAgenda = diasIguais && conflitoHorarios;
 
-            if(conflitoAgenda) return true;
+            if (conflitoAgenda) {
+                consultaConflitante = consulta;
+                return true;
+            }
         }
         return false;
     }
@@ -134,7 +131,7 @@ public class ConsultaServico {
         for (Consulta consulta : historicoMedicoPaciente){
 
             if (consulta.getStatus() == Consulta.Status.CANCELADA) continue;
-            if (pacienteAssociado.getCpf().equals(consulta.getPacienteAssociado().getCpf()) && consulta.getDataRealizacao().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
+            if (pacienteAssociado.getCpf().equals(consulta.getPacienteAssociado().getCpf()) && consulta.getDataPrescricao().equals(dataConsulta)) return true; // Paciente ja tem uma consulta esse dia
         }
         return false; // Paciente nao tem consulta esse dia
     }

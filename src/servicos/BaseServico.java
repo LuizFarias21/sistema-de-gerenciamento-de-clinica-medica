@@ -2,7 +2,7 @@ package servicos;
 
 import java.util.ArrayList;
 
-public class CrudServico<Entidade> {
+public class BaseServico<Entidade> {
 
     private final ArrayList<Entidade> listaEntidades = new ArrayList<>();
 
