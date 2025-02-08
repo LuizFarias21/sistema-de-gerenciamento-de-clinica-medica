@@ -42,7 +42,16 @@ public class Consulta extends Atendimento{
 //        this.pacienteAssociado = pacienteAssociado;
 //        this.medicoResponsavel = medicoResponsavel;
 //    }
-
+    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida, double custo) {
+        super(custo);
+        this.dataAgendada = dataAgendada;
+        this.horario = horario;
+        this.duracao = duracao;
+        this.status = status;
+        this.pacienteAssociado = pacienteAssociado;
+        this.medicoResponsavel = medicoResponsavel;
+        this.especialidadeRequerida = especialidadeRequerida;
+    }
 
     public LocalDate getDataAgendada() {
         return dataAgendada;
