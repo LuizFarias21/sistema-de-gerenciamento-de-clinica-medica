@@ -3,6 +3,7 @@ package interfaces;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import controladores.PacienteControlador;
+import entidades.Paciente;
 
 public class PacienteInterface extends BaseInterface {
 
@@ -17,7 +18,7 @@ public class PacienteInterface extends BaseInterface {
         while (true) {
 
             String[] opcoes = {"Cadrastar Pacientes", "Buscar Pacientes", "Listar Pacientes",
-                    "Atualizar Pacientes", "Remover Pacientes", "Sair"};
+                    "Atualizar Pacientes", "Remover Pacientes", "Voltar"};
 
             // Exibe a caixa de texto com a opção selecionada
             int escolha = JOptionPane.showOptionDialog(null, "Menu Paciente", "Escolha uma opção",
@@ -35,10 +36,10 @@ public class PacienteInterface extends BaseInterface {
                     listarPaciente();
                     break;
                 case 3: // atualiza paciente
-                    // atualizarPaciente()
+                    atualizarPaciente();
                     break;
                 case 4: // remover paciente
-                    // removerPaciente()
+                    excluirPaciente();
                     break;
                 case 5: // sair
                     return;
@@ -65,12 +66,21 @@ public class PacienteInterface extends BaseInterface {
 
     // Método para listar pacientes
     private void listarPaciente() {
+        pacienteControlador.listarPaciente();
+    }
 
-        String mensagem = pacienteControlador.listarPaciente();
+    private void atualizarPaciente() {
+        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
+        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do paciente:");
+        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do paciente (YYYY-MM-DD:)"));
 
-        JOptionPane.showMessageDialog(null, mensagem, "Lista de pacientes:", JOptionPane.INFORMATION_MESSAGE);
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente que deseja atualizar os dados:");
+        pacienteControlador.atualizarPaciente(cpf, novoCpf, novoNome, novaDataNascimento);
+    }
 
-
+    private void excluirPaciente() {
+        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
+        pacienteControlador.excluirPaciente(cpf);
     }
 
 }

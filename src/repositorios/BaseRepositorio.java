@@ -21,13 +21,7 @@ public abstract class BaseRepositorio<T> {
     public abstract T buscar(String identificador);
 
     // Percorre a lista de entidades, quando encontrar a entidade mencionada, a substitui totalmente
-    public void atualizar(T t, T novaT) {
-        // Implementação padrão (você pode customizar ou deixar vazia)
-        int index = listar().indexOf(t);
-        if (index >= 0) {
-            listar().set(index, novaT);
-        }
-    }
+    //public abstract void atualizar(T t, T novaT);
 
     // Remove uma entidade da lista de entidades
     public boolean remover(T t) {

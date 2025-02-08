@@ -7,4 +7,9 @@ public class ClinicaRepositorio<T> extends BaseRepositorio<T> {
         int id = Integer.parseInt(identificador);
         return listar().get(id);
     }
+
+//    @Override
+//    public void atualizar(T t, T novaT) {
+//
+//    }
 }

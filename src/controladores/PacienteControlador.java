@@ -2,7 +2,7 @@ package controladores;
 
 import entidades.Consulta;
 import entidades.Paciente;
-import excecoes.CpfInvalidoException;
+import excecoes.DadoInvalidoException;
 import interfaces.PacienteInterface;
 import servicos.PacienteServico;
 
@@ -29,11 +29,11 @@ public class PacienteControlador {
         try {
 
             if (validarCpf(paciente.getCpf())) {
-                throw new CpfInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
+                throw new DadoInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
             }
 
             pacienteServico.cadastrar(paciente);
-        } catch (CpfInvalidoException e ) {
+        } catch (DadoInvalidoException e ) {
             pacienteInterface.exibirMensagemErro(e.getMessage());
         }
     }
@@ -43,7 +43,7 @@ public class PacienteControlador {
         try {
 
             if (validarCpf(cpf)) {
-                throw new CpfInvalidoException("Você precisa digitar um CPF válido!");
+                throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
             }
 
             Paciente paciente = pacienteServico.buscar(cpf);
@@ -53,19 +53,54 @@ public class PacienteControlador {
             }
 
             return paciente;
-        } catch (CpfInvalidoException e ) {
+        } catch (DadoInvalidoException e ) {
             pacienteInterface.exibirMensagemErro(e.getMessage());
         }
         return null;
     }
 
-    public String listarPaciente() {
-        ArrayList<Paciente> listaPacientes = pacienteServico.listar();
+    public void listarPaciente() {
+
         String mensagem = "";
-        for (Paciente paciente : listaPacientes) {
-            mensagem +=  paciente.getCpf() + " - " + paciente.getNome() + "\n";
+
+        try {
+
+            ArrayList<Paciente> listaPacientes = pacienteServico.listar();
+
+            for (Paciente paciente : listaPacientes) {
+                mensagem +=  paciente.getCpf() + " - " + paciente.getNome() + "\n";
+            }
+
+            pacienteInterface.exibirMensagemInfo(mensagem);
+
+        } catch (DadoInvalidoException e ) {
+            pacienteInterface.exibirMensagemErro(e.getMessage());
         }
-        return mensagem;
+
+    }
+
+    public void atualizarPaciente(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento) {
+
+        try {
+            //Paciente novoPaciente = new Paciente(novoNome, novoCpf, novaDataNascimento, new ArrayList<Consulta>()); // Precisa atualizar o histórico médico também!
+            pacienteServico.atualizar(cpf, novoNome, novoCpf, novaDataNascimento);
+            pacienteInterface.exibirMensagemInfo("Paciente atualizado com sucesso!");
+        } catch (DadoInvalidoException e) {
+            pacienteInterface.exibirMensagemErro(e.getMessage());
+        }
+    }
+
+    public void excluirPaciente(String cpf) {
+
+        try {
+            if (validarCpf(cpf)) {
+                throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
+            }
+            pacienteServico.excluir(cpf);
+            pacienteInterface.exibirMensagemInfo("Registro do paciente com o " + cpf + " foi excluído com sucesso!");
+        } catch (DadoInvalidoException e) {
+            pacienteInterface.exibirMensagemErro(e.getMessage());
+        }
     }
 
     public boolean validarCpf(String cpf) {
