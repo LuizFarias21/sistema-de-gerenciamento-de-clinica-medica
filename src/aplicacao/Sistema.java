@@ -36,7 +36,7 @@ public class Sistema {
         MedicoControlador medicoControlador = new MedicoControlador(medicoServico);
         MedicoInterface medicoInterface = new MedicoInterface(medicoControlador);
         
-        //medicoInterface.setMedicoInterface(medicoInterface);
+        medicoControlador.setMedicoInterface(medicoInterface);
 //
 //        ConsultaRepositorio consultaRepositorio = new ConsultaRepositorio();
 //        ConsultaServico consultaServico = new ConsultaServico(consultaRepositorio, pacienteServico, medicoServico);
