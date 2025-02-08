@@ -104,9 +104,13 @@ public class PacienteControlador {
     }
 
     public boolean validarCpf(String cpf) {
-        if (cpf.trim().isEmpty()) {
+
+        boolean cpfVazio = cpf.trim().isEmpty();
+
+        if (cpfVazio) {
             return true;
         }
+
         return false;
     }
 }
