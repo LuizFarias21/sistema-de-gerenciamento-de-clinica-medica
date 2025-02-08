@@ -2,7 +2,7 @@ package interfaces;
 
 import javax.swing.*;
 
-public abstract class BaseInterface {
+public abstract class GenericoInterface {
 
     public void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
@@ -14,5 +14,13 @@ public abstract class BaseInterface {
 
     public abstract void exibirInterface();
 
+    public abstract void cadastrar();
 
+    public abstract void buscar();
+
+    public abstract void listar();
+
+    public abstract void atualizar();
+
+    public abstract void deletar();
 }

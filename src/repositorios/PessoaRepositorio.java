@@ -2,7 +2,7 @@ package repositorios;
 
 import entidades.Pessoa;
 
-public abstract class PessoaRepositorio<T extends Pessoa> extends BaseRepositorio<T> {
+public abstract class PessoaRepositorio<T extends Pessoa> extends GenericoRepositorio<T> {
 
     @Override
     public T buscar(String cpf) {

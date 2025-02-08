@@ -1,11 +1,11 @@
 package interfaces;
 
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
-import controladores.PacienteControlador;
-import entidades.Paciente;
+import javax.swing.*;
 
-public class PacienteInterface extends BaseInterface {
+import controladores.PacienteControlador;
+
+public class PacienteInterface extends GenericoInterface {
 
     private PacienteControlador pacienteControlador;
 
@@ -27,19 +27,19 @@ public class PacienteInterface extends BaseInterface {
             // Verificar escolha do usuário
             switch (escolha) {
                 case 0: // cadastrar paciente
-                    cadastrarPacientes();
+                    cadastrar();
                     break;
                 case 1: // buscar paciente
-                    buscarPacientes();
+                    buscar();
                     break;
                 case 2: // listar paciente
-                    listarPaciente();
+                    listar();
                     break;
                 case 3: // atualiza paciente
-                    atualizarPaciente();
+                    atualizar();
                     break;
                 case 4: // remover paciente
-                    excluirPaciente();
+                    deletar();
                     break;
                 case 5: // sair
                     return;
@@ -47,29 +47,28 @@ public class PacienteInterface extends BaseInterface {
         }
     }
 
-    // Método que permite o cadastro do paciente
-    private void cadastrarPacientes() {
+    @Override
+    public void cadastrar() {
         String nome = JOptionPane.showInputDialog("Digite o nome do paciente:");
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
         LocalDate dataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite da data de nascimento do paciente (YYYY-MM-DD:)"));
 
         pacienteControlador.cadastrarPaciente(nome, cpf, dataNascimento);
-
     }
 
-    // Método para buscar o paciente pelo CPF dele
-    private void buscarPacientes() {
+    @Override
+    public void buscar() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
         pacienteControlador.buscarPaciente(cpf);
     }
 
-
-    // Método para listar pacientes
-    private void listarPaciente() {
+    @Override
+    public void listar() {
         pacienteControlador.listarPaciente();
     }
 
-    private void atualizarPaciente() {
+    @Override
+    public void atualizar() {
         String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
         String novoNome = JOptionPane.showInputDialog("Digite o novo nome do paciente:");
         LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do paciente (YYYY-MM-DD:)"));
@@ -78,7 +77,8 @@ public class PacienteInterface extends BaseInterface {
         pacienteControlador.atualizarPaciente(cpf, novoCpf, novoNome, novaDataNascimento);
     }
 
-    private void excluirPaciente() {
+    @Override
+    public void deletar() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
         pacienteControlador.excluirPaciente(cpf);
     }

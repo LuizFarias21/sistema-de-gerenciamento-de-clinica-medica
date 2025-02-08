@@ -1,7 +1,6 @@
 package interfaces;
 
-public class MedicoInterface extends GenericoInterface {
-
+public class MedicamentoInterface extends GenericoInterface{
     @Override
     public void exibirInterface() {
 

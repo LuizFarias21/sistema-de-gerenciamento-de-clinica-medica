@@ -2,7 +2,7 @@ package repositorios;
 
 import java.util.ArrayList;
 
-public abstract class BaseRepositorio<T> {
+public abstract class GenericoRepositorio<T> {
 
     // Lista de entidades
     private final ArrayList<T> lista = new ArrayList<>();

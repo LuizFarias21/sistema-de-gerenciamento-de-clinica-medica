@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta {
+public class Consulta extends Atendimento{
 
     public enum Status {
         AGENDADA,
@@ -20,10 +20,10 @@ public class Consulta {
     private Medico medicoResponsavel;
     private Prescricao prescricao;
     private String especialidadeRequerida;
-    private double custo;
 
 
     public Consulta(LocalDate dataAgendada, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+        super(custo);
         this.dataAgendada = dataAgendada;
         this.horarioInicialConsulta = horarioInicialConsulta;
         this.duracaoConsulta = duracaoConsulta;
@@ -33,7 +33,6 @@ public class Consulta {
         this.medicoResponsavel = medicoResponsavel;
         this.prescricao = prescricao;
         this.especialidadeRequerida = especialidadeRequerida;
-        this.custo = custo;
     }
 
 //    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
@@ -117,13 +116,5 @@ public class Consulta {
 
     public void setEspecialidadeRequerida(String especialidadeRequerida) {
         this.especialidadeRequerida = especialidadeRequerida;
-    }
-
-    public double getCusto() {
-        return custo;
-    }
-
-    public void setCusto(double custo) {
-        this.custo = custo;
     }
 }

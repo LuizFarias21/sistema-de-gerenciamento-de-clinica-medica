@@ -1,36 +1,30 @@
 package aplicacao;
 
-import controladores.ConsultaControlador;
-import controladores.MedicoControlador;
 import controladores.PacienteControlador;
-import interfaces.ConsultaInterface;
-import interfaces.MedicoInterface;
-import interfaces.PrincipalInterface;
-import interfaces.PacienteInterface;
-import repositorios.ConsultaRepositorio;
-import repositorios.MedicoRepositorio;
+import interfaces.*;
 import repositorios.PacienteRepositorio;
-import servicos.ConsultaServico;
-import servicos.MedicoServico;
 import servicos.PacienteServico;
 
 public class Sistema {
-    private PrincipalInterface principalInterface;
+    private SistemaInterface sistemaInterface;
 
     public Sistema() {
         gerenciarDependencias();
     }
 
     public void iniciar() {
-        principalInterface.exibirInterfacePrincipal();
+        sistemaInterface.exibirInterface();
     }
 
     public void gerenciarDependencias() {
 
+        AtendimentoInterface atendimentoInterface = new AtendimentoInterface();
         PacienteRepositorio pacienteRepositorio = new PacienteRepositorio();
         PacienteServico pacienteServico = new PacienteServico(pacienteRepositorio);
         PacienteControlador pacienteControlador = new PacienteControlador(pacienteServico);
         PacienteInterface pacienteInterface = new PacienteInterface(pacienteControlador);
+        ExameInterface exameInterface = new ExameInterface();
+        MedicamentoInterface medicamentoInterface = new MedicamentoInterface();
 
         pacienteControlador.setPacienteInterface(pacienteInterface);
 
@@ -47,6 +41,6 @@ public class Sistema {
         MedicoInterface medicoInterface = null;
         ConsultaInterface consultaInterface = null;
 
-        principalInterface = new PrincipalInterface(pacienteInterface, medicoInterface, consultaInterface);
+        sistemaInterface = new SistemaInterface(atendimentoInterface, pacienteInterface, medicoInterface, consultaInterface, exameInterface, medicamentoInterface);
     }
 }

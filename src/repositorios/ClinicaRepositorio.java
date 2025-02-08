@@ -1,6 +1,6 @@
 package repositorios;
 
-public class ClinicaRepositorio<T> extends BaseRepositorio<T> {
+public class ClinicaRepositorio<T> extends GenericoRepositorio<T> {
 
     @Override
     public T buscar(String identificador) {

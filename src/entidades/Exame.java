@@ -2,7 +2,7 @@ package entidades;
 
 import java.time.LocalDate;
 
-public class Exame {
+public class Exame extends Atendimento{
 
 //    private enum Tipo {
 //        SANGUE,
@@ -14,15 +14,14 @@ public class Exame {
     private LocalDate dataAgendada;
     private LocalDate dataRealizacao;
     private String resultadoExame;
-    private double custo;
 
 
     public Exame(String nome, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custo) {
+        super(custo);
         this.nome = nome;
         this.dataAgendada = dataPrescricao;
         this.dataRealizacao = dataRealizacao;
         this.resultadoExame = resultadoExame;
-        this.custo = custo;
     }
 
     public LocalDate getDataAgendada() {
@@ -47,13 +46,5 @@ public class Exame {
 
     public void setResultadoExame(String resultadoExame) {
         this.resultadoExame = resultadoExame;
-    }
-
-    public double getCusto() {
-        return custo;
-    }
-
-    public void setCusto(double custo) {
-        this.custo = custo;
     }
 }
