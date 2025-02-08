@@ -99,7 +99,7 @@ public class AtendimentoServico {
 //
 //            LocalDate dataAgendada = consulta.getDataAgendada();
 //            LocalTime inicioAgendado = consulta.getHorarioInicialConsulta();
-//            LocalTime fimAgendado = consulta.getHorarioFinalConsulta();
+//            LocalTime fimAgendado = consulta.getHorarioFinalConsulta().plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
 //
 //            boolean diasIguais = (dataAgendada.equals(novaData));
 //            boolean conflitoHorarios = (novoInicio.isBefore(fimAgendado) && novoFim.isAfter(inicioAgendado));

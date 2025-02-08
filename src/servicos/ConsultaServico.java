@@ -1,15 +1,8 @@
 package servicos;
 
 import entidades.*;
-import excecoes.EspecialidadeInvalidaException;
-import excecoes.HorarioIndisponivelException;
-import excecoes.LimiteConsultaAtingidoException;
-import excecoes.PacienteIndisponivelException;
 import repositorios.ConsultaRepositorio;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 
 public class ConsultaServico {
 

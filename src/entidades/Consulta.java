@@ -12,9 +12,8 @@ public class Consulta extends Atendimento{
     }
 
     private LocalDate dataAgendada;
-    private LocalTime horarioInicialConsulta;
-    private LocalTime duracaoConsulta;
-    private LocalTime horarioFinalConsulta;
+    private LocalTime horario;
+    private LocalTime duracao;
     private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
@@ -22,12 +21,11 @@ public class Consulta extends Atendimento{
     private String especialidadeRequerida;
 
 
-    public Consulta(LocalDate dataAgendada, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
         super(custo);
         this.dataAgendada = dataAgendada;
-        this.horarioInicialConsulta = horarioInicialConsulta;
-        this.duracaoConsulta = duracaoConsulta;
-        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+        this.horario = horario;
+        this.duracao = duracao;
         this.status = status;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
@@ -54,28 +52,20 @@ public class Consulta extends Atendimento{
         this.dataAgendada = dataAgendada;
     }
 
-    public LocalTime getHorarioInicialConsulta() {
-        return horarioInicialConsulta;
+    public LocalTime getHorario() {
+        return horario;
     }
 
-    public void setHorarioInicialConsulta(LocalTime horarioInicialConsulta) {
-        this.horarioInicialConsulta = horarioInicialConsulta;
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
     }
 
-    public LocalTime getDuracaoConsulta() {
-        return duracaoConsulta;
+    public LocalTime getDuracao() {
+        return duracao;
     }
 
-    public void setDuracaoConsulta(LocalTime duracaoConsulta) {
-        this.duracaoConsulta = duracaoConsulta;
-    }
-
-    public LocalTime getHorarioFinalConsulta() {
-        return horarioFinalConsulta;
-    }
-
-    public void setHorarioFinalConsulta(LocalTime horarioFinalConsulta) {
-        this.horarioFinalConsulta = horarioFinalConsulta;
+    public void setDuracao(LocalTime duracao) {
+        this.duracao = duracao;
     }
 
     public Status getStatus() {
