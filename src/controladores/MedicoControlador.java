@@ -2,6 +2,7 @@ package controladores;
 
 import entidades.Consulta;
 import entidades.Medico;
+import excecoes.DadoInvalidoException;
 import interfaces.MedicoInterface;
 import servicos.MedicoServico;
 
@@ -16,16 +17,25 @@ public class MedicoControlador {
         this.medicoServico = medicoServico;
     }
 
+    public void setMedicoInterface(MedicoInterface medicoInterface) {
+        this.medicoInterface = medicoInterface;
+    }
+
     public void cadastrarMedico(String nome, String cpf, LocalDate dataNascimento, String crm, String especialidade) {
         ArrayList<Consulta> historicoMedico = new ArrayList<Consulta>();
         Medico medico = new Medico(nome, cpf, dataNascimento, crm, especialidade, historicoMedico);
 
-        if (medico.getCpf() == null) {
-            throw new IllegalArgumentException("CPF nulo!");
+        try {
+            // Validação do CPF
+            if (validarCpf(medico.getCpf())) {
+                throw new DadoInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
+            }
+
+            medicoServico.cadastrar(medico); // Cadastrar o médico no serviço
+
+        } catch (DadoInvalidoException e) {
+            medicoInterface.exibirMensagemErro(e.getMessage()); // Exibe erro se CPF for inválido
         }
-<<<<<<< Updated upstream
-        //medicoServico.cadastrar(medico);
-=======
     }
 
     public Medico buscarMedico(String cpf) {
@@ -98,6 +108,5 @@ public class MedicoControlador {
         }
 
         return false; // Retorna true se CPF for inválido
->>>>>>> Stashed changes
     }
 }
