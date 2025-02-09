@@ -1,9 +1,10 @@
 package entidades;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Consulta extends Atendimento{
+public class Consulta extends Atendimento {
 
     public enum Status {
         AGENDADA,
@@ -11,6 +12,7 @@ public class Consulta extends Atendimento{
         REALIZADA
     }
 
+    private String id;
     private LocalDate dataAgendada;
     private LocalTime horario;
     private LocalTime duracao;
@@ -19,7 +21,6 @@ public class Consulta extends Atendimento{
     private Medico medicoResponsavel;
     private Prescricao prescricao;
     private String especialidadeRequerida;
-
 
     public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
         super(custo);
@@ -33,24 +34,25 @@ public class Consulta extends Atendimento{
         this.especialidadeRequerida = especialidadeRequerida;
     }
 
-//    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
-//        super(dataRealizacao, valor);
-//        this.horarioInicialConsulta = horarioInicialConsulta;
-//        this.duracaoConsulta = duracaoConsulta;
-//        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
-//        this.status = status;
-//        this.pacienteAssociado = pacienteAssociado;
-//        this.medicoResponsavel = medicoResponsavel;
-//    }
-    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida, double custo) {
-        super(custo);
-        this.dataAgendada = dataAgendada;
-        this.horario = horario;
-        this.duracao = duracao;
-        this.status = status;
+    public Consulta(String id, Paciente pacienteAssociado, Medico medicoResponsavel, LocalDateTime horario) {
+        super(0); // Defina um custo padrão ou ajuste conforme necessário
+        this.id = id;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
-        this.especialidadeRequerida = especialidadeRequerida;
+        this.dataAgendada = horario.toLocalDate();
+        this.horario = horario.toLocalTime();
+        this.duracao = LocalTime.of(0, 30); // Define um tempo padrão, ajuste conforme necessário
+        this.status = Status.AGENDADA; // Define um status padrão
+        this.especialidadeRequerida = ""; // Define um valor padrão ou ajuste conforme necessário
+    }
+
+    // Getter e Setter para ID
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getDataAgendada() {

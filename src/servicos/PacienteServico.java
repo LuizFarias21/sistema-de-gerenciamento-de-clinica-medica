@@ -10,7 +10,6 @@ public class PacienteServico extends PessoaServico<Paciente> {
         super(pacienteRepositorio);
     }
 
-    public void registrarHistorico (Consulta consulta) {
-        consulta.getPacienteAssociado().getHistoricoMedico().add(consulta);
+    
     }
-}
+

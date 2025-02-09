@@ -1,12 +1,25 @@
 package interfaces;
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 import java.time.LocalDateTime;
 import javax.swing.*;
 
 import controladores.ConsultaControlador;
 import entidades.Medico;
 import entidades.Paciente;
+<<<<<<< Updated upstream
 
+=======
+import excecoes.DadoInvalidoException;
+import servicos.MedicoServico;
+import servicos.PacienteServico;
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 public class ConsultaInterface extends GenericoInterface {
 
     private ConsultaControlador consultaControlador;
@@ -49,6 +62,7 @@ public class ConsultaInterface extends GenericoInterface {
     @Override
     public void cadastrar() {
 
+<<<<<<< Updated upstream
     }
 
 //    @Override
@@ -68,8 +82,34 @@ public class ConsultaInterface extends GenericoInterface {
 
     @Override
     public void buscar() {
+<<<<<<< Updated upstream
         String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
         consultaControlador.buscarConsulta(id);
+=======
+
+=======
+        Paciente paciente = PacienteServico.buscarPaciente(cpfPaciente);
+        if (paciente == null) {
+            JOptionPane.showMessageDialog(null, "Paciente não encontrado.");
+            return;
+        }
+
+        Medico medico = MedicoServico.buscarMedicoResponsavel(cpfMedico);
+        if (medico == null) {
+            JOptionPane.showMessageDialog(null, "Médico não encontrado.");
+            return;
+        }
+
+
+        consultaControlador.criarConsulta(id, paciente, medico, horario);
+    }
+
+    @Override
+    public void buscar() throws DadoInvalidoException {
+        String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
+        consultaControlador.buscarConsulta(id);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 
     @Override
@@ -80,6 +120,13 @@ public class ConsultaInterface extends GenericoInterface {
     @Override
     public void atualizar() {
 
+<<<<<<< Updated upstream
+=======
+        Paciente novoPaciente = new Paciente(cpfPaciente, cpfMedico, null, null);
+        Medico novoMedico = new Medico(cpfMedico, cpfMedico, null, cpfMedico, cpfMedico, null);
+
+        consultaControlador.atualizarConsulta(id, novoPaciente, novoMedico, novoHorario);
+>>>>>>> Stashed changes
     }
 
 //    @Override
@@ -98,7 +145,21 @@ public class ConsultaInterface extends GenericoInterface {
 
     @Override
     public void deletar() {
+<<<<<<< Updated upstream
         String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
         consultaControlador.removerConsulta(id);
+=======
+<<<<<<< Updated upstream
+
+=======
+        String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
+        try {
+			consultaControlador.removerConsulta(id);
+		} catch (DadoInvalidoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     }
 }
