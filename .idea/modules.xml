@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/sistema-de-gerenciamento-de-clinica-medicasistema-de-gerenciamento-de-clinica-medica.iml" filepath="$PROJECT_DIR$/sistema-de-gerenciamento-de-clinica-medicasistema-de-gerenciamento-de-clinica-medica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClinicaMedicaTP.iml" filepath="$PROJECT_DIR$/ClinicaMedicaTP.iml" />
     </modules>
   </component>
 </project>
