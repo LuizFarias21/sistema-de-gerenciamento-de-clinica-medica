@@ -6,29 +6,41 @@ import java.util.regex.Pattern;
 import javax.naming.spi.DirStateFactory.Result;
 
 import entidades.Pessoa;
-import excecoes.CadastroBloqueadoException;
+import excecoes.DadoInvalidoException;
+import repositorios.PessoaRepositorio;
+import java.util.ArrayList;
 
-//import javax.swing.*;
+public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<TipoPessoa> {
 
-public class PessoaServico<TipoPessoa extends Pessoa> extends CrudServico<TipoPessoa> {
+    private PessoaRepositorio<TipoPessoa> pessoaRepositorio;
 
-    @Override
-    public void salvar(TipoPessoa pessoa) throws CadastroBloqueadoException {
-
-        ResultadoCPF resultado = validarCpf(pessoa.getCpf());
-        if (resultado == ResultadoCPF.SUCESSO) getListaEntidades().add(pessoa);
-        else throw new CadastroBloqueadoException(pessoa, resultado);
+    public PessoaServico(PessoaRepositorio<TipoPessoa> pessoaRepositorio) {
+        this.pessoaRepositorio = pessoaRepositorio;
     }
 
     @Override
-    public TipoPessoa buscar(String cpf) throws IllegalArgumentException{
-        if (cpf.isEmpty()) throw new IllegalArgumentException("O CPF não pode ser vazio.");
-        for (TipoPessoa pessoa : getListaEntidades()){
-            if(pessoa.getCpf().equals(cpf)){
-                return pessoa;
-            }
+    public void cadastrar(TipoPessoa tipoPessoa) throws DadoInvalidoException {
+        if (pessoaRepositorio.buscar(tipoPessoa.getCpf()) != null) {
+            throw new DadoInvalidoException("Cadastro bloqueado! Já existe um registro com o CPF: " + tipoPessoa.getCpf());
         }
-        return null;
+        pessoaRepositorio.salvar(tipoPessoa);
+    }
+
+    @Override
+    public TipoPessoa buscar(String cpf) throws DadoInvalidoException {
+        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
+        if (tipoPessoa == null) {
+            throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
+        }
+        return tipoPessoa;
+    }
+
+    @Override
+    public ArrayList<TipoPessoa> listar() throws DadoInvalidoException {
+        if (pessoaRepositorio.listar().isEmpty()) {
+            throw new DadoInvalidoException("Nenhum registro encontrado!");
+        }
+        return pessoaRepositorio.listar();
     }
 
     @Override
@@ -41,7 +53,7 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends CrudServico<TipoPe
 
             return true;
         }
-        return false;
+        pessoaRepositorio.remover(tipoPessoa);
     }
 
     public interface ResultadoCPF // String = mensagem[/causa] de erro
@@ -82,3 +94,5 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends CrudServico<TipoPe
         return buscar(CPF) == null ? ResultadoCPF.SUCESSO : ResultadoCPF.CPF_JA_CADASTRADO;
     }
 }
+
+

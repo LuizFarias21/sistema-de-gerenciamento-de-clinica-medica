@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta {
+public class Consulta extends Atendimento{
 
     public enum Status {
         AGENDADA,
@@ -11,82 +11,70 @@ public class Consulta {
         REALIZADA
     }
 
-    private static int contadorId = 1;
-    private String id;
-    private LocalDate dataConsulta;
-    private LocalTime horarioInicialConsulta;
-    private LocalTime duracaoConsulta;
-    private LocalTime horarioFinalConsulta;
+    private LocalDate dataAgendada;
+    private LocalTime horario;
+    private LocalTime duracao;
     private Status status;
     private Paciente pacienteAssociado;
     private Medico medicoResponsavel;
     private Prescricao prescricao;
-    private double valorConsulta;
+    private String especialidadeRequerida;
 
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, double valorConsulta) {
-        this.id = String.valueOf(contadorId++);
-        this.dataConsulta = dataConsulta;
-        this.horarioInicialConsulta = horarioInicialConsulta;
-        this.duracaoConsulta = duracaoConsulta;
-        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+        super(custo);
+        this.dataAgendada = dataAgendada;
+        this.horario = horario;
+        this.duracao = duracao;
         this.status = status;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
         this.prescricao = prescricao;
-        this.valorConsulta = valorConsulta;
+        this.especialidadeRequerida = especialidadeRequerida;
     }
 
-    public Consulta(LocalDate dataConsulta, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valorConsulta){
-        this.id = String.valueOf(contadorId++);
-        this.dataConsulta = dataConsulta;
-        this.horarioInicialConsulta = horarioInicialConsulta;
-        this.duracaoConsulta = duracaoConsulta;
-        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+//    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
+//        super(dataRealizacao, valor);
+//        this.horarioInicialConsulta = horarioInicialConsulta;
+//        this.duracaoConsulta = duracaoConsulta;
+//        this.horarioFinalConsulta = horarioInicialConsulta.plusHours(duracaoConsulta.getHour()).plusMinutes(duracaoConsulta.getMinute());
+//        this.status = status;
+//        this.pacienteAssociado = pacienteAssociado;
+//        this.medicoResponsavel = medicoResponsavel;
+//    }
+    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida, double custo) {
+        super(custo);
+        this.dataAgendada = dataAgendada;
+        this.horario = horario;
+        this.duracao = duracao;
         this.status = status;
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
-        this.valorConsulta = valorConsulta;
+        this.especialidadeRequerida = especialidadeRequerida;
     }
 
-    public String getId() {
-        return id;
+    public LocalDate getDataAgendada() {
+        return dataAgendada;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setDataAgendada(LocalDate dataAgendada) {
+        this.dataAgendada = dataAgendada;
     }
 
-    public LocalDate getDataConsulta() {
-        return dataConsulta;
+    public LocalTime getHorario() {
+        return horario;
     }
 
-    public void setDataConsulta(LocalDate dataConsulta) {
-        this.dataConsulta = dataConsulta;
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
     }
 
-    public LocalTime getHorarioInicialConsulta() {
-        return horarioInicialConsulta;
+    public LocalTime getDuracao() {
+        return duracao;
     }
 
-    public void setHorarioInicialConsulta(LocalTime horarioInicialConsulta) {
-        this.horarioInicialConsulta = horarioInicialConsulta;
-    }
-
-    public LocalTime getDuracaoConsulta() {
-        return duracaoConsulta;
-    }
-
-    public void setDuracaoConsulta(LocalTime duracaoConsulta) {
-        this.duracaoConsulta = duracaoConsulta;
-    }
-
-    public LocalTime getHorarioFinalConsulta() {
-        return horarioFinalConsulta;
-    }
-
-    public void setHorarioFinalConsulta(LocalTime horarioFinalConsulta) {
-        this.horarioFinalConsulta = horarioFinalConsulta;
+    public void setDuracao(LocalTime duracao) {
+        this.duracao = duracao;
     }
 
     public Status getStatus() {
@@ -121,11 +109,11 @@ public class Consulta {
         this.prescricao = prescricao;
     }
 
-    public double getValorConsulta() {
-        return valorConsulta;
+    public String getEspecialidadeRequerida() {
+        return especialidadeRequerida;
     }
 
-    public void setValorConsulta(double valorConsulta) {
-        this.valorConsulta = valorConsulta;
+    public void setEspecialidadeRequerida(String especialidadeRequerida) {
+        this.especialidadeRequerida = especialidadeRequerida;
     }
 }

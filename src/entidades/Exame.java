@@ -2,45 +2,26 @@ package entidades;
 
 import java.time.LocalDate;
 
-public class Exame {
+public class Exame extends Atendimento{
 
-    private enum Tipo {
-        SANGUE,
-        RAIO_X,
-        ULTRASSOM
-    }
+//    private enum Tipo {
+//        SANGUE,
+//        RAIO_X,
+//        ULTRASSOM
+//    }
 
-    private static int contadorID = 1;
-    private String id;
-    private Tipo tipo;
+    private String tipo;
     private LocalDate dataPrescricao;
     private LocalDate dataRealizacao;
-    private String resultadoExame;
-    private double custoExame;
+    private String resultado;
 
-    Exame(Tipo tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultadoExame, double custoExame) {
-        this.id = String.valueOf(contadorID++);
+
+    public Exame(String tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultado, double custo) {
+        super(custo);
         this.tipo = tipo;
         this.dataPrescricao = dataPrescricao;
         this.dataRealizacao = dataRealizacao;
-        this.resultadoExame = resultadoExame;
-        this.custoExame = custoExame;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Tipo getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+        this.resultado = resultado;
     }
 
     public LocalDate getDataPrescricao() {
@@ -59,19 +40,11 @@ public class Exame {
         this.dataRealizacao = dataRealizacao;
     }
 
-    public String getResultadoExame() {
-        return resultadoExame;
+    public String getResultado() {
+        return resultado;
     }
 
-    public void setResultadoExame(String resultadoExame) {
-        this.resultadoExame = resultadoExame;
-    }
-
-    public double getCustoExame() {
-        return custoExame;
-    }
-
-    public void setCustoExame(double custoExame) {
-        this.custoExame = custoExame;
+    public void setResultado(String resultado) {
+        this.resultado = resultado;
     }
 }

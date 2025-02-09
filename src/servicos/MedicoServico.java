@@ -1,24 +1,16 @@
 package servicos;
 
+import entidades.Consulta;
 import entidades.Medico;
+import repositorios.MedicoRepositorio;
 
 public class MedicoServico extends PessoaServico<Medico> {
 
-    @Override
-    public boolean atualizar(Medico medico, Medico novoMedico) {
-
-        if(medico != null){
-
-            medico.setNome(novoMedico.getNome());
-            medico.setCpf(novoMedico.getCpf());
-            medico.setDataNascimento(novoMedico.getDataNascimento());
-            medico.setCrm(novoMedico.getCrm());
-            medico.setEspecialidade(novoMedico.getEspecialidade());
-
-            return true;
-        }
-
-        return false;
+    public MedicoServico(MedicoRepositorio medicoRepositorio) {
+        super(medicoRepositorio);
     }
 
+    public void registrarHistorico(Consulta consulta) {
+        consulta.getMedicoResponsavel().getHistoricoMedico().add(consulta);
+    }
 }

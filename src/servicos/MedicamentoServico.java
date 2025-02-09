@@ -2,6 +2,6 @@ package servicos;
 
 import entidades.Medicamento;
 
-public class MedicamentoServico extends CrudServico<Medicamento> {
+public class MedicamentoServico extends ClinicaServico<Medicamento>{
 
 }
