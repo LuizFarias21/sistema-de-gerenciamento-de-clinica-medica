@@ -4,15 +4,15 @@ import javax.swing.*;
 
 public class SistemaInterface {
 
-    private final AtendimentoInterface atendimentoInterface;
+    private final ClinicaInterface clinicaInterface;
     private final PacienteInterface pacienteInterface;
     private final MedicoInterface medicoInterface;
     private final ConsultaInterface consultaInterface;
     private final ExameInterface exameInterface;
     private final MedicamentoInterface medicamentoInterface;
 
-    public SistemaInterface(AtendimentoInterface atendimentoInterface, PacienteInterface pacienteInterface, MedicoInterface medicoInterface, ConsultaInterface consultaInterface, ExameInterface exameInterface, MedicamentoInterface medicamentoInterface) {
-        this.atendimentoInterface = atendimentoInterface;
+    public SistemaInterface(ClinicaInterface clinicaInterface, PacienteInterface pacienteInterface, MedicoInterface medicoInterface, ConsultaInterface consultaInterface, ExameInterface exameInterface, MedicamentoInterface medicamentoInterface) {
+        this.clinicaInterface = clinicaInterface;
         this.pacienteInterface = pacienteInterface;
         this.medicoInterface = medicoInterface;
         this.consultaInterface = consultaInterface;
@@ -30,7 +30,7 @@ public class SistemaInterface {
 
             switch (escolha) {
                 case 0:
-                    atendimentoInterface.exibirInterface();
+                    clinicaInterface.exibirInterface();
                     break;
                 case 1:
                     pacienteInterface.exibirInterface();;

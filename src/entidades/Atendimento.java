@@ -1,6 +1,7 @@
 package entidades;
 
-public class Atendimento {
+// ⚠️ Não é certeza que essa classe será utilizada no trabalho final!
+public abstract class Atendimento {
 
     private double custo;
 

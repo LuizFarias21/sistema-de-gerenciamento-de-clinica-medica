@@ -2,7 +2,7 @@ package interfaces;
 
 import javax.swing.*;
 
-public class AtendimentoInterface {
+public class ClinicaInterface {
 
     public void exibirInterface() {
         while(true) {
