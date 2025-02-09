@@ -48,16 +48,23 @@ public class ConsultaInterface extends GenericoInterface {
 
     @Override
     public void cadastrar() {
-        String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
-        String cpfPaciente = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        String cpfMedico = JOptionPane.showInputDialog("Digite o CPF do médico:");
-        LocalDateTime horario = LocalDateTime.parse(JOptionPane.showInputDialog("Digite o horário da consulta (YYYY-MM-DDTHH:MM):"));
 
-        Paciente paciente = new Paciente(cpfPaciente);  // Assumindo que há um construtor que aceita apenas CPF
-        Medico medico = new Medico(cpfMedico); // Assumindo o mesmo para Médico
-
-        consultaControlador.criarConsulta(id, paciente, medico, horario);
     }
+
+//    @Override
+//    public void cadastrar() {
+//        // Que ID? 🤔
+//        String id = JOptionPane.showInputDialog("Digite o ID da consulta:");
+//        String cpfPaciente = JOptionPane.showInputDialog("Digite o CPF do paciente:");
+//        String cpfMedico = JOptionPane.showInputDialog("Digite o CPF do médico:");
+//        LocalDateTime horario = LocalDateTime.parse(JOptionPane.showInputDialog("Digite o horário da consulta (YYYY-MM-DDTHH:MM):"));
+//
+//        // Paciente e médico não aceitam só 1 parâmetro!
+////        Paciente paciente = new Paciente(cpfPaciente);  // Assumindo que há um construtor que aceita apenas CPF
+////        Medico medico = new Medico(cpfMedico); // Assumindo o mesmo para Médico
+//
+//        consultaControlador.criarConsulta(id, paciente, medico, horario);
+//    }
 
     @Override
     public void buscar() {
@@ -72,16 +79,22 @@ public class ConsultaInterface extends GenericoInterface {
 
     @Override
     public void atualizar() {
-        String id = JOptionPane.showInputDialog("Digite o ID da consulta que deseja atualizar:");
-        String cpfPaciente = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
-        String cpfMedico = JOptionPane.showInputDialog("Digite o novo CPF do médico:");
-        LocalDateTime novoHorario = LocalDateTime.parse(JOptionPane.showInputDialog("Digite o novo horário da consulta (YYYY-MM-DDTHH:MM):"));
 
-        Paciente novoPaciente = new Paciente(cpfPaciente);
-        Medico novoMedico = new Medico(cpfMedico);
-
-        consultaControlador.atualizarConsulta(id, novoPaciente, novoMedico, novoHorario);
     }
+
+//    @Override
+//    public void atualizar() {
+//        String id = JOptionPane.showInputDialog("Digite o ID da consulta que deseja atualizar:");
+//        String cpfPaciente = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
+//        String cpfMedico = JOptionPane.showInputDialog("Digite o novo CPF do médico:");
+//        LocalDateTime novoHorario = LocalDateTime.parse(JOptionPane.showInputDialog("Digite o novo horário da consulta (YYYY-MM-DDTHH:MM):"));
+//
+//        // Paciente e médico não aceitam só 1 parâmetro!
+//        //Paciente novoPaciente = new Paciente(cpfPaciente);
+//        //Medico novoMedico = new Medico(cpfMedico);
+//
+//        consultaControlador.atualizarConsulta(id, novoPaciente, novoMedico, novoHorario);
+//    }
 
     @Override
     public void deletar() {
