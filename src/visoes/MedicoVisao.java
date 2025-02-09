@@ -1,20 +1,20 @@
-package interfaces;
+package visoes;
 
 import java.time.LocalDate;
 import javax.swing.*;
 
 import controladores.MedicoControlador;
 
-public class MedicoInterface extends GenericoInterface {
+public class MedicoVisao extends GenericoVisao {
 
     private MedicoControlador medicoControlador;
 
-    public MedicoInterface(MedicoControlador medicoControlador) {
+    public MedicoVisao(MedicoControlador medicoControlador) {
         this.medicoControlador = medicoControlador;
     }
 
     @Override
-    public void exibirInterface() {
+    public void exibirVisao() {
         while (true) {
 
             String[] opcoes = {"Cadastrar Médicos", "Buscar Médicos", "Listar Médicos",
@@ -27,19 +27,19 @@ public class MedicoInterface extends GenericoInterface {
             // Verificar escolha do usuário
             switch (escolha) {
                 case 0: // cadastrar médico
-                    cadastrar();
+                    cadastrarVisao();
                     break;
                 case 1: // buscar médico
-                    buscar();
+                    buscarVisao();
                     break;
                 case 2: // listar médicos
-                    listar();
+                    listarVisao();
                     break;
                 case 3: // atualizar médico
-                    atualizar();
+                    atualizarVisao();
                     break;
                 case 4: // remover médico
-                    deletar();
+                    excluirVisao();
                     break;
                 case 5: // sair
                     return;
@@ -48,7 +48,7 @@ public class MedicoInterface extends GenericoInterface {
     }
 
     @Override
-    public void cadastrar() {
+    public void cadastrarVisao() {
         String nome = JOptionPane.showInputDialog("Digite o nome do médico:");
         String cpf = JOptionPane.showInputDialog("Digite o CPF do médico:");
         LocalDate dataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a data de nascimento do médico (YYYY-MM-DD):"));
@@ -59,30 +59,35 @@ public class MedicoInterface extends GenericoInterface {
     }
 
     @Override
-    public void buscar() {
+    public void buscarVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do médico:");
         medicoControlador.buscarMedico(cpf);
     }
 
     @Override
-    public void listar() {
+    public void listarVisao() {
         medicoControlador.listarMedicos();
     }
 
     @Override
-    public void atualizar() {
-        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do médico:");
-        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do médico:");
-        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do médico (YYYY-MM-DD):"));
-        String novoCrm = JOptionPane.showInputDialog("Digite o novo CRM do médico:");
-        String novaEspecialidade = JOptionPane.showInputDialog("Digite a nova especialidade do médico:");
+    public void atualizarVisao() {
 
-        String cpf = JOptionPane.showInputDialog("Digite o CPF do médico que deseja atualizar os dados:");
-        medicoControlador.atualizarMedico(cpf, novoNome, novoCpf, novaDataNascimento, novoCrm, novaEspecialidade);
     }
 
+//    @Override
+//    public void atualizar() {
+//        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do médico:");
+//        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do médico:");
+//        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do médico (YYYY-MM-DD):"));
+//        String novoCrm = JOptionPane.showInputDialog("Digite o novo CRM do médico:");
+//        String novaEspecialidade = JOptionPane.showInputDialog("Digite a nova especialidade do médico:");
+//
+//        String cpf = JOptionPane.showInputDialog("Digite o CPF do médico que deseja atualizar os dados:");
+//        medicoControlador.atualizarMedico(cpf, novoNome, novoCpf, novaDataNascimento, novoCrm, novaEspecialidade);
+//    }
+
     @Override
-    public void deletar() {
+    public void excluirVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do médico:");
         medicoControlador.excluirMedico(cpf);
     }

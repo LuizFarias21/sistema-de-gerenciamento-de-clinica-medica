@@ -1,45 +1,41 @@
 package aplicacao;
 
-import controladores.ConsultaControlador;
 import controladores.MedicoControlador;
 import controladores.PacienteControlador;
-import interfaces.*;
-import repositorios.ConsultaRepositorio;
+import visoes.*;
 import repositorios.MedicoRepositorio;
 import repositorios.PacienteRepositorio;
-import servicos.ConsultaServico;
 import servicos.MedicoServico;
 import servicos.PacienteServico;
 
 public class Sistema {
-    private SistemaInterface sistemaInterface;
+    private SistemaVisao sistemaVisao;
 
     public Sistema() {
         gerenciarDependencias();
     }
 
     public void iniciar() {
-        sistemaInterface.exibirInterface();
+        sistemaVisao.exibirVisao();
     }
 
     public void gerenciarDependencias() {
 
-        ClinicaInterface clinicaInterface = new ClinicaInterface();
         PacienteRepositorio pacienteRepositorio = new PacienteRepositorio();
         PacienteServico pacienteServico = new PacienteServico(pacienteRepositorio);
         PacienteControlador pacienteControlador = new PacienteControlador(pacienteServico);
-        PacienteInterface pacienteInterface = new PacienteInterface(pacienteControlador);
-        ExameInterface exameInterface = new ExameInterface();
-        MedicamentoInterface medicamentoInterface = new MedicamentoInterface();
+        PacienteVisao pacienteInterface = new PacienteVisao(pacienteControlador);
+        ExameVisao exameVisao = new ExameVisao();
+        MedicamentoVisao medicamentoInterface = new MedicamentoVisao();
         pacienteControlador.setPacienteInterface(pacienteInterface);
 
         MedicoRepositorio medicoRepositorio = new MedicoRepositorio();
         MedicoServico medicoServico = new MedicoServico(medicoRepositorio);
         MedicoControlador medicoControlador = new MedicoControlador(medicoServico);
-        MedicoInterface medicoInterface = new MedicoInterface(medicoControlador);
+        MedicoVisao medicoInterface = new MedicoVisao(medicoControlador);
         medicoControlador.setMedicoInterface(medicoInterface);
 
-        ConsultaInterface consultaInterface = new ConsultaInterface();
+        ConsultaVisao consultaVisao = new ConsultaVisao();
 //        ConsultaRepositorio consultaRepositorio = new ConsultaRepositorio();
 //        ConsultaServico consultaServico = new ConsultaServico(consultaRepositorio);
 //        ConsultaControlador consultaControlador = new ConsultaControlador(consultaServico);
@@ -47,6 +43,6 @@ public class Sistema {
 
 
 
-        sistemaInterface = new SistemaInterface(clinicaInterface, pacienteInterface, medicoInterface, consultaInterface, exameInterface, medicamentoInterface);
+        sistemaVisao = new SistemaVisao(pacienteInterface, medicoInterface, consultaVisao, exameVisao, medicamentoInterface);
     }
 }

@@ -1,8 +1,8 @@
-package interfaces;
+package visoes;
 
 import javax.swing.*;
 
-public abstract class GenericoInterface {
+public abstract class GenericoVisao {
 
     public void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
@@ -12,15 +12,15 @@ public abstract class GenericoInterface {
         JOptionPane.showMessageDialog(null, mensagem, "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public abstract void exibirInterface();
+    public abstract void exibirVisao();
 
-    public abstract void cadastrar();
+    public abstract void cadastrarVisao();
 
-    public abstract void buscar();
+    public abstract void buscarVisao();
 
-    public abstract void listar();
+    public abstract void listarVisao();
 
-    public abstract void atualizar();
+    public abstract void atualizarVisao();
 
-    public abstract void deletar();
+    public abstract void excluirVisao();
 }

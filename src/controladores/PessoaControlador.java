@@ -1,4 +1,7 @@
 package controladores;
 
-public class PessoaControlador {
+import entidades.Pessoa;
+
+public class PessoaControlador<TipoPessoa extends Pessoa> extends GenericoControlador<TipoPessoa> {
+
 }

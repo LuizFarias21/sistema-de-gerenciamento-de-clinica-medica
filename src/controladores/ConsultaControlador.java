@@ -1,4 +1,7 @@
 package controladores;
 
-public class ConsultaControlador {
+import entidades.Consulta;
+
+public class ConsultaControlador extends ClinicaControlador<Consulta> {
+
 }

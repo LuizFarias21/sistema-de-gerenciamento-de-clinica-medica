@@ -1,9 +1,9 @@
 package repositorios;
 
-public class ClinicaRepositorio<T> extends GenericoRepositorio<T> {
+public class ClinicaRepositorio<TipoEntidade> extends GenericoRepositorio<TipoEntidade> {
 
     @Override
-    public T buscar(String identificador) {
+    public TipoEntidade buscar(String identificador) {
         int id = Integer.parseInt(identificador);
         return listar().get(id);
     }

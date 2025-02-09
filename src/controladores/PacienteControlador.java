@@ -3,24 +3,24 @@ package controladores;
 import entidades.Consulta;
 import entidades.Paciente;
 import excecoes.DadoInvalidoException;
-import interfaces.PacienteInterface;
 import servicos.PacienteServico;
+import visoes.PacienteVisao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PacienteControlador {
+public class PacienteControlador extends PessoaControlador<Paciente> {
 
     private PacienteServico pacienteServico;
-    private PacienteInterface pacienteInterface;
+    private PacienteVisao pacienteInterface;
 
     public PacienteControlador(PacienteServico pacienteServico) {
         this.pacienteServico = pacienteServico;
     }
 
-    public void setPacienteInterface(PacienteInterface pacienteInterface) {
+    public void setPacienteInterface(PacienteVisao pacienteInterface) {
         this.pacienteInterface = pacienteInterface;
     }
 
@@ -81,16 +81,16 @@ public class PacienteControlador {
 
     }
 
-    public void atualizarPaciente(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento) {
-
-        try {
-            //Paciente novoPaciente = new Paciente(novoNome, novoCpf, novaDataNascimento, new ArrayList<Consulta>()); // Precisa atualizar o histórico médico também!
-            pacienteServico.atualizar(cpf, novoNome, novoCpf, novaDataNascimento);
-            pacienteInterface.exibirMensagemInfo("Paciente atualizado com sucesso!");
-        } catch (DadoInvalidoException e) {
-            pacienteInterface.exibirMensagemErro(e.getMessage());
-        }
-    }
+//    public void atualizarPaciente(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento) {
+//
+//        try {
+//            //Paciente novoPaciente = new Paciente(novoNome, novoCpf, novaDataNascimento, new ArrayList<Consulta>()); // Precisa atualizar o histórico médico também!
+//            pacienteServico.atualizar(cpf, novoNome, novoCpf, novaDataNascimento);
+//            pacienteInterface.exibirMensagemInfo("Paciente atualizado com sucesso!");
+//        } catch (DadoInvalidoException e) {
+//            pacienteInterface.exibirMensagemErro(e.getMessage());
+//        }
+//    }
 
     public void excluirPaciente(String cpf) {
 

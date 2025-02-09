@@ -3,21 +3,21 @@ package controladores;
 import entidades.Consulta;
 import entidades.Medico;
 import excecoes.DadoInvalidoException;
-import interfaces.MedicoInterface;
 import servicos.MedicoServico;
+import visoes.MedicoVisao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class MedicoControlador {
+public class MedicoControlador extends PessoaControlador<Medico> {
     private MedicoServico medicoServico;
-    private MedicoInterface medicoInterface;
+    private MedicoVisao medicoInterface;
 
     public MedicoControlador(MedicoServico medicoServico) {
         this.medicoServico = medicoServico;
     }
 
-    public void setMedicoInterface(MedicoInterface medicoInterface) {
+    public void setMedicoInterface(MedicoVisao medicoInterface) {
         this.medicoInterface = medicoInterface;
     }
 
@@ -75,14 +75,14 @@ public class MedicoControlador {
         }
     }
 
-    public void atualizarMedico(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento, String novoCrm, String novaEspecialidade) {
-        try {
-            medicoServico.atualizar(cpf, novoNome, novoCpf, novaDataNascimento); // Atualiza os dados do médico
-            medicoInterface.exibirMensagemInfo("Médico atualizado com sucesso!"); // Exibe mensagem de sucesso
-        } catch (DadoInvalidoException e) {
-            medicoInterface.exibirMensagemErro(e.getMessage()); // Exibe erro caso haja algum problema
-        }
-    }
+//    public void atualizarMedico(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento, String novoCrm, String novaEspecialidade) {
+//        try {
+//            medicoServico.atualizar(cpf, novoNome, novoCpf, novaDataNascimento); // Atualiza os dados do médico
+//            medicoInterface.exibirMensagemInfo("Médico atualizado com sucesso!"); // Exibe mensagem de sucesso
+//        } catch (DadoInvalidoException e) {
+//            medicoInterface.exibirMensagemErro(e.getMessage()); // Exibe erro caso haja algum problema
+//        }
+//    }
 
     public void excluirMedico(String cpf) {
         try {

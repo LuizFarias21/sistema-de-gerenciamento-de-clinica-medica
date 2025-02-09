@@ -1,4 +1,14 @@
 package controladores;
 
-public class GenericoControlador {
+public class GenericoControlador<TipoEntidade> {
+
+    // cadastrar
+
+    // buscar
+
+    // listar
+
+    // atualizar
+
+    // excluir
 }

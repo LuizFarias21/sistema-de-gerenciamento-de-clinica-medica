@@ -1,60 +1,66 @@
 package servicos;
 
-import entidades.Paciente;
 import entidades.Pessoa;
 import excecoes.DadoInvalidoException;
 import repositorios.PessoaRepositorio;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class PessoaServico<T extends Pessoa> {
+public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<TipoPessoa> {
 
-    private PessoaRepositorio<T> pessoaRepositorio;
+    private PessoaRepositorio<TipoPessoa> pessoaRepositorio;
 
-    public PessoaServico(PessoaRepositorio<T> pessoaRepositorio) {
+    public PessoaServico(PessoaRepositorio<TipoPessoa> pessoaRepositorio) {
         this.pessoaRepositorio = pessoaRepositorio;
     }
 
-    public void cadastrar(T t) throws DadoInvalidoException {
-        if (pessoaRepositorio.buscar(t.getCpf()) != null) {
-            throw new DadoInvalidoException("Cadastro bloqueado! Já existe um registro com o CPF: " + t.getCpf());
+    @Override
+    public void cadastrar(TipoPessoa tipoPessoa) throws DadoInvalidoException {
+        if (pessoaRepositorio.buscar(tipoPessoa.getCpf()) != null) {
+            throw new DadoInvalidoException("Cadastro bloqueado! Já existe um registro com o CPF: " + tipoPessoa.getCpf());
         }
-        pessoaRepositorio.salvar(t);
+        pessoaRepositorio.salvar(tipoPessoa);
     }
 
-    public T buscar(String cpf) throws DadoInvalidoException {
-        T t = pessoaRepositorio.buscar(cpf);
-        if (t == null) {
+    @Override
+    public TipoPessoa buscar(String cpf) throws DadoInvalidoException {
+        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
+        if (tipoPessoa == null) {
             throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
         }
-        return t;
+        return tipoPessoa;
     }
 
-    public ArrayList<T> listar() throws DadoInvalidoException {
+    @Override
+    public ArrayList<TipoPessoa> listar() throws DadoInvalidoException {
         if (pessoaRepositorio.listar().isEmpty()) {
             throw new DadoInvalidoException("Nenhum registro encontrado!");
         }
         return pessoaRepositorio.listar();
     }
 
-    public void atualizar(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento) throws DadoInvalidoException {
-        T t = pessoaRepositorio.buscar(cpf);
-        if (t == null) {
-            throw new DadoInvalidoException("Nenhum registro encontrado!");
-        }
-        pessoaRepositorio.remover(t);
-        T novaT = (T) new Paciente(novoNome, novoCpf, novaDataNascimento, ((Paciente) t).getHistoricoMedico());
-        pessoaRepositorio.salvar(novaT);
-        //pessoaRepositorio.atualizar(t, novaT);
+    @Override
+    public void atualizar(TipoPessoa tipoPessoa, TipoPessoa novaEntidade) throws DadoInvalidoException {
+
     }
 
+//    public void atualizar(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento) throws DadoInvalidoException {
+//        Pessoa pessoa = pessoaRepositorio.buscar(cpf);
+//        if (pessoa == null) {
+//            throw new DadoInvalidoException("Nenhum registro encontrado!");
+//        }
+//        pessoaRepositorio.remover(pessoa);
+//        Pessoa novaPessoa = (Pessoa) new Paciente(novoNome, novoCpf, novaDataNascimento, ((Paciente) pessoa).getHistoricoMedico());
+//        pessoaRepositorio.salvar(novaPessoa);
+//        //pessoaRepositorio.atualizar(t, novaT);
+//    }
+
+    @Override
     public void excluir(String cpf) throws DadoInvalidoException {
-        T t = pessoaRepositorio.buscar(cpf);
-        if (t == null) {
+        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
+        if (tipoPessoa == null) {
             throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
         }
-        pessoaRepositorio.remover(t);
+        pessoaRepositorio.remover(tipoPessoa);
     }
 }
 

@@ -1,41 +1,17 @@
 package servicos;
 
+import excecoes.DadoInvalidoException;
 import java.util.ArrayList;
 
-public class GenericoServico<Entidade> {
+public abstract class GenericoServico<TipoEntidade> {
 
-    private final ArrayList<Entidade> listaEntidades = new ArrayList<>();
+    public abstract void cadastrar(TipoEntidade entidade) throws DadoInvalidoException;
 
-    // Adicionar uma nova entidade na lista de entidades
-    public void salvar(Entidade entidade) {
-        if (entidade != null) {
-            listaEntidades.add(entidade);
-        }
-    }
+    public abstract TipoEntidade buscar(String identificador) throws DadoInvalidoException;
 
-    // Buscar uma entidade pelo identificador
-    public Entidade buscar(String identificador){
-        return null;
-    }
+    public abstract ArrayList<TipoEntidade> listar() throws DadoInvalidoException;
 
-    // Atualizar uma entidade pelo identificador com sua nova entidade
-    public boolean atualizar(Entidade entidade, Entidade novaEntidade) {
-        return false;
-    }
+    public abstract void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) throws DadoInvalidoException;
 
-    // Remover entidade da lista de entidades
-    public boolean remover(Entidade entidade) {
-
-        if (entidade != null) {
-            getListaEntidades().remove(entidade);
-            return true;
-        }
-
-        return false;
-    }
-
-    public ArrayList<Entidade> getListaEntidades() {
-        return listaEntidades;
-    }
-
+    public abstract void excluir(String identificador) throws DadoInvalidoException;
 }
