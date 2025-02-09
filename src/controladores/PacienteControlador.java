@@ -8,6 +8,8 @@ import servicos.PacienteServico;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PacienteControlador {
 
@@ -28,7 +30,7 @@ public class PacienteControlador {
 
         try {
 
-            if (validarCpf(paciente.getCpf())) {
+            if (validarCpf(cpf) != ResultadoCpf.SUCESSO) {
                 throw new DadoInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
             }
 
@@ -42,7 +44,7 @@ public class PacienteControlador {
 
         try {
 
-            if (validarCpf(cpf)) {
+            if (validarCpf(cpf) != ResultadoCpf.SUCESSO) {
                 throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
             }
 
@@ -93,7 +95,7 @@ public class PacienteControlador {
     public void excluirPaciente(String cpf) {
 
         try {
-            if (validarCpf(cpf)) {
+            if (validarCpf(cpf) != ResultadoCpf.SUCESSO) {
                 throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
             }
             pacienteServico.excluir(cpf);
@@ -103,14 +105,41 @@ public class PacienteControlador {
         }
     }
 
-    public boolean validarCpf(String cpf) {
+    public static enum ResultadoCpf
+    {
+        PADRAO_INVALIDO,
+        SUCESSO,
+        DV1_INVALIDO,
+        DV2_INVALIDO,
+        CPF_JA_CADASTRADO
+    }
 
-        boolean cpfVazio = cpf.trim().isEmpty();
+    public ResultadoCpf validarCpf(String cpf) {
 
-        if (cpfVazio) {
-            return true;
-        }
+        // Passo "0": O CPF já existe na lista de Pessoas?
 
-        return false;
+        // Passo 1: Segue o formato XXX.XXX.XXX-XX?
+        Pattern cpfPattern = Pattern.compile("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}");
+        Matcher cpfMatcher = cpfPattern.matcher(cpf);
+        if (!cpfMatcher.matches()) return ResultadoCpf.PADRAO_INVALIDO;
+        // Passo 2: Os dígitos verificadores são válidos?
+        String digitos = cpf.replaceAll("[^\\d]", "");
+
+        // D.V. 1
+        int dv = 0;
+        for (int i = 0; i < 9; i++)
+            dv += Character.getNumericValue(digitos.charAt(i)) * (10 - i);
+        int mod11 = dv % 11;
+        if (mod11 != Character.getNumericValue(digitos.charAt(9))) return ResultadoCpf.DV1_INVALIDO;
+
+        // D.V. 2
+        dv = 0;
+        for (int i = 0; i < 10; i++)
+            dv += Character.getNumericValue(digitos.charAt(i)) * (11 - i);
+        mod11 = dv % 11;
+        if (mod11 != Character.getNumericValue(digitos.charAt(10))) return ResultadoCpf.DV2_INVALIDO;
+
+        //m_CPF = CPF;
+        return buscarPaciente(cpf) == null ? ResultadoCpf.SUCESSO : ResultadoCpf.CPF_JA_CADASTRADO;
     }
 }
