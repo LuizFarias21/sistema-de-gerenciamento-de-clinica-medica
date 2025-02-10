@@ -23,7 +23,7 @@ public class ClinicaServico<TipoEntidade> extends GenericoServico<TipoEntidade> 
 
     @Override
     public void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) throws DadoInvalidoException {
-
+        
     }
 
     @Override

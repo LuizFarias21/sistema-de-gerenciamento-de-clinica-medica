@@ -24,6 +24,19 @@ public class Exame extends Atendimento{
         this.resultado = resultado;
     }
 
+    public Exame(String tipo, double custo) {
+        super(custo);
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public LocalDate getDataPrescricao() {
         return dataPrescricao;
     }
