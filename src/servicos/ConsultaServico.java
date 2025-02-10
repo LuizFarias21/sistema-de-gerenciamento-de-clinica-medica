@@ -1,8 +1,15 @@
 package servicos;
 
 import entidades.Consulta;
+import repositorios.ClinicaRepositorio;
 
 public class ConsultaServico extends ClinicaServico<Consulta>{
+
+    private ClinicaRepositorio<Consulta> consultaRepositorio;
+
+    public ConsultaServico(ClinicaRepositorio<Consulta> consultaRepositorio) {
+        this.consultaRepositorio = consultaRepositorio;
+    }
 
 //    public void agendarConsulta(
 //            LocalDate dataAgendada,
