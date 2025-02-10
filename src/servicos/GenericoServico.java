@@ -11,7 +11,7 @@ public abstract class GenericoServico<TipoEntidade> {
 
     public abstract ArrayList<TipoEntidade> listar() throws DadoInvalidoException;
 
-    public abstract boolean atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) throws DadoInvalidoException;
+    public abstract void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) throws DadoInvalidoException;
 
     public abstract void excluir(String identificador) throws DadoInvalidoException;
 }

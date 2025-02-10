@@ -31,16 +31,6 @@ public class ConsultaServico extends ClinicaServico<Consulta>{
 //        consultaServico.cancelarConsulta(consulta);
 //    }
 
-    @Override
-    public Consulta buscar(String ID) throws IllegalArgumentException {
-        if (ID.isEmpty()) throw new IllegalArgumentException("O ID não pode ser vazio.");
-        for (Consulta consulta : getListaEntidades()) {
-            if (consulta.getId().equals(ID)){
-                return consulta;
-            }
-        }
-        return null;
-    }
 
     //    public void agendarConsulta(Consulta consulta) {
 //

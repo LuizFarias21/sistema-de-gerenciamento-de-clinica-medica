@@ -52,17 +52,14 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<Ti
     }
 
     @Override
-    public boolean atualizar(TipoPessoa pessoa, TipoPessoa novaPessoa) {
+    public void atualizar(TipoPessoa pessoa, TipoPessoa novaPessoa) {
         if (pessoa != null) {
 
             pessoa.setNome(novaPessoa.getNome());
             pessoa.setCpf(novaPessoa.getCpf());
             pessoa.setDataNascimento(novaPessoa.getDataNascimento());
-
-            return true;
         }
         //pessoaRepositorio.remover(tipoPessoa);
-        return false;
     }
 
 /*
