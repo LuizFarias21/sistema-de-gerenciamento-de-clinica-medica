@@ -11,6 +11,14 @@ import repositorios.PessoaRepositorio;
 import java.util.ArrayList;
 
 public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<TipoPessoa> {
+    @Override
+    public void excluir(String cpf) throws DadoInvalidoException {
+        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
+        if (tipoPessoa == null) {
+            throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
+        }
+        pessoaRepositorio.remover(tipoPessoa);
+    }
 
     private PessoaRepositorio<TipoPessoa> pessoaRepositorio;
 
@@ -53,9 +61,11 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<Ti
 
             return true;
         }
-        pessoaRepositorio.remover(tipoPessoa);
+        //pessoaRepositorio.remover(tipoPessoa);
+        return false;
     }
 
+/*
     public interface ResultadoCPF // String = mensagem[/causa] de erro
     {
         String PADRAO_INVALIDO = "Este CPF está em padrão inválido, insira-o no padrão XXX.XXX.XXX-XX.";
@@ -65,7 +75,7 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<Ti
         String CPF_JA_CADASTRADO = "Este CPF já está cadastrado.";
     }
 
-    public ResultadoCPF validarCpf(String CPF)
+    public String validarCpf(String CPF) throws DadoInvalidoException
     {
         // Passo "0": O CPF já existe na lista de Pessoas?
         
@@ -93,6 +103,7 @@ public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<Ti
         //m_CPF = CPF;
         return buscar(CPF) == null ? ResultadoCPF.SUCESSO : ResultadoCPF.CPF_JA_CADASTRADO;
     }
+*/
 }
 
 
