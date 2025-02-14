@@ -1,14 +1,21 @@
 package servicos;
 
 import entidades.Consulta;
-import repositorios.ClinicaRepositorio;
+import excecoes.DadoInvalidoException;
+import repositorios.ConsultaRepositorio;
 
-public class ConsultaServico extends ClinicaServico<Consulta>{
+public class ConsultaServico extends TratamentoServico<Consulta> {
 
-    private ClinicaRepositorio<Consulta> consultaRepositorio;
+    private ConsultaRepositorio consultaRepositorio;
 
-    public ConsultaServico(ClinicaRepositorio<Consulta> consultaRepositorio) {
+    public ConsultaServico(ConsultaRepositorio consultaRepositorio) {
+        super(consultaRepositorio);
         this.consultaRepositorio = consultaRepositorio;
+    }
+
+    @Override
+    public void atualizar(Consulta consulta, Consulta novaEntidade) throws DadoInvalidoException {
+
     }
 
 //    public void agendarConsulta(

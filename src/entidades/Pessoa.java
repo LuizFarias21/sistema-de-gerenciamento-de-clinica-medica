@@ -47,5 +47,4 @@ public abstract class Pessoa {
     public void setHistoricoMedico(ArrayList<Consulta> historicoMedico) {
         this.historicoMedico = historicoMedico;
     }
-
 }

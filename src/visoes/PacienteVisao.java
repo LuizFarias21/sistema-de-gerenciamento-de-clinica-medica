@@ -53,18 +53,18 @@ public class PacienteVisao extends GenericoVisao {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
         LocalDate dataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite da data de nascimento do paciente (YYYY-MM-DD:)"));
 
-        pacienteControlador.cadastrarPaciente(nome, cpf, dataNascimento);
+        pacienteControlador.cadastrar(nome, cpf, dataNascimento);
     }
 
     @Override
     public void buscarVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        pacienteControlador.buscarPaciente(cpf);
+        pacienteControlador.buscar(cpf);
     }
 
     @Override
     public void listarVisao() {
-        pacienteControlador.listarPaciente();
+        pacienteControlador.listar();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class PacienteVisao extends GenericoVisao {
     @Override
     public void excluirVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        pacienteControlador.excluirPaciente(cpf);
+        pacienteControlador.remover(cpf);
     }
 
 }

@@ -2,13 +2,13 @@ package visoes;
 
 import javax.swing.*;
 
-public abstract class GenericoVisao {
+public abstract class GenericoVisao<TipoEntidade> {
 
-    public void exibirMensagemErro(String mensagem) {
+    public static void exibirMensagemErro(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void exibirMensagemInfo(String mensagem) {
+    public static void exibirMensagemInfo(String mensagem) {
         JOptionPane.showMessageDialog(null, mensagem, "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 

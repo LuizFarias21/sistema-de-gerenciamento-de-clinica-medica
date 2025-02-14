@@ -6,18 +6,23 @@ public abstract class GenericoRepositorio<TipoEntidade> {
 
     private final ArrayList<TipoEntidade> lista = new ArrayList<>();
 
+    // Retorna a lista de entidades
     public ArrayList<TipoEntidade> listar() {
         return lista;
     }
 
-    public void salvar(TipoEntidade entidade) {
+    // Adiciona uma entidade para a lista
+    public void cadastrar(TipoEntidade entidade) {
         listar().add(entidade);
     }
 
+    // Busca uma entidade pelo identificador e retorna o objeto encontrado
     public abstract TipoEntidade buscar(String identificador);
 
-    //public abstract void atualizar(T t, T novaT);
+    // Modifica dados já existentes das entidades
+    public abstract void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade);
 
+    // Deleta entidade da lista de entidades
     public boolean remover(TipoEntidade entidade) {
         return listar().remove(entidade);
     }

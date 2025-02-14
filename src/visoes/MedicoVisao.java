@@ -55,18 +55,18 @@ public class MedicoVisao extends GenericoVisao {
         String crm = JOptionPane.showInputDialog("Digite o CRM do médico:");
         String especialidade = JOptionPane.showInputDialog("Digite a especialidade do médico:");
 
-        medicoControlador.cadastrarMedico(nome, cpf, dataNascimento, crm, especialidade);
+        medicoControlador.cadastrar(nome, cpf, dataNascimento, crm, especialidade);
     }
 
     @Override
     public void buscarVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do médico:");
-        medicoControlador.buscarMedico(cpf);
+        medicoControlador.buscar(cpf);
     }
 
     @Override
     public void listarVisao() {
-        medicoControlador.listarMedicos();
+        medicoControlador.listar();
     }
 
     @Override
@@ -89,6 +89,6 @@ public class MedicoVisao extends GenericoVisao {
     @Override
     public void excluirVisao() {
         String cpf = JOptionPane.showInputDialog("Digite o CPF do médico:");
-        medicoControlador.excluirMedico(cpf);
+        medicoControlador.remover(cpf);
     }
 }

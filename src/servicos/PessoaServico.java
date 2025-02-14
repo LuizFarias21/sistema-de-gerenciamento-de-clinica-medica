@@ -1,106 +1,69 @@
 package servicos;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.naming.spi.DirStateFactory.Result;
-
 import entidades.Pessoa;
 import excecoes.DadoInvalidoException;
 import repositorios.PessoaRepositorio;
-import java.util.ArrayList;
 
-public class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<TipoPessoa> {
-    @Override
-    public void excluir(String cpf) throws DadoInvalidoException {
-        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
-        if (tipoPessoa == null) {
-            throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
-        }
-        pessoaRepositorio.remover(tipoPessoa);
-    }
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public abstract class PessoaServico<TipoPessoa extends Pessoa> extends GenericoServico<TipoPessoa> {
 
     private PessoaRepositorio<TipoPessoa> pessoaRepositorio;
 
     public PessoaServico(PessoaRepositorio<TipoPessoa> pessoaRepositorio) {
+        super(pessoaRepositorio);
         this.pessoaRepositorio = pessoaRepositorio;
     }
 
-    @Override
-    public void cadastrar(TipoPessoa tipoPessoa) throws DadoInvalidoException {
-        if (pessoaRepositorio.buscar(tipoPessoa.getCpf()) != null) {
-            throw new DadoInvalidoException("Cadastro bloqueado! Já existe um registro com o CPF: " + tipoPessoa.getCpf());
+    public void cadastrar(TipoPessoa pessoa) throws DadoInvalidoException {
+        String cpf = pessoa.getCpf();
+
+        if (validarCpf(cpf)) {
+            throw new DadoInvalidoException("Cadastro bloqueado! Você precisa digitar um CPF válido!");
         }
-        pessoaRepositorio.salvar(tipoPessoa);
+
+        if (validarCpfDuplicado(cpf)) {
+            throw new DadoInvalidoException("Cadastro bloqueado! Já existe um registro com o CPF: " + pessoa.getCpf());
+        }
+
+        pessoaRepositorio.cadastrar(pessoa);
     }
 
     @Override
     public TipoPessoa buscar(String cpf) throws DadoInvalidoException {
-        TipoPessoa tipoPessoa = pessoaRepositorio.buscar(cpf);
-        if (tipoPessoa == null) {
+        TipoPessoa pessoa = pessoaRepositorio.buscar(cpf);
+
+        if (validarCpf(cpf)) {
+            throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
+        }
+
+        if (pessoa == null) {
             throw new DadoInvalidoException("Nenhum registro encontrado para o CPF: " + cpf);
         }
-        return tipoPessoa;
+        return pessoa;
     }
 
-    @Override
-    public ArrayList<TipoPessoa> listar() throws DadoInvalidoException {
-        if (pessoaRepositorio.listar().isEmpty()) {
-            throw new DadoInvalidoException("Nenhum registro encontrado!");
-        }
-        return pessoaRepositorio.listar();
-    }
+    public boolean validarCpf(String cpf) {
 
-    @Override
-    public void atualizar(TipoPessoa pessoa, TipoPessoa novaPessoa) {
-        if (pessoa != null) {
-
-            pessoa.setNome(novaPessoa.getNome());
-            pessoa.setCpf(novaPessoa.getCpf());
-            pessoa.setDataNascimento(novaPessoa.getDataNascimento());
-        }
-        //pessoaRepositorio.remover(tipoPessoa);
-    }
-
-/*
-    public interface ResultadoCPF // String = mensagem[/causa] de erro
-    {
-        String PADRAO_INVALIDO = "Este CPF está em padrão inválido, insira-o no padrão XXX.XXX.XXX-XX.";
-        String SUCESSO = "Erro desconhecido.";
-        String DV1_INVALIDO = "O 1º dígito verificador (o penúltimo no geral) deste CPF está inválido.";
-        String DV2_INVALIDO = "O 2º dígito verificador (o último no geral) deste CPF está inválido.";
-        String CPF_JA_CADASTRADO = "Este CPF já está cadastrado.";
-    }
-
-    public String validarCpf(String CPF) throws DadoInvalidoException
-    {
-        // Passo "0": O CPF já existe na lista de Pessoas?
-        
-        // Passo 1: Segue o formato XXX.XXX.XXX-XX?
+        // Segue o formato XXX.XXX.XXX-XX?
         Pattern cpfPattern = Pattern.compile("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}");
-        Matcher cpfMatcher = cpfPattern.matcher(CPF);
-        if (!cpfMatcher.matches()) return ResultadoCPF.PADRAO_INVALIDO;
-        // Passo 2: Os dígitos verificadores são válidos?
-        String digitos = CPF.replaceAll("[^\\d]", "");
+        Matcher cpfMatcher = cpfPattern.matcher(cpf);
+        boolean validarPadrao = cpfMatcher.matches();
+        boolean validarCampo = cpf.trim().isEmpty();
 
-        // D.V. 1
-        int dv = 0;
-        for (int i = 0; i < 9; i++)
-            dv += Character.getNumericValue(digitos.charAt(i)) * (10 - i);
-        int mod11 = dv % 11;
-        if (mod11 != Character.getNumericValue(digitos.charAt(9))) return ResultadoCPF.DV1_INVALIDO;
-
-        // D.V. 2
-        dv = 0;
-        for (int i = 0; i < 10; i++)
-            dv += Character.getNumericValue(digitos.charAt(i)) * (11 - i);
-        mod11 = dv % 11;
-        if (mod11 != Character.getNumericValue(digitos.charAt(10))) return ResultadoCPF.DV2_INVALIDO;
-
-        //m_CPF = CPF;
-        return buscar(CPF) == null ? ResultadoCPF.SUCESSO : ResultadoCPF.CPF_JA_CADASTRADO;
+        if (!validarPadrao || validarCampo) return true;
+        return false;
     }
-*/
+
+    public boolean validarCpfDuplicado(String cpf) {
+        for (Pessoa pessoa : pessoaRepositorio.getListaPessoas()) {
+            if (pessoa.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
 

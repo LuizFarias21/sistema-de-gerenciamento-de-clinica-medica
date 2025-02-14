@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta extends Atendimento{
+public class Consulta extends Tratamento {
 
     public enum Status {
         AGENDADA,
@@ -19,10 +19,11 @@ public class Consulta extends Atendimento{
     private Medico medicoResponsavel;
     private Prescricao prescricao;
     private String especialidadeRequerida;
+    private double custo;
 
 
-    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
-        super(custo);
+    public Consulta(String id, LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, Prescricao prescricao, String especialidadeRequerida, double custo) {
+        super(id);
         this.dataAgendada = dataAgendada;
         this.horario = horario;
         this.duracao = duracao;
@@ -31,6 +32,7 @@ public class Consulta extends Atendimento{
         this.medicoResponsavel = medicoResponsavel;
         this.prescricao = prescricao;
         this.especialidadeRequerida = especialidadeRequerida;
+        this.custo = custo;
     }
 
 //    public Consulta(LocalDate dataRealizacao, LocalTime horarioInicialConsulta, LocalTime duracaoConsulta, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, double valor){
@@ -42,8 +44,8 @@ public class Consulta extends Atendimento{
 //        this.pacienteAssociado = pacienteAssociado;
 //        this.medicoResponsavel = medicoResponsavel;
 //    }
-    public Consulta(LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida, double custo) {
-        super(custo);
+    public Consulta(String id, LocalDate dataAgendada, LocalTime horario, LocalTime duracao, Status status, Paciente pacienteAssociado, Medico medicoResponsavel, String especialidadeRequerida, double custo) {
+        super(id);
         this.dataAgendada = dataAgendada;
         this.horario = horario;
         this.duracao = duracao;
@@ -51,6 +53,7 @@ public class Consulta extends Atendimento{
         this.pacienteAssociado = pacienteAssociado;
         this.medicoResponsavel = medicoResponsavel;
         this.especialidadeRequerida = especialidadeRequerida;
+        this.custo = custo;
     }
 
     public LocalDate getDataAgendada() {
@@ -115,5 +118,13 @@ public class Consulta extends Atendimento{
 
     public void setEspecialidadeRequerida(String especialidadeRequerida) {
         this.especialidadeRequerida = especialidadeRequerida;
+    }
+
+    public double getCusto() {
+        return custo;
+    }
+
+    public void setCusto(double custo) {
+        this.custo = custo;
     }
 }

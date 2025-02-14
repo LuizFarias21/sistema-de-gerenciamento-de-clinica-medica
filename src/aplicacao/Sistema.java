@@ -24,16 +24,17 @@ public class Sistema {
         PacienteRepositorio pacienteRepositorio = new PacienteRepositorio();
         PacienteServico pacienteServico = new PacienteServico(pacienteRepositorio);
         PacienteControlador pacienteControlador = new PacienteControlador(pacienteServico);
-        PacienteVisao pacienteInterface = new PacienteVisao(pacienteControlador);
+        PacienteVisao pacienteVisao = new PacienteVisao(pacienteControlador);
+        pacienteControlador.setPacienteVisao(pacienteVisao);
         ExameVisao exameVisao = new ExameVisao();
         MedicamentoVisao medicamentoInterface = new MedicamentoVisao();
-        pacienteControlador.setPacienteInterface(pacienteInterface);
+
 
         MedicoRepositorio medicoRepositorio = new MedicoRepositorio();
         MedicoServico medicoServico = new MedicoServico(medicoRepositorio);
         MedicoControlador medicoControlador = new MedicoControlador(medicoServico);
         MedicoVisao medicoInterface = new MedicoVisao(medicoControlador);
-        medicoControlador.setMedicoInterface(medicoInterface);
+        medicoControlador.setMedicoVisao(medicoInterface);
 
         ConsultaVisao consultaVisao = new ConsultaVisao();
 //        ConsultaRepositorio consultaRepositorio = new ConsultaRepositorio();
@@ -43,6 +44,6 @@ public class Sistema {
 
 
 
-        sistemaVisao = new SistemaVisao(pacienteInterface, medicoInterface, consultaVisao, exameVisao, medicamentoInterface);
+        sistemaVisao = new SistemaVisao(pacienteVisao, medicoInterface, consultaVisao, exameVisao, medicamentoInterface);
     }
 }

@@ -1,14 +1,14 @@
 package controladores;
 
-public class GenericoControlador<TipoEntidade> {
+public abstract class GenericoControlador<TipoEntidade> {
 
-    // cadastrar
+    public abstract void listar();
 
-    // buscar
+    //public abstract void cadastrar();
 
-    // listar
+    public abstract TipoEntidade buscar(String identificador);
 
-    // atualizar
+    public abstract void atualizar();
 
-    // excluir
+    public abstract void remover(String identificador);
 }

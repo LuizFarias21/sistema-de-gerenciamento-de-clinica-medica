@@ -3,6 +3,10 @@ package repositorios;
 import entidades.Medico;
 
 public class MedicoRepositorio extends PessoaRepositorio<Medico> {
+    @Override
+    public void atualizar(Medico medico, Medico novaEntidade) {
+
+    }
 
 //    @Override
 //    public void atualizar(Medico medico, Medico novoMedico) {
