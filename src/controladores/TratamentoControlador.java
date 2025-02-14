@@ -1,30 +1,30 @@
 package controladores;
 
-public class TratamentoControlador<TipoEntidade> extends GenericoControlador<TipoEntidade> {
-    @Override
-    public void listar() {
+import entidades.Consulta;
+import entidades.Tratamento;
+import excecoes.DadoInvalidoException;
+import servicos.TratamentoServico;
+import visoes.GenericoVisao;
 
-    }
+import java.util.ArrayList;
 
-    @Override
-    public void cadastrar() {
+public abstract class TratamentoControlador<TipoTratamento extends Tratamento> extends GenericoControlador<TipoTratamento> {
 
-    }
+    private TratamentoServico<TipoTratamento> tratamentoServico;
 
-    @Override
-    public TipoEntidade buscar() {
-        return null;
-    }
-
-    @Override
-    public void atualizar() {
-
+    public TratamentoControlador(TratamentoServico<TipoTratamento> tratamentoServico) {
+        this.tratamentoServico = tratamentoServico;
     }
 
     @Override
     public void remover() {
+        String id = GenericoVisao.solicitarEntrada("Digite o ID do tratamento que deseja remover:");
 
+        try {
+            tratamentoServico.remover(id);
+            GenericoVisao.exibirMensagemInfo("Tratamento de ID: " + id + " foi removido com sucesso!");
+        } catch (DadoInvalidoException e) {
+            GenericoVisao.exibirMensagemErro(e.getMessage());
+        }
     }
-
-    // Aqui vai ficar métodos comuns a todos os controladores, provavelmente o buscar ou algo do tipo..
 }

@@ -1,12 +1,9 @@
 package aplicacao;
 
-import controladores.MedicoControlador;
-import controladores.PacienteControlador;
+import controladores.*;
+import repositorios.*;
+import servicos.*;
 import visoes.*;
-import repositorios.MedicoRepositorio;
-import repositorios.PacienteRepositorio;
-import servicos.MedicoServico;
-import servicos.PacienteServico;
 
 public class Sistema {
     private SistemaVisao sistemaVisao;
@@ -26,24 +23,31 @@ public class Sistema {
         PacienteControlador pacienteControlador = new PacienteControlador(pacienteServico);
         PacienteVisao pacienteVisao = new PacienteVisao(pacienteControlador);
         pacienteControlador.setPacienteVisao(pacienteVisao);
-        ExameVisao exameVisao = new ExameVisao();
-        MedicamentoVisao medicamentoInterface = new MedicamentoVisao();
-
 
         MedicoRepositorio medicoRepositorio = new MedicoRepositorio();
         MedicoServico medicoServico = new MedicoServico(medicoRepositorio);
         MedicoControlador medicoControlador = new MedicoControlador(medicoServico);
-        MedicoVisao medicoInterface = new MedicoVisao(medicoControlador);
-        medicoControlador.setMedicoVisao(medicoInterface);
+        MedicoVisao medicoVisao = new MedicoVisao(medicoControlador);
+        medicoControlador.setMedicoVisao(medicoVisao);
 
-        ConsultaVisao consultaVisao = new ConsultaVisao();
-//        ConsultaRepositorio consultaRepositorio = new ConsultaRepositorio();
-//        ConsultaServico consultaServico = new ConsultaServico(consultaRepositorio);
-//        ConsultaControlador consultaControlador = new ConsultaControlador(consultaServico);
-//        consultaControlador.serConsultaInterface = new ConsultaInterface(consultaControlador);
+        ConsultaRepositorio consultaRepositorio = new ConsultaRepositorio();
+        ConsultaServico consultaServico = new ConsultaServico(consultaRepositorio);
+        ConsultaControlador consultaControlador = new ConsultaControlador(consultaServico);
+        ConsultaVisao consultaVisao = new ConsultaVisao(consultaControlador);
+        consultaControlador.setConsultaVisao(consultaVisao);
 
+        ExameRepositorio exameRepositorio = new ExameRepositorio();
+        ExameServico exameServico = new ExameServico(exameRepositorio);
+        ExameControlador exameControlador = new ExameControlador(exameServico);
+        ExameVisao exameVisao = new ExameVisao(exameControlador);
+        exameControlador.setExameVisao(exameVisao);
 
+        MedicamentoRepositorio medicamentoRepositorio = new MedicamentoRepositorio();
+        MedicamentoServico medicamentoServico = new MedicamentoServico(medicamentoRepositorio);
+        MedicamentoControlador medicamentoControlador = new MedicamentoControlador(medicamentoServico);
+        MedicamentoVisao medicamentoVisao = new MedicamentoVisao(medicamentoControlador);
+        medicamentoControlador.setMedicamentoVisao(medicamentoVisao);
 
-        sistemaVisao = new SistemaVisao(pacienteVisao, medicoInterface, consultaVisao, exameVisao, medicamentoInterface);
+        sistemaVisao = new SistemaVisao(pacienteVisao, medicoVisao, consultaVisao, exameVisao, medicamentoVisao);
     }
 }

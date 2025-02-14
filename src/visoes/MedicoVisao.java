@@ -18,31 +18,27 @@ public class MedicoVisao extends PessoaVisao {
     public void exibir() {
         while (true) {
 
-            String[] opcoes = {"Cadastrar Médicos", "Buscar Médicos", "Listar Médicos",
+            String[] opcoes = {"Cadastrar Médicos", "Buscar Médicos",
                     "Atualizar Médicos", "Remover Médicos", "Voltar"};
 
             // Exibe a caixa de texto com a opção selecionada
             int escolha = JOptionPane.showOptionDialog(null, "Menu Médico", "Escolha uma opção",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
 
-            // Verificar escolha do usuário
             switch (escolha) {
-                case 0: // cadastrar médico
+                case 0:
                     cadastrar();
                     break;
-                case 1: // buscar médico
+                case 1:
                     buscar();
                     break;
-                case 2: // listar médicos
-                    listar();
-                    break;
-                case 3: // atualizar médico
+                case 2:
                     atualizar();
                     break;
-                case 4: // remover médico
+                case 3:
                     remover();
                     break;
-                case 5: // sair
+                case 4:
                     return;
             }
         }

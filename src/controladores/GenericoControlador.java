@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public abstract class GenericoControlador<TipoEntidade> {
 
-    public abstract void listar();
+    public abstract String listar();
 
     public abstract void cadastrar();
 

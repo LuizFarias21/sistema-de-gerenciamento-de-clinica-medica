@@ -17,7 +17,7 @@ public abstract class PessoaControlador<TipoPessoa extends Pessoa> extends Gener
     }
 
     @Override
-    public void listar() {
+    public String listar() {
         String mensagem = "";
 
         try {
@@ -28,18 +28,17 @@ public abstract class PessoaControlador<TipoPessoa extends Pessoa> extends Gener
                 mensagem +=  pessoa.getCpf() + " - " + pessoa.getNome() + "\n";
                 mensagem += "---------------------------------\n";
             }
-
-            GenericoVisao.exibirMensagemInfo(mensagem);
+            return mensagem;
 
         } catch (DadoInvalidoException e ) {
             GenericoVisao.exibirMensagemErro(e.getMessage());
         }
+        return "";
     }
 
     @Override
     public TipoPessoa buscar() {
-
-        String cpf = GenericoVisao.solicitarEntrada("Digite o CPF da pessoa:");
+        String cpf = GenericoVisao.solicitarEntrada(listar() + "\nDigite o CPF da pessoa:");
 
         try {
 
