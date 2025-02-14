@@ -7,6 +7,7 @@ import servicos.MedicoServico;
 import visoes.GenericoVisao;
 import visoes.MedicoVisao;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -23,7 +24,14 @@ public class MedicoControlador extends PessoaControlador<Medico> {
         this.medicoVisao = medicoVisao;
     }
 
-    public void cadastrar(String nome, String cpf, LocalDate dataNascimento, String crm, String especialidade) {
+    @Override
+    public void cadastrar() {
+        String nome = GenericoVisao.solicitarEntrada("Digite o nome do médico:");
+        String cpf = GenericoVisao.solicitarEntrada("Digite o CPF do médico:");
+        LocalDate dataNascimento = GenericoVisao.solicitarEntradaData("Digite da data de nascimento do médico (YYYY-MM-DD):");
+        String crm = GenericoVisao.solicitarEntrada("Digite o crm do Médico:");
+        String especialidade = GenericoVisao.solicitarEntrada("Digite a especialidade do médico:");
+
         ArrayList<Consulta> historicoMedico = new ArrayList<>();
         Medico medico = new Medico(nome, cpf, dataNascimento, crm, especialidade, historicoMedico);
 
@@ -31,7 +39,7 @@ public class MedicoControlador extends PessoaControlador<Medico> {
             medicoServico.cadastrar(medico); // Cadastrar o médico no serviço
             GenericoVisao.exibirMensagemInfo("Cadastro concluído com sucesso!");
         } catch (DadoInvalidoException e) {
-            medicoVisao.exibirMensagemErro(e.getMessage()); // Exibe erro se CPF for inválido
+            GenericoVisao.exibirMensagemErro(e.getMessage()); // Exibe erro se CPF for inválido
         }
     }
 
@@ -39,44 +47,6 @@ public class MedicoControlador extends PessoaControlador<Medico> {
     public void atualizar() {
 
     }
-
-
-//    public Medico buscarMedico(String cpf) {
-//        try {
-//            // Validação do CPF
-//            if (validarCpf(cpf)) {
-//                throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
-//            }
-//
-//            Medico medico = medicoServico.buscar(cpf); // Buscar médico pelo CPF
-//
-//            if (medico != null) {
-//                medicoVisao.exibirMensagemInfo("Médico encontrado: " + medico.getNome());
-//            }
-//
-//            return medico;
-//        } catch (DadoInvalidoException e) {
-//            medicoVisao.exibirMensagemErro(e.getMessage()); // Exibe erro se CPF for inválido
-//        }
-//        return null;
-//    }
-
-//    public void listarMedicos() {
-//        String mensagem = "";
-//
-//        try {
-//            ArrayList<Medico> listaMedicos = medicoServico.listar(); // Lista médicos cadastrados
-//
-//            for (Medico medico : listaMedicos) {
-//                mensagem +=  medico.getCpf() + " - " + medico.getNome() + "\n"; // Formata a mensagem
-//            }
-//
-//            medicoVisao.exibirMensagemInfo(mensagem); // Exibe a lista de médicos
-//
-//        } catch (DadoInvalidoException e) {
-//            medicoVisao.exibirMensagemErro(e.getMessage()); // Exibe erro caso haja algum problema
-//        }
-//    }
 
 //    public void atualizarMedico(String cpf, String novoNome, String novoCpf, LocalDate novaDataNascimento, String novoCrm, String novaEspecialidade) {
 //        try {
@@ -87,18 +57,15 @@ public class MedicoControlador extends PessoaControlador<Medico> {
 //        }
 //    }
 
-//    public void removerMedico(String cpf) {
-//        try {
-//            // Validação do CPF
-//            if (validarCpf(cpf)) {
-//                throw new DadoInvalidoException("Você precisa digitar um CPF válido!");
-//            }
+//    @Override
+//    public void atualizar() {
+//        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do médico:");
+//        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do médico:");
+//        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do médico (YYYY-MM-DD):"));
+//        String novoCrm = JOptionPane.showInputDialog("Digite o novo CRM do médico:");
+//        String novaEspecialidade = JOptionPane.showInputDialog("Digite a nova especialidade do médico:");
 //
-//            medicoServico.remover(cpf); // Exclui o médico do serviço
-//            medicoVisao.exibirMensagemInfo("Registro do médico com o CPF " + cpf + " foi excluído com sucesso!");
-//
-//        } catch (DadoInvalidoException e) {
-//            medicoVisao.exibirMensagemErro(e.getMessage()); // Exibe erro se CPF for inválido
-//        }
+//        String cpf = JOptionPane.showInputDialog("Digite o CPF do médico que deseja atualizar os dados:");
+//        medicoControlador.atualizarMedico(cpf, novoNome, novoCpf, novaDataNascimento, novoCrm, novaEspecialidade);
 //    }
 }

@@ -1,38 +1,38 @@
 package visoes;
 
+import controladores.PessoaControlador;
 import entidades.Pessoa;
 
 public abstract class PessoaVisao<TipoPessoa extends Pessoa> extends GenericoVisao<TipoPessoa> {
 
-    public PessoaVisao() {}
+    private PessoaControlador<TipoPessoa> pessoaControlador;
 
-    @Override
-    public void exibirVisao() {
-
+    public PessoaVisao(PessoaControlador<TipoPessoa> pessoaControlador) {
+        this.pessoaControlador = pessoaControlador;
     }
 
     @Override
-    public void cadastrarVisao() {
-
+    public void cadastrar() {
+        pessoaControlador.cadastrar();
     }
 
     @Override
-    public void buscarVisao() {
-
+    public void buscar() {
+        pessoaControlador.buscar();
     }
 
     @Override
-    public void listarVisao() {
-
+    public void listar() {
+        pessoaControlador.listar();
     }
 
     @Override
-    public void atualizarVisao() {
-
+    public void atualizar() {
+        pessoaControlador.atualizar();
     }
 
     @Override
-    public void excluirVisao() {
-
+    public void remover() {
+        pessoaControlador.remover();
     }
 }

@@ -1,33 +1,35 @@
 package visoes;
 
-public class MedicamentoVisao extends GenericoVisao {
+import entidades.Medicamento;
+
+public class MedicamentoVisao extends TratamentoVisao<Medicamento> {
     @Override
-    public void exibirVisao() {
+    public void exibir() {
 
     }
 
     @Override
-    public void cadastrarVisao() {
+    public void cadastrar() {
 
     }
 
     @Override
-    public void buscarVisao() {
+    public void buscar() {
 
     }
 
     @Override
-    public void listarVisao() {
+    public void listar() {
 
     }
 
     @Override
-    public void atualizarVisao() {
+    public void atualizar() {
 
     }
 
     @Override
-    public void excluirVisao() {
+    public void remover() {
 
     }
 }

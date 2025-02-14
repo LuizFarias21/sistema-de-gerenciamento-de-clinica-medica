@@ -1,9 +1,11 @@
 package visoes;
 
-public class ConsultaVisao extends GenericoVisao {
+import entidades.Consulta;
+
+public class ConsultaVisao extends TratamentoVisao<Consulta> {
 
     @Override
-    public void exibirVisao() {
+    public void exibir() {
 
     }
 
@@ -24,27 +26,27 @@ public class ConsultaVisao extends GenericoVisao {
     }
 
     @Override
-    public void cadastrarVisao() {
+    public void cadastrar() {
 
     }
 
     @Override
-    public void buscarVisao() {
+    public void buscar() {
 
     }
 
     @Override
-    public void listarVisao() {
+    public void listar() {
 
     }
 
     @Override
-    public void atualizarVisao() {
+    public void atualizar() {
 
     }
 
     @Override
-    public void excluirVisao() {
+    public void remover() {
 
     }
 }

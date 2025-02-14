@@ -1,6 +1,7 @@
 package visoes;
 
 import javax.swing.*;
+import java.time.LocalDate;
 
 public abstract class GenericoVisao<TipoEntidade> {
 
@@ -12,15 +13,23 @@ public abstract class GenericoVisao<TipoEntidade> {
         JOptionPane.showMessageDialog(null, mensagem, "Informação", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public abstract void exibirVisao();
+    public static String solicitarEntrada(String mensagem) {
+        return JOptionPane.showInputDialog(mensagem);
+    }
 
-    public abstract void cadastrarVisao();
+    public static LocalDate solicitarEntradaData(String mensagem) {
+        return LocalDate.parse(JOptionPane.showInputDialog(mensagem));
+    }
 
-    public abstract void buscarVisao();
+    public abstract void exibir();
 
-    public abstract void listarVisao();
+    public abstract void cadastrar();
 
-    public abstract void atualizarVisao();
+    public abstract void buscar();
 
-    public abstract void excluirVisao();
+    public abstract void listar();
+
+    public abstract void atualizar();
+
+    public abstract void remover();
 }

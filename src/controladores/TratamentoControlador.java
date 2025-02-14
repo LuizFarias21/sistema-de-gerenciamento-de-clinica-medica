@@ -7,7 +7,12 @@ public class TratamentoControlador<TipoEntidade> extends GenericoControlador<Tip
     }
 
     @Override
-    public TipoEntidade buscar(String identificador) {
+    public void cadastrar() {
+
+    }
+
+    @Override
+    public TipoEntidade buscar() {
         return null;
     }
 
@@ -17,7 +22,7 @@ public class TratamentoControlador<TipoEntidade> extends GenericoControlador<Tip
     }
 
     @Override
-    public void remover(String identificador) {
+    public void remover() {
 
     }
 

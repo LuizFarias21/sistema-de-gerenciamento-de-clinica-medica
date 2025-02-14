@@ -28,19 +28,19 @@ public class SistemaVisao {
 
             switch (escolha) {
                 case 0:
-                    pacienteInterface.exibirVisao();
+                    pacienteInterface.exibir();
                     break;
                 case 1:
-                    medicoInterface.exibirVisao();
+                    medicoInterface.exibir();
                     break;
                 case 2:
-                    consultaVisao.exibirVisao();
+                    consultaVisao.exibir();
                     break;
                 case 3:
-                    exameVisao.exibirVisao();
+                    exameVisao.exibir();
                     break;
                 case 4:
-                    medicamentoInterface.exibirVisao();
+                    medicamentoInterface.exibir();
                 case 5:
                     return;
             }

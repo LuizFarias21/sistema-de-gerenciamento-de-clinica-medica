@@ -1,12 +1,8 @@
 package visoes;
 
-import entidades.Exame;
+import entidades.Tratamento;
 
-public class ExameVisao extends TratamentoVisao<Exame> {
-    @Override
-    public void exibir() {
-
-    }
+public abstract class TratamentoVisao<TipoTratamento extends Tratamento> extends GenericoVisao<TipoTratamento> {
 
     @Override
     public void cadastrar() {

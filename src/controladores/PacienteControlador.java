@@ -25,15 +25,20 @@ public class PacienteControlador extends PessoaControlador<Paciente> {
         this.pacienteVisao = pacienteVisao;
     }
 
-    public void cadastrar(String nome, String cpf, LocalDate dataNascimento) {
+    @Override
+    public void cadastrar() {
+
+        String nome = GenericoVisao.solicitarEntrada("Digite o nome do paciente:");
+        String cpf = GenericoVisao.solicitarEntrada("Digite o CPF do paciente:");
+        LocalDate dataNascimento = GenericoVisao.solicitarEntradaData("Digite da data de nascimento do paciente (YYYY-MM-DD):");
         ArrayList<Consulta> historicoMedico = new ArrayList<>();
+
         Paciente paciente = new Paciente(nome, cpf, dataNascimento, historicoMedico);
 
         try {
             pacienteServico.cadastrar(paciente);
             GenericoVisao.exibirMensagemInfo("Cadastro concluído com sucesso!");
-            //GenericoVisao.exibirMensagemInfo(pacienteServico.listar().toString());
-        } catch (DadoInvalidoException e ) {
+        } catch (DadoInvalidoException e) {
             GenericoVisao.exibirMensagemErro(e.getMessage());
         }
     }
@@ -67,6 +72,15 @@ public class PacienteControlador extends PessoaControlador<Paciente> {
 //        }
 //    }
 
+//    @Override
+//    public void atualizar() {
+//        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
+//        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do paciente:");
+//        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do paciente (YYYY-MM-DD:)"));
+//
+//        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente que deseja atualizar os dados:");
+//        pacienteControlador.atualizarPaciente(cpf, novoCpf, novoNome, novaDataNascimento);
+//    }
 
 
 //    public void removerPaciente(String cpf) {

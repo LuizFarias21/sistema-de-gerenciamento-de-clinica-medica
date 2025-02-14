@@ -5,16 +5,17 @@ import javax.swing.*;
 
 import controladores.PacienteControlador;
 
-public class PacienteVisao extends GenericoVisao {
+public class PacienteVisao extends PessoaVisao {
 
     private PacienteControlador pacienteControlador;
 
     public PacienteVisao(PacienteControlador pacienteControlador) {
+        super(pacienteControlador);
         this.pacienteControlador = pacienteControlador;
     }
 
     @Override
-    public void exibirVisao() {
+    public void exibir() {
         while (true) {
 
             String[] opcoes = {"Cadrastar Pacientes", "Buscar Pacientes", "Listar Pacientes",
@@ -27,66 +28,24 @@ public class PacienteVisao extends GenericoVisao {
             // Verificar escolha do usuário
             switch (escolha) {
                 case 0: // cadastrar paciente
-                    cadastrarVisao();
+                    cadastrar();
                     break;
                 case 1: // buscar paciente
-                    buscarVisao();
+                    buscar();
                     break;
                 case 2: // listar paciente
-                    listarVisao();
+                    listar();
                     break;
                 case 3: // atualiza paciente
-                    atualizarVisao();
+                    atualizar();
                     break;
                 case 4: // remover paciente
-                    excluirVisao();
+                    remover();
                     break;
                 case 5: // sair
                     return;
             }
         }
     }
-
-    @Override
-    public void cadastrarVisao() {
-        String nome = JOptionPane.showInputDialog("Digite o nome do paciente:");
-        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        LocalDate dataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite da data de nascimento do paciente (YYYY-MM-DD:)"));
-
-        pacienteControlador.cadastrar(nome, cpf, dataNascimento);
-    }
-
-    @Override
-    public void buscarVisao() {
-        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        pacienteControlador.buscar(cpf);
-    }
-
-    @Override
-    public void listarVisao() {
-        pacienteControlador.listar();
-    }
-
-    @Override
-    public void atualizarVisao() {
-
-    }
-
-//    @Override
-//    public void atualizar() {
-//        String novoCpf = JOptionPane.showInputDialog("Digite o novo CPF do paciente:");
-//        String novoNome = JOptionPane.showInputDialog("Digite o novo nome do paciente:");
-//        LocalDate novaDataNascimento = LocalDate.parse(JOptionPane.showInputDialog("Digite a nova data de nascimento do paciente (YYYY-MM-DD:)"));
-//
-//        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente que deseja atualizar os dados:");
-//        pacienteControlador.atualizarPaciente(cpf, novoCpf, novoNome, novaDataNascimento);
-//    }
-
-    @Override
-    public void excluirVisao() {
-        String cpf = JOptionPane.showInputDialog("Digite o CPF do paciente:");
-        pacienteControlador.remover(cpf);
-    }
-
 }
 
