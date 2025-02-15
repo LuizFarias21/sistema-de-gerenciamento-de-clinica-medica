@@ -28,4 +28,9 @@ public abstract class PessoaRepositorio<TipoPessoa extends Pessoa> extends Gener
     public ArrayList<Pessoa> getListaPessoas() {
         return listaPessoas;
     }
+
+    public void atualizar(TipoPessoa entidade, TipoPessoa novaEntidade) {
+        // Atualiza qualquer tipo de pessoa, paciente e medico na lista de pessoas
+        listaPessoas.set(listaPessoas.indexOf(entidade), novaEntidade);
+    }
 }

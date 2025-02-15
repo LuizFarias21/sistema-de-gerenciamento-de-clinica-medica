@@ -45,7 +45,26 @@ public class PacienteControlador extends PessoaControlador<Paciente> {
 
     @Override
     public void atualizar() {
-
+            
+        try {    
+            String cpf = GenericoVisao.solicitarEntrada("Digite o CPF do paciente que deseja atualizar os dados:");
+            Paciente paciente = pacienteServico.buscar(cpf);
+    
+            if (paciente == null) {
+                GenericoVisao.exibirMensagemErro("Paciente não encontrado!");
+                return;
+            }
+    
+            String novoNome = GenericoVisao.solicitarEntrada("Digite o novo nome do paciente:");
+            String novoCpf = GenericoVisao.solicitarEntrada("Digite o novo CPF do paciente:");
+            LocalDate novaDataNascimento = GenericoVisao.solicitarEntradaData("Digite a nova data de nascimento do paciente (YYYY-MM-DD):");
+    
+            
+            Paciente novoPaciente = new Paciente(novoNome, novoCpf, novaDataNascimento, paciente.getHistoricoMedico());
+            pacienteServico.atualizar(paciente, novoPaciente);
+        } catch (DadoInvalidoException e) {
+            GenericoVisao.exibirMensagemErro(e.getMessage());
+        }
     }
 
 

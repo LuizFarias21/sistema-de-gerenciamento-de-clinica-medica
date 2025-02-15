@@ -4,21 +4,19 @@ import java.time.LocalDate;
 import javax.swing.*;
 
 import controladores.PacienteControlador;
+import entidades.Paciente;
 
-public class PacienteVisao extends PessoaVisao {
-
-    private PacienteControlador pacienteControlador;
+public class PacienteVisao extends PessoaVisao<Paciente> {
 
     public PacienteVisao(PacienteControlador pacienteControlador) {
         super(pacienteControlador);
-        this.pacienteControlador = pacienteControlador;
     }
 
     @Override
     public void exibir() {
         while (true) {
 
-            String[] opcoes = {"Cadrastar Pacientes", "Buscar Pacientes",
+            String[] opcoes = {"Cadastrar Pacientes", "Buscar Pacientes",
                     "Atualizar Pacientes", "Remover Pacientes", "Voltar"};
 
             // Exibe a caixa de texto com a opção selecionada
