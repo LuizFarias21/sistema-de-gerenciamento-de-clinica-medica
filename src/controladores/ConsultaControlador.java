@@ -1,17 +1,22 @@
 package controladores;
 
 import entidades.Consulta;
-import excecoes.DadoInvalidoException;
+import entidades.Medico;
+import entidades.Paciente;
+import excecoes.*;
 import servicos.ConsultaServico;
 import visoes.ConsultaVisao;
 import visoes.GenericoVisao;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class ConsultaControlador extends TratamentoControlador<Consulta> {
 
     private ConsultaServico consultaServico;
     private ConsultaVisao consultaVisao;
+    private PacienteControlador pacienteControlador;
 
     public ConsultaControlador(ConsultaServico consultaServico) {
         super(consultaServico);
@@ -20,6 +25,31 @@ public class ConsultaControlador extends TratamentoControlador<Consulta> {
 
     public void setConsultaVisao(ConsultaVisao consultaVisao) {
         this.consultaVisao = consultaVisao;
+    }
+
+//    LocalDate dataAgendada,
+//    LocalTime horario,
+//    LocalTime duracao,
+//    Paciente pacienteAssociado,
+//    Medico medicoResponsavel,
+//    String especialidadeRequerida,
+//    double custo
+
+    public void agendar() {
+
+        LocalDate dataAgendada = GenericoVisao.solicitarEntradaData("Digite a data que deseja agendar (YYYY-MM-DD):");
+        LocalTime horario = GenericoVisao.solicitarEntradaHorario("Digita o horário da consulta (HH-MM-SS):");
+        LocalTime duracao = GenericoVisao.solicitarEntradaHorario("Digite a duração estimada da consulta:");
+        //String idPaciente =
+
+
+//        try {
+//
+//            consultaServico.agendar();
+//
+//        } catch (LimiteConsultaAtingidoException | HorarioIndisponivelException | PacienteIndisponivelException | EspecialidadeInvalidaException e) {
+//            GenericoVisao.exibirMensagemErro(e.getMessage());
+//        }
     }
 
     @Override

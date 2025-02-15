@@ -4,8 +4,7 @@ public class Medicamento extends Tratamento {
 
     private String nome;
 
-    public Medicamento(String id, String nome) {
-        super(id);
+    public Medicamento( String nome) {
         this.nome = nome;
     }
 

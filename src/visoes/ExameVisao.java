@@ -1,6 +1,5 @@
 package visoes;
 
-import controladores.ConsultaControlador;
 import controladores.ExameControlador;
 import entidades.Exame;
 
@@ -9,7 +8,6 @@ import javax.swing.*;
 public class ExameVisao extends TratamentoVisao<Exame> {
 
     private ExameControlador exameControlador;
-    private ExameVisao exameVisao;
 
     public ExameVisao(ExameControlador exameControlador) {
         super(exameControlador);
@@ -45,4 +43,5 @@ public class ExameVisao extends TratamentoVisao<Exame> {
             }
         }
     }
+
 }

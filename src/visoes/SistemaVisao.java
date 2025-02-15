@@ -4,18 +4,18 @@ import javax.swing.*;
 
 public class SistemaVisao {
 
-    private final PacienteVisao pacienteInterface;
+    private final PacienteVisao pacienteVisao;
     private final MedicoVisao medicoInterface;
     private final ConsultaVisao consultaVisao;
     private final ExameVisao exameVisao;
-    private final MedicamentoVisao medicamentoInterface;
+    private final MedicamentoVisao medicamentoVisao;
 
-    public SistemaVisao(PacienteVisao pacienteInterface, MedicoVisao medicoInterface, ConsultaVisao consultaVisao, ExameVisao exameVisao, MedicamentoVisao medicamentoInterface) {
-        this.pacienteInterface = pacienteInterface;
+    public SistemaVisao(PacienteVisao pacienteVisao, MedicoVisao medicoInterface, ConsultaVisao consultaVisao, ExameVisao exameVisao, MedicamentoVisao medicamentoVisao) {
+        this.pacienteVisao = pacienteVisao;
         this.medicoInterface = medicoInterface;
         this.consultaVisao = consultaVisao;
         this.exameVisao = exameVisao;
-        this.medicamentoInterface = medicamentoInterface;
+        this.medicamentoVisao = medicamentoVisao;
     }
 
     public void exibirVisao() {
@@ -28,7 +28,7 @@ public class SistemaVisao {
 
             switch (escolha) {
                 case 0:
-                    pacienteInterface.exibir();
+                    pacienteVisao.exibir();
                     break;
                 case 1:
                     medicoInterface.exibir();
@@ -40,7 +40,8 @@ public class SistemaVisao {
                     exameVisao.exibir();
                     break;
                 case 4:
-                    medicamentoInterface.exibir();
+                    medicamentoVisao.exibir();
+                    break;
                 case 5:
                     return;
             }

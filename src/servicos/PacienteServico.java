@@ -17,7 +17,7 @@ public class PacienteServico extends PessoaServico<Paciente> {
         this.pacienteRepositorio = pacienteRepositorio;
     }
 
-    public void registrarHistorico(Consulta consulta) {
+    public static void registrarHistorico(Consulta consulta) {
         consulta.getPacienteAssociado().getHistoricoMedico().add(consulta);
     }
 

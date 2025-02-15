@@ -17,8 +17,7 @@ public class Exame extends Tratamento {
     private double custo;
 
 
-    public Exame(String id, String tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultado, double custo) {
-        super(id);
+    public Exame(String tipo, LocalDate dataPrescricao, LocalDate dataRealizacao, String resultado, double custo) {
         this.tipo = tipo;
         this.dataPrescricao = dataPrescricao;
         this.dataRealizacao = dataRealizacao;
@@ -26,8 +25,7 @@ public class Exame extends Tratamento {
         this.custo = custo;
     }
 
-    public Exame(String id, String tipo, double custo) {
-        super(id);
+    public Exame(String tipo, double custo) {
         this.tipo = tipo;
         this.custo = custo;
     }

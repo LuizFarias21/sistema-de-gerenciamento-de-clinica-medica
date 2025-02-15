@@ -8,7 +8,6 @@ import javax.swing.*;
 public class ConsultaVisao extends TratamentoVisao<Consulta> {
 
     private ConsultaControlador consultaControlador;
-    private ConsultaVisao consultaVisao;
 
     public ConsultaVisao(ConsultaControlador consultaControlador) {
         super(consultaControlador);

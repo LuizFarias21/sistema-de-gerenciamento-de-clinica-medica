@@ -5,7 +5,7 @@ public abstract class Tratamento {
     private int idNumerico = Integer.parseInt(id);
     private final String idIncrementado = Integer.toString(idNumerico++);
 
-    public Tratamento(String id) {
+    public Tratamento() {
         this.id = idIncrementado;
     }
 

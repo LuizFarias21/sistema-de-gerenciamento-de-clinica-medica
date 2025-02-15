@@ -2,6 +2,7 @@ package visoes;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public abstract class GenericoVisao<TipoEntidade> {
 
@@ -19,6 +20,10 @@ public abstract class GenericoVisao<TipoEntidade> {
 
     public static LocalDate solicitarEntradaData(String mensagem) {
         return LocalDate.parse(JOptionPane.showInputDialog(mensagem));
+    }
+
+    public static LocalTime solicitarEntradaHorario(String mensagem) {
+        return LocalTime.parse(JOptionPane.showInputDialog(mensagem));
     }
 
     public abstract void exibir();

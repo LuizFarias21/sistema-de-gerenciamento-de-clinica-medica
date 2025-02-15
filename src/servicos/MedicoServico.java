@@ -14,7 +14,7 @@ public class MedicoServico extends PessoaServico<Medico> {
         this.medicoRepositorio = medicoRepositorio;
     }
 
-    public void registrarHistorico(Consulta consulta) {
+    public static void registrarHistorico(Consulta consulta) {
         consulta.getMedicoResponsavel().getHistoricoMedico().add(consulta);
     }
 

@@ -1,12 +1,9 @@
 package controladores;
 
-import entidades.Consulta;
 import entidades.Tratamento;
 import excecoes.DadoInvalidoException;
 import servicos.TratamentoServico;
 import visoes.GenericoVisao;
-
-import java.util.ArrayList;
 
 public abstract class TratamentoControlador<TipoTratamento extends Tratamento> extends GenericoControlador<TipoTratamento> {
 
