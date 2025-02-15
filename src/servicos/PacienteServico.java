@@ -21,8 +21,11 @@ public class PacienteServico extends PessoaServico<Paciente> {
         consulta.getPacienteAssociado().getHistoricoMedico().add(consulta);
     }
 
+    /*
     @Override
     public void atualizar(Paciente paciente, Paciente novaEntidade) throws DadoInvalidoException {
-
+        super.atualizar(paciente, novaEntidade);
+        //paciente.setHistoricoMedico(novaEntidade.getHistoricoMedico());
     }
+    */
 }

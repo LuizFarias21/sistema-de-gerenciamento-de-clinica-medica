@@ -64,6 +64,20 @@ public abstract class PessoaServico<TipoPessoa extends Pessoa> extends GenericoS
         }
         return false;
     }
+
+    public void atualizar(TipoPessoa pessoa, TipoPessoa novaEntidade) throws DadoInvalidoException {
+        String cpf = novaEntidade.getCpf();
+
+        if (validarCpf(cpf)) {
+            throw new DadoInvalidoException("Atualização bloqueada! Você precisa digitar um CPF válido!");
+        }
+
+        if (validarCpfDuplicado(cpf)) {
+            throw new DadoInvalidoException("Atualização bloqueada! Já existe um registro com o CPF: " + novaEntidade.getCpf());
+        }
+
+        pessoaRepositorio.atualizar(pessoa, novaEntidade);
+    }
 }
 
 
