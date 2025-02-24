@@ -13,9 +13,4 @@ public class ExameServico extends TratamentoServico<Exame> {
         super(exameRepositorio);
         this.exameRepositorio = exameRepositorio;
     }
-
-    @Override
-    public void atualizar(Exame exame, Exame novaEntidade) throws DadoInvalidoException {
-
-    }
 }

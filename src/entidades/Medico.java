@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Medico extends Pessoa{
+public final class Medico extends Pessoa{
 
     private String crm;
     private String especialidade;

@@ -2,7 +2,7 @@ package entidades;
 
 import java.time.LocalDate;
 
-public class Exame extends Tratamento {
+public final class Exame extends Tratamento {
 
 //    private enum Tipo {
 //        SANGUE,

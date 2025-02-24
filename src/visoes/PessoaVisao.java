@@ -21,10 +21,10 @@ public abstract class PessoaVisao<TipoPessoa extends Pessoa> extends GenericoVis
         pessoaControlador.buscar();
     }
 
-    @Override
-    public void listar() {
-        pessoaControlador.listar();
-    }
+//    @Override
+//    public void listar() {
+//        pessoaControlador.listar();
+//    }
 
     @Override
     public void atualizar() {

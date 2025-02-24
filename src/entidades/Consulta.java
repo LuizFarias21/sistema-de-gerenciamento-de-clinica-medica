@@ -3,7 +3,7 @@ package entidades;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Consulta extends Tratamento {
+public final class Consulta extends Tratamento {
 
     public enum Status {
         AGENDADA,

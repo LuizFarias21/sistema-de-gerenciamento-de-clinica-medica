@@ -12,9 +12,4 @@ public class MedicamentoServico extends TratamentoServico<Medicamento> {
         super(medicamentoRepositorio);
         this.medicamentoRepositorio = medicamentoRepositorio;
     }
-
-    @Override
-    public void atualizar(Medicamento medicamento, Medicamento novaEntidade) throws DadoInvalidoException {
-
-    }
 }

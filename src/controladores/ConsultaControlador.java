@@ -1,8 +1,6 @@
 package controladores;
 
 import entidades.Consulta;
-import entidades.Medico;
-import entidades.Paciente;
 import excecoes.*;
 import servicos.ConsultaServico;
 import visoes.ConsultaVisao;
@@ -52,27 +50,41 @@ public class ConsultaControlador extends TratamentoControlador<Consulta> {
 //        }
     }
 
-    @Override
-    public String listar() {
+//    @Override
+//    public String listar() {
+//
+//        String mensagem = "";
+//
+//        try {
+//
+//            ArrayList<Consulta> listaConsultas = consultaServico.listar();
+//
+//            for (Consulta consulta : listaConsultas) {
+//                mensagem +=  consulta.getId() + " - " + "Consulta - " + "Data agendada: " + consulta.getDataAgendada() + "\n";
+//                mensagem += "---------------------------------\n";
+//            }
+//
+//            GenericoVisao.exibirMensagemInfo(mensagem);
+//            return mensagem;
+//        } catch (DadoInvalidoException e ) {
+//            GenericoVisao.exibirMensagemErro(e.getMessage());
+//        }
+//        return null;
+//    }
 
-        String mensagem = "";
-
-        try {
-
-            ArrayList<Consulta> listaConsultas = consultaServico.listar();
-
-            for (Consulta consulta : listaConsultas) {
-                mensagem +=  consulta.getId() + " - " + "Consulta - " + "Data agendada: " + consulta.getDataAgendada() + "\n";
-                mensagem += "---------------------------------\n";
-            }
-
-            GenericoVisao.exibirMensagemInfo(mensagem);
-            return mensagem;
-        } catch (DadoInvalidoException e ) {
-            GenericoVisao.exibirMensagemErro(e.getMessage());
-        }
-        return null;
-    }
+//    public String imprimirLista() {
+//        String mensagem = "";
+//
+//        if (listaPessoas.isEmpty()) {
+//            mensagem = "Lista vazia!";
+//        }
+//
+//        for (TipoPessoa pessoa : listaPessoas) {
+//            mensagem +=  pessoa.getCpf() + " - " + pessoa.getNome() + "\n";
+//            mensagem += "---------------------------------\n";
+//        }
+//        return mensagem;
+//    }
 
     @Override
     public void cadastrar() {
@@ -81,14 +93,15 @@ public class ConsultaControlador extends TratamentoControlador<Consulta> {
 
     @Override
     public Consulta buscar() {
-        String id = GenericoVisao.solicitarEntrada(listar() + "\nDigite o ID da consulta:");
-        try {
-            Consulta consulta = consultaServico.buscar(id);
-            GenericoVisao.exibirMensagemInfo("Consulta do ID: " + id + " foi encontrada!\n" + "Status: " + consulta.getStatus().toString());
-            return consulta;
-        } catch (DadoInvalidoException e) {
-            GenericoVisao.exibirMensagemErro(e.getMessage());
-        }
+//        String id = GenericoVisao.solicitarEntrada(imprimirLista() + "\nDigite o ID da consulta:");
+//        try {
+//            Consulta consulta = consultaServico.buscar(id);
+//            GenericoVisao.exibirMensagemInfo("Consulta do ID: " + id + " foi encontrada!\n" + "Status: " + consulta.getStatus().toString());
+//            return consulta;
+//        } catch (DadoInvalidoException e) {
+//            GenericoVisao.exibirMensagemErro(e.getMessage());
+//        }
+//        return null;
         return null;
     }
 

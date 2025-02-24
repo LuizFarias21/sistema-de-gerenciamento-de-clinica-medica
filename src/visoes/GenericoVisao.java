@@ -19,11 +19,11 @@ public abstract class GenericoVisao<TipoEntidade> {
     }
 
     public static LocalDate solicitarEntradaData(String mensagem) {
-        return LocalDate.parse(JOptionPane.showInputDialog(mensagem));
+        return LocalDate.parse(solicitarEntrada(mensagem));
     }
 
     public static LocalTime solicitarEntradaHorario(String mensagem) {
-        return LocalTime.parse(JOptionPane.showInputDialog(mensagem));
+        return LocalTime.parse(solicitarEntrada(mensagem));
     }
 
     public abstract void exibir();

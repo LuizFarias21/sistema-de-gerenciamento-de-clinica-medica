@@ -1,10 +1,11 @@
 package controladores;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public abstract class GenericoControlador<TipoEntidade> {
 
-    public abstract String listar();
+    //public abstract String listar(ArrayList<TipoEntidade> listaEntidades);
 
     public abstract void cadastrar();
 

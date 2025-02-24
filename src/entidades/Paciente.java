@@ -3,7 +3,7 @@ package entidades;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class Paciente extends Pessoa{
+public final class Paciente extends Pessoa{
 
     public Paciente(String nome,
                     String cpf,

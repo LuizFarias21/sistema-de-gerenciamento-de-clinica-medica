@@ -43,4 +43,9 @@ public class MedicoVisao extends PessoaVisao {
             }
         }
     }
+
+    @Override
+    public void listar() {
+
+    }
 }

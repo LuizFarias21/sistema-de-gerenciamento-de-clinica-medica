@@ -6,7 +6,6 @@ import entidades.Paciente;
 import excecoes.*;
 import repositorios.ConsultaRepositorio;
 import visoes.GenericoVisao;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -108,12 +107,6 @@ public class ConsultaServico extends TratamentoServico<Consulta> {
         boolean especialidadeCompativel = especialidadeMedico.equals(especialidadeRequerida);
 
         return especialidadeCompativel;
-    }
-
-
-    @Override
-    public void atualizar(Consulta consulta, Consulta novaEntidade) throws DadoInvalidoException {
-
     }
 }
 

@@ -9,7 +9,7 @@ public abstract class GenericoRepositorio<TipoEntidade> {
         lista.add(entidade);
     }
 
-    public abstract TipoEntidade buscar(String identificador);
+    protected abstract TipoEntidade buscar(String identificador);
 
     public void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) {
         lista.set(getLista().indexOf(entidade), novaEntidade);

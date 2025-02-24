@@ -1,6 +1,6 @@
 package entidades;
 
-public class Medicamento extends Tratamento {
+public final class Medicamento extends Tratamento {
 
     private String nome;
 

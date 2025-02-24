@@ -6,7 +6,7 @@ import repositorios.TratamentoRepositorio;
 
 public abstract class TratamentoServico<TipoTratamento extends Tratamento> extends GenericoServico<TipoTratamento> {
 
-    private TratamentoRepositorio<TipoTratamento> tratamentoRepositorio;
+    private final TratamentoRepositorio<TipoTratamento> tratamentoRepositorio;
 
     public TratamentoServico(TratamentoRepositorio<TipoTratamento> tratamentoRepositorio) {
         super(tratamentoRepositorio);
@@ -22,14 +22,24 @@ public abstract class TratamentoServico<TipoTratamento extends Tratamento> exten
     @Override
     public TipoTratamento buscar(String identificador) throws DadoInvalidoException {
         TipoTratamento tratamento = tratamentoRepositorio.buscar(identificador);
-        if (tratamento == null) throw new DadoInvalidoException("Nenhum tratamento encontrado!");
+        verificarTratamentoNulo(tratamento);
         return tratamento;
+    }
+
+    @Override
+    public void atualizar(TipoTratamento tratamento, TipoTratamento novoTratamento) throws DadoInvalidoException {
+        verificarTratamentoNulo(tratamento);
+        tratamentoRepositorio.atualizar(tratamento, novoTratamento);
     }
 
     @Override
     public void remover(String identificador) throws DadoInvalidoException {
         TipoTratamento tratamento = tratamentoRepositorio.buscar(identificador);
-        if (tratamento == null) throw new DadoInvalidoException("Nenhum tratamento encontrado!");
+        verificarTratamentoNulo(tratamento);
         tratamentoRepositorio.remover(tratamento);
+    }
+
+    public void verificarTratamentoNulo(Tratamento tratamento) throws DadoInvalidoException {
+        if (tratamento == null) throw new DadoInvalidoException("Nenhum tratamento encontrado!");
     }
 }

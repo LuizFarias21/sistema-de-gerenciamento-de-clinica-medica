@@ -23,7 +23,7 @@ public abstract class TratamentoVisao<TipoTratamento extends Tratamento> extends
 
     @Override
     public void listar() {
-        tratamentoControlador.listar();
+        //tratamentoControlador.listar();
     }
 
     @Override

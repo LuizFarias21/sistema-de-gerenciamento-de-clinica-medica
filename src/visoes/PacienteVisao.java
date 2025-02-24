@@ -41,5 +41,10 @@ public class PacienteVisao extends PessoaVisao<Paciente> {
             }
         }
     }
+
+    @Override
+    public void listar() {
+
+    }
 }
 

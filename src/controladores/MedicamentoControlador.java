@@ -17,10 +17,10 @@ public class MedicamentoControlador extends TratamentoControlador<Medicamento> {
         this.medicamentoVisao = medicamentoVisao;
     }
 
-    @Override
-    public String listar() {
-        return null;
-    }
+//    @Override
+//    public String listar() {
+//        return null;
+//    }
 
     @Override
     public void cadastrar() {

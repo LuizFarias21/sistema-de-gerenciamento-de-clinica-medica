@@ -6,8 +6,6 @@ import excecoes.DadoInvalidoException;
 import servicos.PacienteServico;
 import visoes.GenericoVisao;
 import visoes.PacienteVisao;
-
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -43,11 +41,13 @@ public class PacienteControlador extends PessoaControlador<Paciente> {
         }
     }
 
+    // E preciso depois procurar uma maneira de atualizar o historicoMedico tambem!
     @Override
     public void atualizar() {
             
-        try {    
-            String cpf = GenericoVisao.solicitarEntrada("Digite o CPF do paciente que deseja atualizar os dados:");
+        try {
+            ArrayList<Paciente> listaPacientes = pacienteServico.listar();
+            String cpf = GenericoVisao.solicitarEntrada(imprimirLista(listaPacientes) + "Digite o CPF do paciente que deseja atualizar os dados:");
             Paciente paciente = pacienteServico.buscar(cpf);
     
             if (paciente == null) {
@@ -58,10 +58,10 @@ public class PacienteControlador extends PessoaControlador<Paciente> {
             String novoNome = GenericoVisao.solicitarEntrada("Digite o novo nome do paciente:");
             String novoCpf = GenericoVisao.solicitarEntrada("Digite o novo CPF do paciente:");
             LocalDate novaDataNascimento = GenericoVisao.solicitarEntradaData("Digite a nova data de nascimento do paciente (YYYY-MM-DD):");
-    
             
             Paciente novoPaciente = new Paciente(novoNome, novoCpf, novaDataNascimento, paciente.getHistoricoMedico());
             pacienteServico.atualizar(paciente, novoPaciente);
+            GenericoVisao.exibirMensagemInfo("Paciente atualizado com sucesso!");
         } catch (DadoInvalidoException e) {
             GenericoVisao.exibirMensagemErro(e.getMessage());
         }
