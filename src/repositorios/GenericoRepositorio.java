@@ -3,27 +3,23 @@ package repositorios;
 import java.util.ArrayList;
 
 public abstract class GenericoRepositorio<TipoEntidade> {
-
     private final ArrayList<TipoEntidade> lista = new ArrayList<>();
 
-    // Retorna a lista de entidades
-    public ArrayList<TipoEntidade> listar() {
-        return lista;
-    }
-
-    // Adiciona uma entidade para a lista
     public void cadastrar(TipoEntidade entidade) {
-        listar().add(entidade);
+        lista.add(entidade);
     }
 
-    // Busca uma entidade pelo identificador e retorna o objeto encontrado
     public abstract TipoEntidade buscar(String identificador);
 
-    // Modifica dados já existentes das entidades
-    public abstract void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade);
+    public void atualizar(TipoEntidade entidade, TipoEntidade novaEntidade) {
+        lista.set(getLista().indexOf(entidade), novaEntidade);
+    }
 
-    // Deleta entidade da lista de entidades
-    public boolean remover(TipoEntidade entidade) {
-        return listar().remove(entidade);
+    public void remover(TipoEntidade entidade) {
+        lista.remove(entidade);
+    }
+
+    public ArrayList<TipoEntidade> getLista() {
+        return lista;
     }
 }

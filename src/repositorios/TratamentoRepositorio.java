@@ -6,8 +6,9 @@ public abstract class TratamentoRepositorio<TipoTratamento extends Tratamento> e
 
     @Override
     public TipoTratamento buscar(String id) {
-        for (TipoTratamento tratamento : listar()) {
-            if (tratamento.getId().equals(id)) return tratamento;
+        for (TipoTratamento tratamento : getLista()) {
+            boolean idCorrespondente = tratamento.getId().equals(id);
+            if (idCorrespondente) return tratamento;
         }
         return null;
     }

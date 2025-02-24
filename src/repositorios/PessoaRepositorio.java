@@ -1,36 +1,40 @@
 package repositorios;
 
 import entidades.Pessoa;
-import visoes.GenericoVisao;
-
 import java.util.ArrayList;
 
 public abstract class PessoaRepositorio<TipoPessoa extends Pessoa> extends GenericoRepositorio<TipoPessoa> {
 
-    private static ArrayList<Pessoa> listaPessoas = new ArrayList<>();
+    private static final ArrayList<Pessoa> listaPessoas = new ArrayList<>();
 
     @Override
     public void cadastrar(TipoPessoa tipoPessoa) {
-        // Cadastra um tipo específico de pessoa em sua respectiva lista
         super.cadastrar(tipoPessoa);
-        // Cadastra qualquer tipo de pessoa, paciente e medico na lista de pessoas
         listaPessoas.add(tipoPessoa);
     }
 
     @Override
     public TipoPessoa buscar(String cpf) {
-        for (TipoPessoa pessoa : listar()){
-            if(pessoa.getCpf().equals(cpf)) return pessoa;
+        for (TipoPessoa pessoa : getLista()){
+            boolean cpfCorrespondente = pessoa.getCpf().equals(cpf);
+            if(cpfCorrespondente) return pessoa;
         }
         return null;
     }
 
-    public ArrayList<Pessoa> getListaPessoas() {
-        return listaPessoas;
+    @Override
+    public void atualizar(TipoPessoa pessoa, TipoPessoa novaPessoa) {
+        super.atualizar(pessoa, novaPessoa);
+        listaPessoas.set(listaPessoas.indexOf(pessoa), novaPessoa);
     }
 
-    public void atualizar(TipoPessoa entidade, TipoPessoa novaEntidade) {
-        // Atualiza qualquer tipo de pessoa, paciente e medico na lista de pessoas
-        listaPessoas.set(listaPessoas.indexOf(entidade), novaEntidade);
+    @Override
+    public void remover(TipoPessoa tipoPessoa) {
+        super.remover(tipoPessoa);
+        listaPessoas.remove(tipoPessoa);
+    }
+
+    public ArrayList<Pessoa> getListaPessoas() {
+        return listaPessoas;
     }
 }

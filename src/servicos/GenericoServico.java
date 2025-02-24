@@ -14,10 +14,10 @@ public abstract class GenericoServico<TipoEntidade> {
     }
 
     public ArrayList<TipoEntidade> listar() throws DadoInvalidoException {
-        if (genericoRepositorio.listar().isEmpty()) {
+        if (genericoRepositorio.getLista().isEmpty()) {
             throw new DadoInvalidoException("Nenhum registro encontrado!");
         }
-        return genericoRepositorio.listar();
+        return genericoRepositorio.getLista();
     }
 
     public abstract void cadastrar(TipoEntidade entidade) throws DadoInvalidoException;
